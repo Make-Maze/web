@@ -1,11 +1,24 @@
 import React from "react";
 
 const SideBar = (props) => {
-  let _content
+  let _content = [];
   if(props.select === "del"){
-    _content = "삭제중"
-  } else {
-    _content = "벽그리는 중"
+    _content.push(<button onClick={function(e){
+      e.preventDefault() 
+      props.delMode(0)}}>삭제</button>);
+    _content.push(<button onClick={function(e){
+      e.preventDefault() 
+      props.delMode(1)}}>완전삭제</button>);
+  } else if(props.select === "wall") {
+    _content.push(<button onClick={function(e){
+      e.preventDefault() 
+      props.drawMode(0)}}>검은색</button>);
+    _content.push(<button onClick={function(e){
+      e.preventDefault() 
+      props.drawMode(1)}}>빨간색</button>);
+    _content.push(<button onClick={function(e){
+      e.preventDefault() 
+      props.drawMode(2)}}>초록색</button>);
   }
 
   return(
