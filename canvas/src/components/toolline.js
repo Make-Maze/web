@@ -1,9 +1,11 @@
 import React from "react";
+import ToolbarCss from "../css/toolline.css"
 
 const Toolbar = (props) => {
   return(
     <div 
-    style={{width: window.innerWidth, backgroundColor: "green", height: (window.innerHeight - 570), overflow: "hidden"}}>
+    className="toolbar"
+    style={{ backgroundColor: "green", overflow: "hidden"}}>
       <button onClick={function(e){
         e.preventDefault();
         props.onSelect("del");

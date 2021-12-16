@@ -1,4 +1,5 @@
 import React from "react";
+import BlockCss from "../css/block.css"
 
 const Block = (props) => {
 
@@ -36,22 +37,22 @@ const Block = (props) => {
     for(j = 0; j < 100; j++){
       if(props.map[i][j] === 1){
         list.push(
-          <td style={{border: "1px solid gray", width: (props.width / 100) - 1, height: (((props.height / 10) - 1) / 2) - 0.75, padding: "0px", backgroundColor: "black"}}></td>
+          <td calssNmae="map" style={{border: "1px solid gray", padding: "0px", backgroundColor: "black"}}></td>
         )
       }
       else if(props.map[i][j] === 2){
         list.push(
-          <td style={{border: "1px solid gray", width: (props.width / 100) - 1, height: (((props.height / 10) - 1) / 2) - 0.75, padding: "0px", backgroundColor: "red"}}></td>
+          <td className="map" style={{border: "1px solid gray", padding: "0px", backgroundColor: "red"}}></td>
         )
       }
       else if(props.map[i][j] === 3){
         list.push(
-          <td style={{border: "1px solid gray", width: (props.width / 100) - 1, height: (((props.height / 10) - 1) / 2) - 0.75, padding: "0px", backgroundColor: "green"}}></td>
+          <td className="map" style={{border: "1px solid gray", padding: "0px", backgroundColor: "green"}}></td>
         )
       }
       else{
         list.push(
-          <td style={{border: "1px solid gray", width: (props.width / 100) - 1, height: (((props.height / 10) - 1) / 2) - 0.75, padding: "0px"}}></td>
+          <td className="map" style={{border: "1px solid gray", padding: "0px"}}></td>
         )
       }
     }

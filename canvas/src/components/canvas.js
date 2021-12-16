@@ -4,6 +4,7 @@ import SideBar from "./sidebar";
 import Toolbar from "./toolline";
 import domtoimage from "dom-to-image";
 import {saveAs} from "file-saver";
+import CanvasCss from '../css/canvas.css'
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
@@ -27,8 +28,6 @@ const Canvas = (props) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     
-    canvas.height = (window.innerHeight - 570) * 2;
-    canvas.width = ((window.innerWidth - 100) * 0.85);
     setHeight(canvas.height);
     setWidth(canvas.width);
 
@@ -50,7 +49,7 @@ const Canvas = (props) => {
 
   const drawing = ({nativeEvent}) => {
     let {offsetX, offsetY} = nativeEvent;
-    setX(Math.floor(100 / ((window.innerWidth - 100) * 0.85) * offsetX));
+    setX(Math.floor(100 / ((window.innerWidth - 100) * 0.6) * offsetX));
     setY(Math.floor(100 / ((window.innerHeight - 300) * 2) * offsetY));
     if(ctx){
       // if(!isDrawing){
@@ -67,23 +66,24 @@ const Canvas = (props) => {
     const canvas = blockRef.current;
     const data = new FormData();
     domtoimage.toBlob(canvas).then((blob) => {
-      data.append("file", blob)
+      // data.append("file", blob)
+      saveAs(blob, "img.png");
     });
-    data.append("array", new Blob([JSON.stringify(map)]))
-    for(let item of data.entries()){
-      console.log(item[0] + ", " + item[1]);
-    }
+    // data.append("array", map)
+    // for(let item of data.entries()){
+    //   console.log(item[0] + ", " + item[1]);
+    // }
   };
 
   return(
     <div>
       <div
       className="canvas_wrap"
-      style={{position: "relative", display: "flex", width: window.innerWidth}}>
+      style={{position: "relative", display: "flex", width: window.innerWidth, margin: "0 auto"}}>
         <div ref={blockRef}>
           <canvas
+          className="canvas"
           ref={canvasRef}
-          style={{position: "absolute"}}
           onMouseDown={startDrawing}
           onMouseUp={finishDrawing}
           onMouseMove={drawing}

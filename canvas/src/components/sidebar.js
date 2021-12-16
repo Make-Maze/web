@@ -1,4 +1,5 @@
 import React from "react";
+import SidebarCss from "../css/sidebar.css"
 
 const SideBar = (props) => {
   let _content = [];
@@ -23,7 +24,8 @@ const SideBar = (props) => {
 
   return(
     <div
-    style={{width: (window.innerWidth - ((window.innerWidth - 100) * 0.85)), height: (window.innerHeight - 570) * 2, backgroundColor: "green"}}>
+    className="sidebar"
+    style={{backgroundColor: "green"}}>
       {_content}
     </div>
   )
