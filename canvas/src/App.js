@@ -1,29 +1,29 @@
-import { Component } from 'react';
-import './App.css';
+import { Component } from 'react'
+import './App.css'
 import Canvas from './components/canvas'
 
 class App extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      select: "wall"
+      select: 'wall',
     }
   }
 
-  render(){
+  render() {
     return (
       <div className="App">
-        <div>
-          <Canvas select={this.state.select} onSelectChange={function(_select){
+        <Canvas
+          select={this.state.select}
+          onSelectChange={function (_select) {
             this.setState({
-              select: _select
+              select: _select,
             })
-          }.bind(this)}></Canvas>
-        </div>
+          }.bind(this)}
+        ></Canvas>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

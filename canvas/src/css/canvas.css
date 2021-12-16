@@ -1,5 +1,14 @@
+.canvas_wrap {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  margin: 0 auto;
+  justify-content: center;
+  padding-top: 50px;
+}
+
 .canvas {
   width: 114vh;
-  height: 50vh;
+  height: 52vh;
   position: absolute;
 }
