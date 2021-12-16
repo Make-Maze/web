@@ -89,7 +89,10 @@ const Canvas = props => {
         </div>
         <SideBar
           select={props.select}
-          delet={del}
+          delete={del}
+          onSelect={function (_select) {
+            props.onSelectChange(_select)
+          }}
           delMode={function (_del) {
             setDel(_del)
           }}
@@ -102,6 +105,9 @@ const Canvas = props => {
         select={props.select}
         onSelect={function (_select) {
           props.onSelectChange(_select)
+        }}
+        delMode={function (_del) {
+          setDel(_del)
         }}
         blockRef={blockRef}
       ></Toolbar>

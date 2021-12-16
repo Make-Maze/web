@@ -1,11 +1,11 @@
 import React from 'react'
-import '../css/toolline.css'
+import '../css/toolbar.css'
 import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
 
 const Toolbar = props => {
   const canvas = props.blockRef.current
-  const downroad = props => {
+  const download = props => {
     const data = new FormData()
     domtoimage.toBlob(canvas).then(blob => {
       // data.append("file", blob)
@@ -23,21 +23,23 @@ const Toolbar = props => {
         onClick={function (e) {
           e.preventDefault()
           props.onSelect('del')
+          props.delMode(0)
         }}
       >
-        삭제
+        지우기
       </button>
       <button
         onClick={function (e) {
           e.preventDefault()
-          props.onSelect('wall')
+          props.onSelect('del')
+          props.delMode(1)
         }}
       >
-        벽
+        전체 지우기
       </button>
       <button
         onClick={function () {
-          downroad()
+          download()
         }}
       >
         저장하기
