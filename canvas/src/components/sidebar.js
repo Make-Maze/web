@@ -1,32 +1,51 @@
-import React from "react";
+import React from 'react'
+import '../css/sidebar.css'
 
-const SideBar = (props) => {
-  let _content = [];
-  if(props.select === "del"){
-    _content.push(<button onClick={function(e){
-      e.preventDefault() 
-      props.delMode(0)}}>삭제</button>);
-    _content.push(<button onClick={function(e){
-      e.preventDefault() 
-      props.delMode(1)}}>완전삭제</button>);
-  } else if(props.select === "wall") {
-    _content.push(<button onClick={function(e){
-      e.preventDefault() 
-      props.drawMode(0)}}>검은색</button>);
-    _content.push(<button onClick={function(e){
-      e.preventDefault() 
-      props.drawMode(1)}}>빨간색</button>);
-    _content.push(<button onClick={function(e){
-      e.preventDefault() 
-      props.drawMode(2)}}>초록색</button>);
-  }
+const SideBar = props => {
+  let _content = []
 
-  return(
+  _content.push(
     <div
-    style={{width: (window.innerWidth - ((window.innerWidth - 100) * 0.85)), height: (window.innerHeight - 570) * 2, backgroundColor: "green"}}>
-      {_content}
-    </div>
+      className="blackCircle"
+      onClick={function (e) {
+        e.preventDefault()
+        props.drawMode(0)
+        props.onSelect('wall')
+      }}
+    ></div>
   )
+  _content.push(
+    <div
+      className="redCircle"
+      onClick={function (e) {
+        e.preventDefault()
+        props.drawMode(1)
+        props.onSelect('wall')
+      }}
+    ></div>
+  )
+  _content.push(
+    <div
+      class="yellowCircle"
+      onClick={function (e) {
+        e.preventDefault()
+        props.drawMode(2)
+        props.onSelect('wall')
+      }}
+    ></div>
+  )
+  _content.push(
+    <div
+      class="greenCircle"
+      onClick={function (e) {
+        e.preventDefault()
+        props.drawMode(3)
+        props.onSelect('wall')
+      }}
+    ></div>
+  )
+
+  return <div className="sidebar">{_content}</div>
 }
 
 export default SideBar
