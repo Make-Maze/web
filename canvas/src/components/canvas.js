@@ -1,10 +1,14 @@
 import React, {useRef, useEffect, useState} from "react";
 import Block from './block'
 import SideBar from "./sidebar";
+import Toolbar from "./toolline";
+import domtoimage from "dom-to-image";
+import {saveAs} from "file-saver";
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
+  const blockRef = useRef(null);
 
   let list = new Array(20);
   for(let i = 0; i < 20; i++){
@@ -59,20 +63,34 @@ const Canvas = (props) => {
     }
   };
 
+  const downroad = () =>{
+    const canvas = blockRef.current;
+    const data = new FormData();
+    domtoimage.toBlob(canvas).then((blob) => {
+      data.append("file", blob)
+    });
+    data.append("array", new Blob([JSON.stringify(map)]))
+    for(let item of data.entries()){
+      console.log(item[0] + ", " + item[1]);
+    }
+  };
+
   return(
     <div>
       <div
       className="canvas_wrap"
       style={{position: "relative", display: "flex", width: window.innerWidth}}>
-        <canvas
-        ref={canvasRef}
-        style={{position: "absolute"}}
-        onMouseDown={startDrawing}
-        onMouseUp={finishDrawing}
-        onMouseMove={drawing}
-        onMouseLeave={finishDrawing}>
-        </canvas>
-        <Block x={x} y={y} isDrawing={isDrawing} map={map} width={width} height={height} select={props.select} delete={del} delMode={function(_del){setDel(_del)}} drawMode={drawMode}></Block>
+        <div ref={blockRef}>
+          <canvas
+          ref={canvasRef}
+          style={{position: "absolute"}}
+          onMouseDown={startDrawing}
+          onMouseUp={finishDrawing}
+          onMouseMove={drawing}
+          onMouseLeave={finishDrawing}>
+          </canvas>
+          <Block x={x} y={y} isDrawing={isDrawing} map={map} width={width} height={height} select={props.select} delete={del} delMode={function(_del){setDel(_del)}} drawMode={drawMode}></Block>
+        </div>
         <SideBar
          select={props.select}
          delet={del} 
@@ -83,8 +101,13 @@ const Canvas = (props) => {
           setDraw(_draw);
          }}></SideBar>
       </div>
+      <Toolbar select={props.select} onSelect={function(_select){
+        props.onSelectChange(_select);
+      }}></Toolbar>
+      <button onClick={function(){
+          downroad();
+        }}>저장하기</button>
     </div>
-    
   );
 }
 
