@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'AppleB';
+  src: url('../../fonts/AppleSDGothicNeoB.ttf');
+}
+@font-face {
+  font-family: 'AppleM';
+  src: url('../../fonts/AppleSDGothicNeoM.ttf');
+}
+
+* {
+  font-family: 'AppleM';
+}
+h1 {
+  font-family: 'AppleB';
+}
