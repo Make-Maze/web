@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import './App.css'
-import Canvas from './components/canvas'
+import * as C from './components'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 class App extends Component {
   constructor(props) {
@@ -13,14 +14,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Canvas
-          select={this.state.select}
-          onSelectChange={function (_select) {
-            this.setState({
-              select: _select,
-            })
-          }.bind(this)}
-        ></Canvas>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/Login" element={<C.Login></C.Login>}></Route>
+            <Route
+              path="/"
+              element={
+                <C.Canvas
+                  select={this.state.select}
+                  onSelectChange={function (_select) {
+                    this.setState({
+                      select: _select,
+                    })
+                  }.bind(this)}
+                ></C.Canvas>
+              }
+            ></Route>
+            <Route path="/share" element={<C.Share></C.Share>}></Route>
+          </Routes>
+        </BrowserRouter>
       </div>
     )
   }
