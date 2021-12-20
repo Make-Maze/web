@@ -16,9 +16,10 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<C.Start></C.Start>}></Route>
             <Route path="/Login" element={<C.Login></C.Login>}></Route>
             <Route
-              path="/"
+              path="/Draw"
               element={
                 <C.Canvas
                   select={this.state.select}
