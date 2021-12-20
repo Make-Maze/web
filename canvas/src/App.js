@@ -1,6 +1,6 @@
 import { Component } from 'react'
-import Canvas from './components/canvas'
-import Share from './components/Share'
+import './App.css'
+import * as C from './components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 class App extends Component {
@@ -19,17 +19,17 @@ class App extends Component {
             <Route
               path="/"
               element={
-                <Canvas
+                <C.Canvas
                   select={this.state.select}
                   onSelectChange={function (_select) {
                     this.setState({
                       select: _select,
                     })
                   }.bind(this)}
-                ></Canvas>
+                ></C.Canvas>
               }
             ></Route>
-            <Route path="/share" element={<Share></Share>}></Route>
+            <Route path="/share" element={<C.Share></C.Share>}></Route>
           </Routes>
         </BrowserRouter>
       </div>
