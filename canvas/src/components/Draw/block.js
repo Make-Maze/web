@@ -67,7 +67,7 @@ const Block = props => {
       if (props.map[i][j] === 1) {
         list.push(
           <td
-            calssNmae="map"
+            classNmae="map"
             style={{
               border: '1px solid gray',
               padding: '0px',

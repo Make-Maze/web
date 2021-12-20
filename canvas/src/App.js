@@ -16,6 +16,7 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <Routes>
+            <Route path="/Login" element={<C.Login></C.Login>}></Route>
             <Route
               path="/"
               element={

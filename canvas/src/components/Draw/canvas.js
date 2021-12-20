@@ -25,6 +25,10 @@ const Canvas = props => {
 
   useEffect(() => {
     const canvas = canvasRef.current
+    const canvasJSON = canvasRef
+    console.log(canvasJSON)
+    // const json = JSON.stringify(canvasJSON)
+    // console.log(json)
 
     setHeight(canvas.height)
     setWidth(canvas.width)

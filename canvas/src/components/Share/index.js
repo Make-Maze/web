@@ -20,6 +20,7 @@ const Share = () => {
         </h1>
         <textarea type="text" onChange={e => setList(e.target.value)} />
         <button onClick={shareMap}>저장하기</button>
+
         {show}
       </S.MainSection>
     </>
