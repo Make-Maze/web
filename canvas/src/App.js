@@ -2,6 +2,7 @@ import { Component } from 'react'
 import './App.css'
 import * as C from './components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import GlobalStyle from './components/css/GlobalStyle/GlobalStyle'
 
 class App extends Component {
   constructor(props) {
@@ -14,10 +15,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <GlobalStyle></GlobalStyle>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<C.Start></C.Start>}></Route>
-            <Route path="/Login" element={<C.Login></C.Login>}></Route>
             <Route
               path="/Draw"
               element={
