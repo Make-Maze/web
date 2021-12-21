@@ -5,11 +5,13 @@ import * as S from './style'
 import Snowfall from 'react-snowfall'
 import axios from 'axios'
 
+import { useResultContext } from '../../Context/Data'
 const Start = () => {
   const clientId =
     '121704372282-6l10fcfppqtqgbhr3mk9guacs6r63pcl.apps.googleusercontent.com'
 
-  const [data, setData] = useState({})
+  // const [data, setData] = useState({})
+  const { data, setData } = useResultContext()
 
   const onSuccess = response => {
     const userData = {
@@ -18,6 +20,8 @@ const Start = () => {
       name: response.profileObj.name,
     }
     setData(userData)
+    // console.log(data)
+    // console.log(userData)
 
     // console.log(userData)
     // axios
@@ -57,6 +61,7 @@ const Start = () => {
           <S.LoginBtn>게스트 로그인</S.LoginBtn>
         </S.LoginSection>
       </S.Container>
+      <Link to="/share">공유 페이지 이동</Link>
     </S.MainSection>
   )
 }
