@@ -61,7 +61,7 @@ const Start = () => {
           <S.LoginBtn>게스트 로그인</S.LoginBtn>
         </S.LoginSection>
       </S.Container>
-      <Link to="/share">공유 페이지 이동</Link>
+      <Link to="/User">공유 페이지 이동</Link>
     </S.MainSection>
   )
 }

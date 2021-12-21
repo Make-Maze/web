@@ -32,7 +32,7 @@ class App extends Component {
                   ></C.Canvas>
                 }
               ></Route>
-              <Route path="/share" element={<C.Share></C.Share>}></Route>
+              <Route path="/User" element={<C.User></C.User>}></Route>
             </Routes>
           </BrowserRouter>
         </ResultContextProvider>
