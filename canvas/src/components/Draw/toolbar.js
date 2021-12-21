@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../css/toolbar.css'
 import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
+import { useResultContext } from '../../Context/Data'
 
 const Toolbar = props => {
+  // const [img, setImg] = useState({})
   const canvas = props.blockRef.current
   const map = props.map
+  const { img, setImg } = useResultContext()
   const download = () => {
     const data = new FormData()
-    // domtoimage.toBlob(canvas).then(blob => {
-    //   saveAs(blob, 'img.png')
-    // })
+    domtoimage
+      .toBlob(canvas)
+      .then(blob => {
+        const objectURL = URL.createObjectURL(blob)
+        setImg(objectURL)
+        console.log(objectURL)
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error)
+      })
     const jsonArray = new Array()
     const sendJson = new Array()
     for (let i = 0; i < 20; i++) {
