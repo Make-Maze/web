@@ -4,27 +4,52 @@ import * as S from './style'
 import Footer from '../../Assets/FooterImg.png'
 import GoogleLogin from '../../Assets/GoogleLogin.png'
 import GuestLogin from '../../Assets/GuestLogin.png'
-import Snowfall from 'react-snowfall'
 import axios from 'axios'
 
 import { useResultContext } from '../../Context/Data'
 const Start = () => {
-  const clientId =
-    '121704372282-6l10fcfppqtqgbhr3mk9guacs6r63pcl.apps.googleusercontent.com'
   const { data, setData } = useResultContext()
 
-  const Login = response => {
-    axios
-      .post('api')
-      .then(response => {
-        // const { accessToken } = response.data;
-        // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-        // axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      })
-      .catch(err => console.log(err))
+  const TryLogin = response => {
+    // axios({
+    //   method: 'get',
+    //   url: '/oauth/googleRequest',
+    // })
+    //   .then(res => {
+    //     console.log(res)
+    //     setData({
+    //       email: res.data.email,
+    //       name: res.data.name,
+    //       img: res.data.picture,
+    //     })
+    //     localStorage.setItem('m&m_token', res.data.access_token)
+    //   })
+    //   .catch(err => console.log(err))
+
+    async function TryLogin(response) {
+      try {
+        const res = await axios.get('/oauth/googleRequest')
+        setData({
+          email: res.data.email,
+          name: res.data.name,
+          img: res.data.picture,
+        })
+        console.log(res)
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
 
   const guestLogin = response => {}
+  // async function Login() {
+  //   try {
+  //     await
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
   return (
     <S.MainSection>
       <h1>
@@ -37,7 +62,7 @@ const Start = () => {
             <S.Green>맵 제작</S.Green> 및 <S.Green>플레이</S.Green>을 하고
             싶으시다면
           </S.Text>
-          <S.LoginBtn onClick={Login}>Google 로그인</S.LoginBtn>
+          <S.LoginBtn onClick={TryLogin}>Google 로그인</S.LoginBtn>
           <img src={GoogleLogin} />
         </S.LoginSection>
         <S.LoginSection>
