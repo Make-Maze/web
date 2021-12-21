@@ -3,6 +3,7 @@ import Block from './block'
 import SideBar from './sidebar'
 import Toolbar from './toolbar'
 import '../css/canvas.css'
+import Header from '../Header'
 
 const Canvas = props => {
   const canvasRef = useRef(null)
@@ -66,6 +67,7 @@ const Canvas = props => {
 
   return (
     <div>
+      <Header></Header>
       <div className="canvas_wrap">
         <div ref={blockRef}>
           <canvas
