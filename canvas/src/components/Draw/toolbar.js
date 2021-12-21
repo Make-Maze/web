@@ -5,16 +5,30 @@ import { saveAs } from 'file-saver'
 
 const Toolbar = props => {
   const canvas = props.blockRef.current
+  const map = props.map
+  console.log(map)
   const download = props => {
     const data = new FormData()
-    domtoimage.toBlob(canvas).then(blob => {
-      // data.append("file", blob)
-      saveAs(blob, 'img.png')
-    })
-    // data.append("array", map)
-    // for(let item of data.entries()){
-    //   console.log(item[0] + ", " + item[1]);
-    // }
+    // domtoimage.toBlob(canvas).then(blob => {
+    //   saveAs(blob, 'img.png')
+    // })
+    let jsonArray = new Array()
+    let sendJson = new Array()
+    for(let i = 0; i<20;i++){
+      for(let j = 0; j<100;j++){
+        let jsonObject = new Object()
+        if(map[i][j] != 0){
+          jsonObject = [map[i][j], i, j]
+          jsonObject = JSON.stringify(jsonObject)
+          jsonArray.push(JSON.parse(jsonObject))
+        }
+      }
+    }
+    let jsonObject = new Object()
+    jsonObject.mapName = "map"
+    jsonObject.blocks = jsonArray
+    jsonObject = JSON.stringify(jsonObject)
+    console.log("여기" ,jsonObject)
   }
 
   return (
