@@ -6,7 +6,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   font-size: 20px;
-  justify-content: flex-end;
+  justify-content: space-between;
   a:hover {
     color: #ff8f8f;
   }
