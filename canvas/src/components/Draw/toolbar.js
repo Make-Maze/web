@@ -6,18 +6,17 @@ import { saveAs } from 'file-saver'
 const Toolbar = props => {
   const canvas = props.blockRef.current
   const map = props.map
-  console.log(map)
-  const download = props => {
+  const download = () => {
     const data = new FormData()
     // domtoimage.toBlob(canvas).then(blob => {
     //   saveAs(blob, 'img.png')
     // })
-    let jsonArray = new Array()
-    let sendJson = new Array()
-    for(let i = 0; i<20;i++){
-      for(let j = 0; j<100;j++){
+    const jsonArray = new Array()
+    const sendJson = new Array()
+    for (let i = 0; i < 20; i++) {
+      for (let j = 0; j < 100; j++) {
         let jsonObject = new Object()
-        if(map[i][j] != 0){
+        if (map[i][j] != 0) {
           jsonObject = [map[i][j], i, j]
           jsonObject = JSON.stringify(jsonObject)
           jsonArray.push(JSON.parse(jsonObject))
@@ -25,12 +24,11 @@ const Toolbar = props => {
       }
     }
     let jsonObject = new Object()
-    jsonObject.mapName = "map"
+    jsonObject.mapName = props.title
     jsonObject.blocks = jsonArray
     jsonObject = JSON.stringify(jsonObject)
-    console.log("여기" ,jsonObject)
+    console.log('여기', jsonObject)
   }
-
   return (
     <div className="toolbar">
       <button
@@ -57,6 +55,13 @@ const Toolbar = props => {
         }}
       >
         저장하기
+      </button>
+      <button
+        onClick={function () {
+          download()
+        }}
+      >
+        공유하기
       </button>
     </div>
   )

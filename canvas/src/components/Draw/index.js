@@ -27,16 +27,11 @@ const Canvas = props => {
   useEffect(() => {
     const canvas = canvasRef.current
     const canvasJSON = canvasRef
-    console.log(canvasJSON)
-    // const json = JSON.stringify(canvasJSON)
-    // console.log(json)
 
     setHeight(canvas.height)
     setWidth(canvas.width)
 
     const context = canvas.getContext('2d')
-    // context.strokeStyle = "red";
-    // context.lineWidth = 10;
     contextRef.current = context
 
     setCtx(contextRef.current)
@@ -65,9 +60,12 @@ const Canvas = props => {
     }
   }
 
+  const [title, setTitle] = useState('')
+
   return (
     <div>
       <Header></Header>
+      <input type="text" onChange={e => setTitle(e.target.value)} />
       <div className="canvas_wrap">
         <div ref={blockRef}>
           <canvas
@@ -116,6 +114,8 @@ const Canvas = props => {
           setDel(_del)
         }}
         blockRef={blockRef}
+        title={title}
+        map={map}
       ></Toolbar>
     </div>
   )
