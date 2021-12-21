@@ -32,3 +32,14 @@ export const Text = styled.div`
   font-size: 36px;
   margin-bottom: 50px;
 `
+
+export const LoginBtn = styled.div`
+  width: 120px;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+  background-color: white;
+  border-radius: 2px;
+  font-size: 14px;
+  cursor: pointer;
+`
