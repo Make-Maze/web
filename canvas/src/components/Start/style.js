@@ -4,19 +4,22 @@ export const MainSection = styled.div`
   margin: 0;
   height: 100vh;
   overflow: hidden;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  /* background-color: #ff8f8f; */
   h1 {
-    padding: 20vh 7vw 0px;
-
+    padding: 15vh 7vw 0px 7vw;
     margin: 0;
-    color: white;
+    color: black;
     font-size: 80px;
     text-align: center;
-    padding-bottom: 100px;
+  }
+  hr {
+    width: 45%;
+    margin: 0 auto;
+    margin-bottom: 50px;
   }
 `
-
+export const Green = styled.span`
+  color: #16780d;
+`
 export const Container = styled.div`
   display: flex;
 `
@@ -28,18 +31,18 @@ export const LoginSection = styled.div`
   width: 50%;
 `
 export const Text = styled.div`
-  color: white;
-  font-size: 36px;
-  margin-bottom: 50px;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: 'AppleM';
 `
 
 export const LoginBtn = styled.div`
-  width: 120px;
-  height: 45px;
+  width: 200px;
+  height: 40px;
   text-align: center;
-  line-height: 45px;
-  background-color: white;
-  border-radius: 2px;
-  font-size: 14px;
+  line-height: 40px;
+  border-radius: 100px;
+  border: 1px solid rgba(15, 13, 13, 0.3);
+  font-size: 20px;
   cursor: pointer;
 `
