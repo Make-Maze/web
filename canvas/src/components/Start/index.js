@@ -3,22 +3,22 @@ import { Link } from 'react-router-dom'
 import GoogleLogin from 'react-google-login'
 import * as S from './style'
 import Snowfall from 'react-snowfall'
-import './style.css'
 import axios from 'axios'
+
 const Start = () => {
   const clientId =
     '121704372282-6l10fcfppqtqgbhr3mk9guacs6r63pcl.apps.googleusercontent.com'
+
+  const [data, setData] = useState({})
 
   const onSuccess = response => {
     const userData = {
       profileImage: response.profileObj.imageUrl,
       email: response.profileObj.email,
       name: response.profileObj.name,
-      // accessToken = response
     }
+    setData(userData)
 
-    console.log(response)
-    console.log(response)
     // console.log(userData)
     // axios
     //   .post('api', userData)
@@ -33,6 +33,7 @@ const Start = () => {
   const onFailure = error => {
     console.log(error)
   }
+
   return (
     <S.MainSection>
       <h1>나만의 미로를 즐겨보세요 !</h1>
@@ -53,6 +54,7 @@ const Start = () => {
         </S.LoginSection>
         <S.LoginSection>
           <S.Text>기존 미로를 하고 싶으시다면</S.Text>
+          <S.LoginBtn>게스트 로그인</S.LoginBtn>
         </S.LoginSection>
       </S.Container>
     </S.MainSection>
