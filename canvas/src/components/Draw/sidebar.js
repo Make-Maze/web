@@ -45,7 +45,7 @@ const SideBar = props => {
     ></div>
   )
 
-  return <div className="sidebar">{_content}</div>
+  return <div className="sidebar">{props.item ? 'item' : 'sideBar'}</div>
 }
 
 export default SideBar
