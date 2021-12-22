@@ -12,23 +12,20 @@ export const UserSection = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  padding-bottom: 300px;
+  padding-bottom: 150px;
   img {
     width: 300px;
     height: 300px;
     border-radius: 50%;
   }
   p {
-    padding-left: 130px;
     font-size: 24px;
-    margin-bottom: 20px;
+    margin: 0 20px 10px 150px;
+    width: 200px;
   }
   .mainImg {
-    position: absolute;
-    width: 1000px;
+    width: 600px;
     height: 528px;
-    top: 20px;
-    left: 800px;
   }
   hr {
     width: 5px;
@@ -40,4 +37,26 @@ export const MapSection = styled.div`
     margin-top: 100px;
     font-size: 60px;
   }
+`
+
+export const ItemSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-top: 70px;
+  p {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  img {
+    width: 100%;
+    height: 500px;
+  }
+`
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
 `

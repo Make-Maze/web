@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../css/toolbar.css'
 import domtoimage from 'dom-to-image'
-import { saveAs } from 'file-saver'
 import { useResultContext } from '../../Context/Data'
 
 const Toolbar = props => {
   const canvas = props.blockRef.current
   const map = props.map
-  const { img, setImg, title, setTitle } = useResultContext()
-  const download = () => {
-    const data = new FormData()
+  const { setImg, title, setTitle } = useResultContext()
+
+  const save = () => {}
+
+  const share = () => {
     domtoimage
       .toBlob(canvas)
       .then(blob => {
@@ -21,11 +22,11 @@ const Toolbar = props => {
         console.error('oops, something went wrong!', error)
       })
     const jsonArray = new Array()
-    const sendJson = new Array()
+    // const sendJson = new Array()
     for (let i = 0; i < 20; i++) {
       for (let j = 0; j < 100; j++) {
         let jsonObject = new Object()
-        if (map[i][j] != 0) {
+        if (map[i][j] !== 0) {
           jsonObject = [map[i][j], i, j]
           jsonObject = JSON.stringify(jsonObject)
           jsonArray.push(JSON.parse(jsonObject))
@@ -60,19 +61,16 @@ const Toolbar = props => {
         전체 지우기
       </button>
       <button
-        onClick={function () {
-          download()
+        onClick={function (e) {
+          e.preventDefault()
+          props.onSelect('del')
+          props.delMode(0)
         }}
       >
-        저장하기
+        아이템
       </button>
-      <button
-        onClick={function () {
-          download()
-        }}
-      >
-        공유하기
-      </button>
+      <button onClick={save}>저장하기</button>
+      <button onClick={share}>공유하기</button>
     </div>
   )
 }

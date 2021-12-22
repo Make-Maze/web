@@ -33,5 +33,5 @@ export const ItemSection = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 50px 50px;
+  padding: 50px 20px;
 `

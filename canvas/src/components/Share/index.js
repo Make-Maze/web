@@ -4,7 +4,7 @@ import { useResultContext } from '../../Context/Data'
 import * as S from './style'
 
 const Share = () => {
-  const { img, setImg, title, setTitle } = useResultContext()
+  const { img, title } = useResultContext()
   return (
     <>
       <Header></Header>
@@ -16,7 +16,7 @@ const Share = () => {
         <hr />
         <S.ItemSection>
           <p>{title}</p>
-          <img src={img} />
+          <img src={img} alt="" />
           <S.ButtonWrapper>
             <button>시작하기</button>
             <button>저장하기</button>
