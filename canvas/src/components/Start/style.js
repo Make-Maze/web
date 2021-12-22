@@ -4,6 +4,12 @@ export const MainSection = styled.div`
   margin: 0;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  * {
+    overflow: hidden;
+  }
   h1 {
     padding: 15vh 7vw 0px 7vw;
     margin: 0;
@@ -16,6 +22,9 @@ export const MainSection = styled.div`
     margin: 0 auto;
     margin-bottom: 50px;
   }
+  .footerImg {
+    width: 100%;
+  }
 `
 export const Green = styled.span`
   color: #16780d;
@@ -26,7 +35,6 @@ export const Container = styled.div`
 export const LoginSection = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 50%;
 `

@@ -3,6 +3,7 @@ import * as S from './style'
 import axios from 'axios'
 import { useResultContext } from '../../Context/Data'
 import Header from '../Header'
+import Footer from '../Footer'
 import mainImg from '../../Assets/UserMainImg.png'
 
 const User = () => {
@@ -10,7 +11,7 @@ const User = () => {
   console.log(data)
   return (
     <>
-      <Header></Header>
+      <Header />
       <S.MainSection>
         <S.UserSection>
           <img src={data.profileImage} alt="" />
@@ -33,6 +34,7 @@ const User = () => {
           </S.ItemSection>
         </S.MapSection>
       </S.MainSection>
+      <Footer />
     </>
   )
 }

@@ -74,7 +74,7 @@ const Start = () => {
         </S.LoginSection>
       </S.Container>
       <Link to="/User">공유 페이지 이동</Link>
-      <img src={Footer} style={{ width: '100%' }} />
+      <img src={Footer} className="footerImg" />
     </S.MainSection>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../Header'
+import Footer from '../Footer'
 import { useResultContext } from '../../Context/Data'
 import * as S from './style'
 
@@ -7,7 +8,7 @@ const Share = () => {
   const { img, title } = useResultContext()
   return (
     <>
-      <Header></Header>
+      <Header />
       <S.MainSection>
         <h1>
           다른 사람들의 <br />
@@ -23,6 +24,7 @@ const Share = () => {
           </S.ButtonWrapper>
         </S.ItemSection>
       </S.MainSection>
+      <Footer />
     </>
   )
 }
