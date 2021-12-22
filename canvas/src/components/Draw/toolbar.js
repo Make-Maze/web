@@ -5,10 +5,9 @@ import { saveAs } from 'file-saver'
 import { useResultContext } from '../../Context/Data'
 
 const Toolbar = props => {
-  // const [img, setImg] = useState({})
   const canvas = props.blockRef.current
   const map = props.map
-  const { img, setImg } = useResultContext()
+  const { img, setImg, title, setTitle } = useResultContext()
   const download = () => {
     const data = new FormData()
     domtoimage
@@ -34,7 +33,7 @@ const Toolbar = props => {
       }
     }
     let jsonObject = new Object()
-    jsonObject.mapName = props.title
+    jsonObject.mapName = title
     jsonObject.blocks = jsonArray
     jsonObject = JSON.stringify(jsonObject)
     console.log('여기', jsonObject)
