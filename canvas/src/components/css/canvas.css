@@ -5,6 +5,7 @@
   margin: 0 auto;
   justify-content: center;
   padding-top: 50px;
+  overflow: hidden;
 }
 
 .canvas {

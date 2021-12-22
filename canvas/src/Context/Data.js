@@ -6,13 +6,15 @@ export const ResultContext = createContext(undefined)
 
 export function ResultContextProvider({ children }) {
   const [data, setData] = useState({}) ////글로벌하게 관리할 state
-  const [img, setImg] = useState({})
-
+  const [img, setImg] = useState(null)
+  const [title, setTitle] = useState('')
   const value = {
     data,
     setData,
     img,
     setImg,
+    title,
+    setTitle,
   }
 
   return (

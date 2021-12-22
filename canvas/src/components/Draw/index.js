@@ -4,6 +4,7 @@ import SideBar from './sidebar'
 import Toolbar from './toolbar'
 import '../css/canvas.css'
 import Header from '../Header'
+import Footer from '../Footer'
 
 const Canvas = props => {
   const canvasRef = useRef(null)
@@ -59,13 +60,12 @@ const Canvas = props => {
       // }
     }
   }
-
-  const [title, setTitle] = useState('')
+  const [exTitle, setexTitle] = useState()
 
   return (
     <div>
-      <Header></Header>
-      <input type="text" onChange={e => setTitle(e.target.value)} />
+      <Header />
+      <input type="text" onChange={e => setexTitle(e.target.value)} />
       <div className="canvas_wrap">
         <div ref={blockRef}>
           <canvas
@@ -114,9 +114,10 @@ const Canvas = props => {
           setDel(_del)
         }}
         blockRef={blockRef}
-        title={title}
         map={map}
+        exTitle={exTitle}
       ></Toolbar>
+      <Footer />
     </div>
   )
 }

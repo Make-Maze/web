@@ -1,15 +1,31 @@
 import React from 'react'
 import Header from '../Header'
+import Footer from '../Footer'
 import { useResultContext } from '../../Context/Data'
+import * as S from './style'
 
 const Share = () => {
-  const { img, setImg } = useResultContext()
-
+  const { img, title } = useResultContext()
   return (
-    <div>
-      <Header></Header>
-      <img src={img} />
-    </div>
+    <>
+      <Header />
+      <S.MainSection>
+        <h1>
+          다른 사람들의 <br />
+          <S.Green> 미로</S.Green>를 체험해봐요.
+        </h1>
+        <hr />
+        <S.ItemSection>
+          <p>{title}</p>
+          <img src={img} alt="" />
+          <S.ButtonWrapper>
+            <button>시작하기</button>
+            <button>저장하기</button>
+          </S.ButtonWrapper>
+        </S.ItemSection>
+      </S.MainSection>
+      <Footer />
+    </>
   )
 }
 
