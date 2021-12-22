@@ -33,6 +33,7 @@ const Toolbar = props => {
       }
     }
     let jsonObject = new Object()
+    setTitle(props.exTitle)
     jsonObject.mapName = title
     jsonObject.blocks = jsonArray
     jsonObject = JSON.stringify(jsonObject)

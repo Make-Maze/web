@@ -4,7 +4,6 @@ import SideBar from './sidebar'
 import Toolbar from './toolbar'
 import '../css/canvas.css'
 import Header from '../Header'
-import { useResultContext } from '../../Context/Data'
 
 const Canvas = props => {
   const canvasRef = useRef(null)
@@ -60,12 +59,12 @@ const Canvas = props => {
       // }
     }
   }
-  const { title, setTitle } = useResultContext()
+  const [exTitle, setexTitle] = useState()
 
   return (
     <div>
       <Header></Header>
-      <input type="text" onChange={e => setTitle(e.target.value)} />
+      <input type="text" onChange={e => setexTitle(e.target.value)} />
       <div className="canvas_wrap">
         <div ref={blockRef}>
           <canvas
@@ -115,6 +114,7 @@ const Canvas = props => {
         }}
         blockRef={blockRef}
         map={map}
+        exTitle={exTitle}
       ></Toolbar>
     </div>
   )

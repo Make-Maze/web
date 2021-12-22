@@ -5,7 +5,7 @@ import { useResultContext } from '../../Context/Data'
 import Header from '../Header'
 import mainImg from '../../Assets/UserMainImg.png'
 
-const Share = () => {
+const User = () => {
   const [list, setList] = useState('')
   const [show, setShow] = useState()
 
@@ -33,4 +33,4 @@ const Share = () => {
   )
 }
 
-export default Share
+export default User
