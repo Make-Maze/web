@@ -23,6 +23,7 @@ const Canvas = props => {
   const [del, setDel] = useState(0)
   const [item, setItem] = useState(false)
   const [drawMode, setDraw] = useState(0)
+  const [select, setSelect] = useState('wall')
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -80,9 +81,10 @@ const Canvas = props => {
             map={map}
             width={width}
             height={height}
-            select={props.select}
+            select={select}
             delete={del}
             item={item}
+            setSelect={setSelect}
             delMode={function (_del) {
               setDel(_del)
             }}
@@ -90,11 +92,9 @@ const Canvas = props => {
           ></Block>
         </div>
         <SideBar
-          select={props.select}
+          select={select}
           delete={del}
-          onSelect={function (_select) {
-            props.onSelectChange(_select)
-          }}
+          setSelect={setSelect}
           delMode={function (_del) {
             setDel(_del)
           }}
@@ -105,10 +105,8 @@ const Canvas = props => {
         ></SideBar>
       </div>
       <Toolbar
-        select={props.select}
-        onSelect={function (_select) {
-          props.onSelectChange(_select)
-        }}
+        select={select}
+        setSelect={setSelect}
         delMode={function (_del) {
           setDel(_del)
         }}

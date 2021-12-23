@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Header, Footer, Draw } from '../components'
 const DrawPage = () => {
-  const [select, setSelect] = useState('wall')
   return (
     <>
       <Header></Header>
       <Draw
-        select={select}
-        onSelectChange={_select => setSelect(_select)}
+      // select={select}
+      // onSelectChange={_select => setSelect(_select)}
       ></Draw>
       <Footer></Footer>
     </>

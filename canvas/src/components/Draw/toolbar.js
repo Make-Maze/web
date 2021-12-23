@@ -49,7 +49,7 @@ const Toolbar = props => {
       <button
         onClick={function (e) {
           e.preventDefault()
-          props.onSelect('del')
+          props.setSelect('del')
           props.delMode(0)
         }}
       >
@@ -58,7 +58,7 @@ const Toolbar = props => {
       <button
         onClick={function (e) {
           e.preventDefault()
-          props.onSelect('del')
+          props.setSelect('del')
           props.delMode(1)
         }}
       >
@@ -67,7 +67,7 @@ const Toolbar = props => {
       <button
         onClick={function (e) {
           e.preventDefault()
-          props.onSelect()
+          props.setSelect()
           props.setItem(!props.item)
         }}
       >
