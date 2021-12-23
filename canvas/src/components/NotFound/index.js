@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Snowfall from 'react-snowfall'
 import { useResultContext } from '../../Context/Data'
 import * as S from './style'
 const NotFound = () => {
-  const { isLogin } = useResultContext()
+  const { isLogin, setIsLogin } = useResultContext()
+
+  useEffect(() => {
+    if (sessionStorage.getItem('user_id') === null) {
+      setIsLogin(false)
+    } else {
+      setIsLogin(true)
+    }
+    console.log(isLogin)
+  }, [isLogin, setIsLogin])
+
   return (
     <S.MainSection>
       <Snowfall />

@@ -5,7 +5,7 @@ import { useResultContext } from '../../Context/Data'
 import UserBackground from '../../Assets/UserBackground.png'
 
 const User = () => {
-  const { data, title, img, isLogin } = useResultContext()
+  const { data, title, img } = useResultContext()
   return (
     <>
       <S.MainSection>
