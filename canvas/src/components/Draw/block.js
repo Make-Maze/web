@@ -51,7 +51,6 @@ const Block = props => {
     delMode === 0
   ) {
     props.map[Math.floor(props.y / 2)][props.x] = 0
-    console.log(123123)
   } else if (delMode === 1) {
     for (let i = 0; i < 20; i++) {
       props.map[i].fill(0)

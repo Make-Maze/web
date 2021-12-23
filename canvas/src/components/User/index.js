@@ -8,13 +8,12 @@ import UserBackground from '../../Assets/UserBackground.png'
 
 const User = () => {
   const { data, title, img } = useResultContext()
-  console.log(data)
   return (
     <>
       <Header />
       <S.MainSection>
         <S.UserSection>
-          <img src={data.profileImage} alt="" />
+          <img src={data.imageUrl} alt="" />
           <div>
             <p>이름 : {data.name}</p>
             <p>이메일 : {data.email}</p>

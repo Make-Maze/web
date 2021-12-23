@@ -14,7 +14,9 @@ export const Header = styled.header`
   a {
     margin-left: 50px;
   }
-  a:last-child {
-    margin-right: 50px;
+
+  span {
+    margin: 50px;
+    cursor: pointer;
   }
 `

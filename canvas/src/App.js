@@ -3,7 +3,8 @@ import './App.css'
 import * as C from './components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ResultContextProvider } from './Context/Data' //provider 불러오기
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -17,6 +18,7 @@ class App extends Component {
       <div className="App">
         <ResultContextProvider>
           <BrowserRouter>
+            <ToastContainer />
             <Routes>
               <Route path="/" element={<C.Start></C.Start>}></Route>
               <Route
