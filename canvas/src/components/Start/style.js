@@ -37,6 +37,11 @@ export const LoginSection = styled.div`
   flex-direction: column;
   align-items: center;
   width: 50%;
+  .googleLogin {
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+  }
 `
 export const Text = styled.div`
   font-size: 24px;

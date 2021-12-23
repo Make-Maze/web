@@ -2,13 +2,17 @@ import React from 'react'
 import '../css/toolbar.css'
 import domtoimage from 'dom-to-image'
 import { useResultContext } from '../../Context/Data'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Toolbar = props => {
   const canvas = props.blockRef.current
   const map = props.map
   const { setImg, title, setTitle } = useResultContext()
 
-  const save = () => {}
+  const save = () => {
+    toast.success('저장 완료 ✌✌')
+  }
 
   const share = () => {
     domtoimage
@@ -16,9 +20,11 @@ const Toolbar = props => {
       .then(blob => {
         const objectURL = URL.createObjectURL(blob)
         setImg(objectURL)
+        toast.success('공유 완료 ✌✌')
       })
       .catch(function (error) {
         console.error('oops, something went wrong!', error)
+        toast.error('공유 실패 😭😭')
       })
     const jsonArray = new Array()
     // const sendJson = new Array()
@@ -41,6 +47,8 @@ const Toolbar = props => {
   }
   return (
     <div className="toolbar">
+      <ToastContainer />
+
       <button
         onClick={function (e) {
           e.preventDefault()

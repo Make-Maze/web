@@ -2,6 +2,8 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as S from './style'
 import { useResultContext } from '../../Context/Data'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Header = () => {
   const { isLogin, setIsLogin } = useResultContext()

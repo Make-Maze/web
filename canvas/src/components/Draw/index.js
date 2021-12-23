@@ -5,6 +5,8 @@ import Toolbar from './Toolbar'
 import '../css/canvas.css'
 import Header from '../Header'
 import Footer from '../Footer'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Canvas = props => {
   const canvasRef = useRef(null)

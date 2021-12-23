@@ -8,6 +8,8 @@ import axios from 'axios'
 import GoogleLogin from 'react-google-login'
 import Draw from '../Draw'
 import { useResultContext } from '../../Context/Data'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 const Start = () => {
   const { isLogin, setIsLogin, data, setData } = useResultContext()
   const clientId =
@@ -32,6 +34,7 @@ const Start = () => {
     //   .then(sessionStorage.setItem('user_id', res.profileObj.googleId))
     //   .catch(function (err) {
     //     console.log(err)
+    //     toast.error('로그인 실패')
     //     onFailure()
     //   })
     setData(userData)
@@ -55,13 +58,13 @@ const Start = () => {
     }
   }, [isLogin, setIsLogin])
 
-  console.log(isLogin)
   return (
     <div>
       {isLogin ? (
         <Draw></Draw>
       ) : (
         <S.MainSection>
+          <ToastContainer />
           <h1>
             나만의 <S.Green>미로</S.Green>를 즐겨보세요 !
           </h1>
@@ -81,6 +84,7 @@ const Start = () => {
                 clientId={clientId}
                 onSuccess={onSuccess}
                 onFailure={onFailure}
+                className="googleLogin"
               ></GoogleLogin>
               <img src={GoogleLoginImg} alt="" />
             </S.LoginSection>
@@ -89,11 +93,11 @@ const Start = () => {
                 <S.Green>기존 미로</S.Green>를 하고 싶으시다면
               </S.Text>
               <S.LoginBtn onClick={guestLogin}>Guest 로그인</S.LoginBtn>
-              <img src={GuestLogin} />
+              <img src={GuestLogin} alt="" />
             </S.LoginSection>
           </S.Container>
           <Link to="/User">공유 페이지 이동</Link>
-          <img src={Footer} className="footerImg" />
+          <img src={Footer} className="footerImg" alt="" />
         </S.MainSection>
       )}
     </div>
