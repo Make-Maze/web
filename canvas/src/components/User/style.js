@@ -22,7 +22,6 @@ export const UserSection = styled.div`
   p {
     font-size: 24px;
     margin: 0 20px 10px 150px;
-    width: 200px;
   }
   .mainImg {
     width: 600px;

@@ -16,7 +16,6 @@ const Toolbar = props => {
       .then(blob => {
         const objectURL = URL.createObjectURL(blob)
         setImg(objectURL)
-        console.log(objectURL)
       })
       .catch(function (error) {
         console.error('oops, something went wrong!', error)

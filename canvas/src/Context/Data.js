@@ -8,6 +8,8 @@ export function ResultContextProvider({ children }) {
   const [data, setData] = useState({}) ////글로벌하게 관리할 state
   const [img, setImg] = useState(null)
   const [title, setTitle] = useState('')
+  const [isLogin, setIsLogin] = useState(false)
+
   const value = {
     data,
     setData,
@@ -15,6 +17,8 @@ export function ResultContextProvider({ children }) {
     setImg,
     title,
     setTitle,
+    isLogin,
+    setIsLogin,
   }
 
   return (

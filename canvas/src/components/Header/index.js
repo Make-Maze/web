@@ -1,8 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as S from './style'
+import { useResultContext } from '../../Context/Data'
 
 const Header = () => {
+  const { isLogin, setIsLogin } = useResultContext()
+  const navigate = useNavigate()
+  const Logout = () => {
+    setIsLogin(false)
+    sessionStorage.removeItem('user_id')
+    navigate('/')
+  }
+
   return (
     <S.Header>
       <div>
@@ -12,6 +21,7 @@ const Header = () => {
         <Link to="/Draw">만들기</Link>
         <Link to="/Share">체험하기</Link>
         <Link to="/User">마이페이지</Link>
+        <span onClick={Logout}>로그아웃</span>
       </div>
     </S.Header>
   )
