@@ -36,6 +36,7 @@ class App extends Component {
               ></Route>
               <Route path="/User" element={<C.User></C.User>}></Route>
               <Route path="/Share" element={<C.Share></C.Share>}></Route>
+              <Route path="/*" element={<C.NotFound></C.NotFound>}></Route>
             </Routes>
           </BrowserRouter>
         </ResultContextProvider>
