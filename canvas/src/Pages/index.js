@@ -1,0 +1,5 @@
+export { default as DrawPage } from './Draw'
+export { default as UserPage } from './User'
+export { default as StartPage } from './Start'
+export { default as SharePage } from './Share'
+export { default as NotFoundPage } from './NotFound'
