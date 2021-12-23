@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useResultContext } from '../../Context/Data'
 import Header from '../Header'
 import Footer from '../Footer'
-import mainImg from '../../Assets/UserMainImg.png'
+import UserBackground from '../../Assets/UserBackground.png'
 
 const User = () => {
   const { data, title, img } = useResultContext()
@@ -32,6 +32,8 @@ const User = () => {
               <button>시작하기</button>
             </S.ButtonWrapper>
           </S.ItemSection>
+
+          {/* <img src={UserBackground} alt="" className="userBackground" /> */}
         </S.MapSection>
       </S.MainSection>
       <Footer />
