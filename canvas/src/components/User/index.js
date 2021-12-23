@@ -2,15 +2,12 @@ import React, { useState } from 'react'
 import * as S from './style'
 import axios from 'axios'
 import { useResultContext } from '../../Context/Data'
-import Header from '../Header'
-import Footer from '../Footer'
 import UserBackground from '../../Assets/UserBackground.png'
 
 const User = () => {
   const { data, title, img } = useResultContext()
   return (
     <>
-      <Header />
       <S.MainSection>
         <S.UserSection>
           <img src={data.imageUrl} alt="" />
@@ -31,11 +28,9 @@ const User = () => {
               <button>시작하기</button>
             </S.ButtonWrapper>
           </S.ItemSection>
-
           {/* <img src={UserBackground} alt="" className="userBackground" /> */}
         </S.MapSection>
       </S.MainSection>
-      <Footer />
     </>
   )
 }
