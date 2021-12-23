@@ -1,4 +1,4 @@
-import React, { useDebugValue, useState, useNavigate } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as S from './style'
 import Footer from '../../Assets/FooterImg.png'
@@ -12,33 +12,26 @@ const Start = () => {
   const { data, setData } = useResultContext()
   const clientId =
     '121704372282-6l10fcfppqtqgbhr3mk9guacs6r63pcl.apps.googleusercontent.com'
-  // axios({
-  //   method: 'get',
-  //   url: '/oauth/googleRequest',
-  // })
-  //   .then(res => {
-  //     console.log(res)
-  //     setData({
-  //       email: res.data.email,
-  //       name: res.data.name,
-  //       img: res.data.picture,
-  //     })
-  //     localStorage.setItem('m&m_token', res.data.access_token)
-  //   })
-  //   .catch(err => console.log(err))
 
-  const onSuccess = response => {
-    const userData = {
-      profileImage: response.profileObj.imageUrl,
-      email: response.profileObj.email,
-      name: response.profileObj.name,
-      // accessToken = response
-    }
-    console.log(userData)
+  function onSuccess(res) {
+    console.log(res)
+    axios
+      .post('/login', {
+        email: res.profileObj.email,
+        name: res.profileObj.name,
+        picture: res.profileObj.imageUrl,
+        sub: res.profileObj.googleId,
+      })
+      .then()
+      .catch(function (err) {
+        console.log(err)
+        onFailure()
+      })
   }
   const onFailure = error => {
     console.log(error)
   }
+
   const guestLogin = response => {}
 
   return (
@@ -62,8 +55,8 @@ const Start = () => {
             clientId={clientId}
             onSuccess={onSuccess}
             onFailure={onFailure}
-          ></GoogleLogin>{' '}
-          <img src={GoogleLoginImg} />
+          ></GoogleLogin>
+          <img src={GoogleLoginImg} alt="" />
         </S.LoginSection>
         <S.LoginSection>
           <S.Text>
