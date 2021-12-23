@@ -13,6 +13,7 @@ button {
 * {
   font-family: 'AppleM';
   overflow-x: hidden;
+  margin: 0;
 }
 
 h1 {
