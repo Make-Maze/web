@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as S from './style'
 import { useResultContext } from '../../Context/Data'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const Header = () => {
@@ -12,6 +12,7 @@ const Header = () => {
     setIsLogin(false)
     sessionStorage.removeItem('user_id')
     navigate('/')
+    toast.error('로그아웃 하였습니다.')
   }
 
   return (

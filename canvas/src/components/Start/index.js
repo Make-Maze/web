@@ -8,8 +8,8 @@ import axios from 'axios'
 import GoogleLogin from 'react-google-login'
 import Draw from '../Draw'
 import { useResultContext } from '../../Context/Data'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'react-toastify'
+
 const Start = () => {
   const { isLogin, setIsLogin, data, setData } = useResultContext()
   const clientId =
@@ -39,6 +39,7 @@ const Start = () => {
     //   })
     setData(userData)
     sessionStorage.setItem('user_id', res.profileObj.googleId)
+    toast.success('로그인 성공')
     navigate('/Draw')
   }
   const onFailure = error => {
@@ -50,7 +51,6 @@ const Start = () => {
   useEffect(() => {
     if (sessionStorage.getItem('user_id') === null) {
       // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
-      navigate('/')
     } else {
       // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
       // 로그인 상태 변경
@@ -64,7 +64,6 @@ const Start = () => {
         <Draw></Draw>
       ) : (
         <S.MainSection>
-          <ToastContainer />
           <h1>
             나만의 <S.Green>미로</S.Green>를 즐겨보세요 !
           </h1>
@@ -96,7 +95,6 @@ const Start = () => {
               <img src={GuestLogin} alt="" />
             </S.LoginSection>
           </S.Container>
-          <Link to="/User">공유 페이지 이동</Link>
           <img src={Footer} className="footerImg" alt="" />
         </S.MainSection>
       )}

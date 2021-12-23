@@ -2,8 +2,7 @@ import React from 'react'
 import '../css/toolbar.css'
 import domtoimage from 'dom-to-image'
 import { useResultContext } from '../../Context/Data'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'react-toastify'
 
 const Toolbar = props => {
   const canvas = props.blockRef.current
@@ -47,8 +46,6 @@ const Toolbar = props => {
   }
   return (
     <div className="toolbar">
-      <ToastContainer />
-
       <button
         onClick={function (e) {
           e.preventDefault()
