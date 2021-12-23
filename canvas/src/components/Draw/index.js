@@ -3,8 +3,6 @@ import Block from './Block'
 import SideBar from './Sidebar'
 import Toolbar from './Toolbar'
 import '../css/canvas.css'
-import Header from '../Header'
-import Footer from '../Footer'
 
 const Canvas = props => {
   const canvasRef = useRef(null)
@@ -28,7 +26,6 @@ const Canvas = props => {
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const canvasJSON = canvasRef
 
     setHeight(canvas.height)
     setWidth(canvas.width)
@@ -65,7 +62,6 @@ const Canvas = props => {
 
   return (
     <div>
-      <Header />
       <input type="text" onChange={e => setexTitle(e.target.value)} />
       <div className="canvas_wrap">
         <div ref={blockRef}>
@@ -122,7 +118,6 @@ const Canvas = props => {
         map={map}
         exTitle={exTitle}
       ></Toolbar>
-      <Footer />
     </div>
   )
 }

@@ -1,5 +1,7 @@
-export { default as Canvas } from './Draw'
+export { default as Draw } from './Draw'
 export { default as User } from './User'
 export { default as Start } from './Start'
 export { default as Share } from './Share'
 export { default as NotFound } from './NotFound'
+export { default as Header } from './Header'
+export { default as Footer } from './Footer'

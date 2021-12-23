@@ -59,3 +59,7 @@ export const LoginBtn = styled.div`
   font-size: 20px;
   cursor: pointer;
 `
+
+export const PlayBtn = styled.div`
+  text-align: center;
+`
