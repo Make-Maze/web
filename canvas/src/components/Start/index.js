@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import * as S from './style'
 import Footer from '../../Assets/FooterImg.png'
 import GoogleLoginImg from '../../Assets/GoogleLogin.png'
@@ -11,7 +11,7 @@ import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 
 const Start = () => {
-  const { isLogin, setIsLogin, data, setData } = useResultContext()
+  const { isLogin, setIsLogin, setData } = useResultContext()
   const clientId =
     '121704372282-6l10fcfppqtqgbhr3mk9guacs6r63pcl.apps.googleusercontent.com'
   const navigate = useNavigate()

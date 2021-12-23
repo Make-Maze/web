@@ -12,13 +12,13 @@ const Header = () => {
     setIsLogin(false)
     sessionStorage.removeItem('user_id')
     navigate('/')
-    toast.error('로그아웃 하였습니다.')
+    toast.info('로그아웃 하였습니다.')
   }
 
   return (
     <S.Header>
       <div>
-        <Link to="/">여기에 로고 있으면 좋을듯</Link>
+        <span>여기에 로고 있으면 좋을듯</span>
       </div>
       <div>
         <Link to="/Draw">만들기</Link>
