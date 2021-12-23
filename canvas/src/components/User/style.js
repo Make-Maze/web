@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+import UserBackground from '../../Assets/UserBackground.png'
 
 export const MainSection = styled.div`
-  padding: 20vh 7vw 20vw;
+  padding: 20vh 7vw 0vw;
   * {
     margin: 0;
     overflow-x: hidden;
@@ -33,17 +34,29 @@ export const UserSection = styled.div`
 `
 
 export const MapSection = styled.div`
+  position: relative;
+  overflow: hidden;
   h1 {
     margin-top: 100px;
     font-size: 60px;
   }
+  .userBackground {
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    z-index: -1;
+  }
+  background-image: url(${UserBackground});
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 `
 
 export const ItemSection = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+  height: 700px;
   width: 300px;
-  margin-top: 70px;
+  margin: 70px 200px 0 0;
   p {
     font-size: 20px;
     text-align: center;

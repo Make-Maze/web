@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
-import Block from './block'
-import SideBar from './sidebar'
-import Toolbar from './toolbar'
+import Block from './Block'
+import SideBar from './Sidebar'
+import Toolbar from './Toolbar'
 import '../css/canvas.css'
 import Header from '../Header'
 import Footer from '../Footer'
@@ -23,6 +23,7 @@ const Canvas = props => {
   const [height, setHeight] = useState()
   const [width, setWidth] = useState()
   const [del, setDel] = useState(0)
+  const [item, setItem] = useState(false)
   const [drawMode, setDraw] = useState(0)
 
   useEffect(() => {
@@ -85,6 +86,7 @@ const Canvas = props => {
             height={height}
             select={props.select}
             delete={del}
+            item={item}
             delMode={function (_del) {
               setDel(_del)
             }}
@@ -103,6 +105,7 @@ const Canvas = props => {
           drawMode={function (_draw) {
             setDraw(_draw)
           }}
+          item={item}
         ></SideBar>
       </div>
       <Toolbar
@@ -114,6 +117,8 @@ const Canvas = props => {
           setDel(_del)
         }}
         blockRef={blockRef}
+        item={item}
+        setItem={setItem}
         map={map}
         exTitle={exTitle}
       ></Toolbar>

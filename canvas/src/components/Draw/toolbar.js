@@ -63,8 +63,8 @@ const Toolbar = props => {
       <button
         onClick={function (e) {
           e.preventDefault()
-          props.onSelect('del')
-          props.delMode(0)
+          props.onSelect()
+          props.setItem(!props.item)
         }}
       >
         아이템
