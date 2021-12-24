@@ -6,6 +6,7 @@ import UserBackground from '../../Assets/UserBackground.png'
 
 const User = () => {
   const { data, title, img } = useResultContext()
+  console.log(img)
   return (
     <>
       <S.MainSection>
@@ -20,7 +21,6 @@ const User = () => {
         <hr />
         <S.MapSection>
           <h1>자기가 저장한 미로랑 기타 정보</h1>
-          {title}
           <S.ItemSection>
             <p>{title}</p>
             <img src={img} alt="" />

@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/toolbar.css'
 import domtoimage from 'dom-to-image'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const Toolbar = props => {
   const canvas = props.blockRef.current
   const map = props.map
-  const { setImg, title, setTitle } = useResultContext()
+  const { img, setImg, title, setTitle } = useResultContext()
 
   const save = () => {
-    toast.success('저장 완료 ✌✌')
+    toast.success(`저장 완료 마이페이지를 확인해보세요`)
   }
 
   const share = () => {
@@ -25,6 +26,7 @@ const Toolbar = props => {
         console.error('oops, something went wrong!', error)
         toast.error('공유 실패 😭😭')
       })
+
     const jsonArray = new Array()
     // const sendJson = new Array()
     for (let i = 0; i < 20; i++) {
@@ -39,18 +41,28 @@ const Toolbar = props => {
     }
     let jsonObject = new Object()
     setTitle(props.exTitle)
-    jsonObject.mapName = title
+    jsonObject.mapName = props.title
     jsonObject.blocks = jsonArray
     jsonObject = JSON.stringify(jsonObject)
     console.log('여기', jsonObject)
+
+    // axios({
+    //   url: 'api',
+    //   method: 'post',
+    //   data: 'jsonObject',
+    // })
+    //   .then(res => console.log(res))
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
   }
+
   return (
     <div className="toolbar">
       <button
         onClick={function (e) {
           e.preventDefault()
           props.setSelect('del')
-          props.delMode(0)
         }}
       >
         지우기
@@ -58,8 +70,7 @@ const Toolbar = props => {
       <button
         onClick={function (e) {
           e.preventDefault()
-          props.setSelect('del')
-          props.delMode(1)
+          props.setSelect('Alldel')
         }}
       >
         전체 지우기

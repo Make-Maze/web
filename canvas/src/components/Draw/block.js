@@ -5,7 +5,6 @@ const Block = props => {
   let i
   let j
   let list = []
-  let delMode = props.delete
 
   // 벽인지 확인
   if (
@@ -47,15 +46,16 @@ const Block = props => {
     props.isDrawing === true &&
     Math.floor(props.y / 2) !== 20 &&
     Math.floor(props.y / 2) !== -1 &&
-    props.select === 'del' &&
-    delMode === 0
+    props.select === 'del'
   ) {
     props.map[Math.floor(props.y / 2)][props.x] = 0
-  } else if (delMode === 1) {
+  } else if (props.select === 'Alldel') {
     for (let i = 0; i < 20; i++) {
       props.map[i].fill(0)
     }
-    props.delMode(0)
+    // 전체 지우고 난 후 자동으로 브러쉬 선택
+    props.setDraw(0)
+    props.setSelect('wall')
   }
 
   for (i = 0; i < 20; i++) {
@@ -117,6 +117,7 @@ const Block = props => {
       }
     }
   }
+
   return (
     <div>
       <table

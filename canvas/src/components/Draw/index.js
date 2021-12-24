@@ -20,7 +20,6 @@ const Canvas = props => {
   const [map] = useState(list)
   const [height, setHeight] = useState()
   const [width, setWidth] = useState()
-  const [del, setDel] = useState(0)
   const [item, setItem] = useState(false)
   const [drawMode, setDraw] = useState(0)
   const [select, setSelect] = useState('wall')
@@ -79,25 +78,14 @@ const Canvas = props => {
             y={y}
             isDrawing={isDrawing}
             map={map}
-            width={width}
-            height={height}
             select={select}
-            delete={del}
-            item={item}
             setSelect={setSelect}
-            delMode={function (_del) {
-              setDel(_del)
-            }}
+            setDraw={setDraw}
             drawMode={drawMode}
           ></Block>
         </div>
         <SideBar
-          select={select}
-          delete={del}
           setSelect={setSelect}
-          delMode={function (_del) {
-            setDel(_del)
-          }}
           drawMode={function (_draw) {
             setDraw(_draw)
           }}
@@ -105,11 +93,7 @@ const Canvas = props => {
         ></SideBar>
       </div>
       <Toolbar
-        select={select}
         setSelect={setSelect}
-        delMode={function (_del) {
-          setDel(_del)
-        }}
         blockRef={blockRef}
         item={item}
         setItem={setItem}
