@@ -13,3 +13,13 @@
   height: 52vh;
   position: absolute;
 }
+
+.inputBox {
+  width: 120vh;
+  margin: 50px auto 0px;
+}
+.titleBox {
+  width: 250px;
+  height: 40px;
+  font-size: 20px;
+}
