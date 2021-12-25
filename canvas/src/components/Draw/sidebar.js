@@ -10,7 +10,7 @@ const SideBar = props => {
       onClick={function (e) {
         e.preventDefault()
         props.drawMode(0)
-        props.onSelect('wall')
+        props.setSelect('wall')
       }}
     ></div>
   )
@@ -20,7 +20,7 @@ const SideBar = props => {
       onClick={function (e) {
         e.preventDefault()
         props.drawMode(1)
-        props.onSelect('wall')
+        props.setSelect('wall')
       }}
     ></div>
   )
@@ -30,7 +30,7 @@ const SideBar = props => {
       onClick={function (e) {
         e.preventDefault()
         props.drawMode(2)
-        props.onSelect('wall')
+        props.setSelect('wall')
       }}
     ></div>
   )
@@ -40,7 +40,7 @@ const SideBar = props => {
       onClick={function (e) {
         e.preventDefault()
         props.drawMode(3)
-        props.onSelect('wall')
+        props.setSelect('wall')
       }}
     ></div>
   )

@@ -7,3 +7,8 @@
 .toolbar > button {
   margin: 50px 20px 0 0;
 }
+
+button:hover {
+  transform: scale(0.9);
+  transition: 0.2s;
+}

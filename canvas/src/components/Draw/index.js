@@ -20,9 +20,9 @@ const Canvas = props => {
   const [map] = useState(list)
   const [height, setHeight] = useState()
   const [width, setWidth] = useState()
-  const [del, setDel] = useState(0)
   const [item, setItem] = useState(false)
   const [drawMode, setDraw] = useState(0)
+  const [select, setSelect] = useState('wall')
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -62,7 +62,14 @@ const Canvas = props => {
 
   return (
     <div>
-      <input type="text" onChange={e => setexTitle(e.target.value)} />
+      <div className="inputBox">
+        <input
+          type="text"
+          onChange={e => setexTitle(e.target.value)}
+          className="titleBox"
+          placeholder="미로 제목을 입력해 주세요"
+        />
+      </div>
       <div className="canvas_wrap">
         <div ref={blockRef}>
           <canvas
@@ -78,26 +85,14 @@ const Canvas = props => {
             y={y}
             isDrawing={isDrawing}
             map={map}
-            width={width}
-            height={height}
-            select={props.select}
-            delete={del}
-            item={item}
-            delMode={function (_del) {
-              setDel(_del)
-            }}
+            select={select}
+            setSelect={setSelect}
+            setDraw={setDraw}
             drawMode={drawMode}
           ></Block>
         </div>
         <SideBar
-          select={props.select}
-          delete={del}
-          onSelect={function (_select) {
-            props.onSelectChange(_select)
-          }}
-          delMode={function (_del) {
-            setDel(_del)
-          }}
+          setSelect={setSelect}
           drawMode={function (_draw) {
             setDraw(_draw)
           }}
@@ -105,13 +100,7 @@ const Canvas = props => {
         ></SideBar>
       </div>
       <Toolbar
-        select={props.select}
-        onSelect={function (_select) {
-          props.onSelectChange(_select)
-        }}
-        delMode={function (_del) {
-          setDel(_del)
-        }}
+        setSelect={setSelect}
         blockRef={blockRef}
         item={item}
         setItem={setItem}

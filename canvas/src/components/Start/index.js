@@ -6,7 +6,6 @@ import GoogleLoginImg from '../../Assets/GoogleLogin.png'
 import GuestLogin from '../../Assets/GuestLogin.png'
 import axios from 'axios'
 import GoogleLogin from 'react-google-login'
-import Draw from '../Draw'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 
