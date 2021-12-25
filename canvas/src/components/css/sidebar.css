@@ -9,6 +9,11 @@
   margin: 0 20px 20px;
 }
 
+.sidebar > div:hover {
+  transform: scale(0.9);
+  transition: 0.2s;
+}
+
 .blackCircle {
   background-color: black;
 }

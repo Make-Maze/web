@@ -7,9 +7,10 @@ export const Header = styled.header`
   align-items: center;
   font-size: 16px;
   justify-content: space-between;
-  background-color: rgba(196, 196, 196, 0.31);
+  background-color: #c5c0ff;
+
   a:hover {
-    color: #16780d;
+    color: #ffffff;
   }
   a {
     margin-left: 50px;
