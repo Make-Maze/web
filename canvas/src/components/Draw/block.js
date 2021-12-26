@@ -53,13 +53,13 @@ const Block = props => {
     props.map[Math.floor(props.y / 2)][props.x] = 0
     console.log(123123)
   } else if (delMode === 1) {
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 40; i++) {
       props.map[i].fill(0)
     }
     props.delMode(0)
   }
 
-  for (i = 0; i < 20; i++) {
+  for (i = 0; i < 40; i++) {
     if (i !== 0) {
       list.push(<tr></tr>)
     }

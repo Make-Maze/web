@@ -18,7 +18,7 @@ const Toolbar = props => {
       for(let j = 0; j<100;j++){
         let jsonObject = new Object()
         if(map[i][j] != 0){
-          jsonObject = [map[i][j], i, j]
+          jsonObject = [map[i][j], j, i]
           jsonObject = JSON.stringify(jsonObject)
           jsonArray.push(JSON.parse(jsonObject))
         }
