@@ -5,15 +5,18 @@ export const ResultContext = createContext(undefined)
 // createContext 선언
 
 export function ResultContextProvider({ children }) {
-  const [data, setData] = useState({}) ////글로벌하게 관리할 state
+  ////글로벌하게 관리할 states
+  const [profile, setProfile] = useState({})
   const [img, setImg] = useState(null)
   const [title, setTitle] = useState('')
   const [isLogin, setIsLogin] = useState(false)
   const [view, setView] = useState([])
-  const [shared, setShared] = useState({ title: '', imgURL: '' })
+  const [mapData, setMapData] = useState({ title: '', imgURL: '' })
+  const [saved, setSaved] = useState([])
+  const [shared, setShared] = useState([])
   const value = {
-    data,
-    setData,
+    profile,
+    setProfile,
     img,
     setImg,
     title,
@@ -24,6 +27,10 @@ export function ResultContextProvider({ children }) {
     setView,
     shared,
     setShared,
+    saved,
+    setSaved,
+    mapData,
+    setMapData,
   }
 
   return (

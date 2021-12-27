@@ -8,29 +8,43 @@ import axios from 'axios'
 const Toolbar = props => {
   const canvas = props.blockRef.current
   const map = props.map
-  const { img, setImg, title, setTitle, view, setView, shared, setShared } =
-    useResultContext()
+  const {
+    img,
+    setImg,
+    title,
+    setTitle,
+    view,
+    setView,
+    saved,
+    setSaved,
+    shared,
+    setShared,
+    mapData,
+    setMapData,
+  } = useResultContext()
   const save = () => {
     domtoimage.toBlob(canvas).then(blob => {
       const objectURL = URL.createObjectURL(blob)
       setImg(objectURL)
-      setShared({ ...shared, imgURL: objectURL })
-      console.log(shared)
-      setView(view.concat({ ...shared }))
+      setMapData({ ...mapData, imgURL: img })
+      setSaved(saved.concat({ ...mapData }))
       toast.success('저장 완료 ✌✌')
     })
   }
 
   const share = () => {
     // 제목란이 비어있으면 실행 x
-    if (shared.title !== '') {
+    if (saved.title !== '') {
       domtoimage
         .toBlob(canvas)
         .then(blob => {
           const objectURL = URL.createObjectURL(blob)
           setImg(objectURL)
-          toast.success('공유 완료 ✌✌')
+          setMapData({ ...mapData, imgURL: img })
+          setShared(shared.concat({ ...mapData }))
+          toast.success('저장 완료 ✌✌')
         })
+
         .catch(function (error) {
           console.error('oops, something went wrong!', error)
           toast.error('공유 실패 😭😭')

@@ -5,32 +5,36 @@ import { useResultContext } from '../../Context/Data'
 import UserBackground from '../../Assets/UserBackground.png'
 
 const User = () => {
-  const { data, title, img, view, setView } = useResultContext()
+  const { profile, title, img, saved, setSaved } = useResultContext()
   console.log(img)
   return (
     <>
       <S.MainSection>
         <S.UserSection>
-          <img src={data.imageUrl} alt="" />
+          <img src={profile.imageUrl} alt="" />
           <div>
-            <p>이름 : {data.name}</p>
-            <p>이메일 : {data.email}</p>
+            <p>이름 : {profile.name}</p>
+            <p>이메일 : {profile.email}</p>
           </div>
         </S.UserSection>
         <hr />
         <S.MapSection>
           <h1>자기가 저장한 미로랑 기타 정보</h1>
-          {view.map(element => (
-            <>
-              <S.ItemSection>
-                <p>{element.title}</p>
-                <img src={element.imgURL} alt="" />
-                <S.ButtonWrapper>
-                  <button>시작하기</button>
-                </S.ButtonWrapper>
-              </S.ItemSection>
-            </>
-          ))}
+          {saved.length === 0 ? (
+            <p class="noSave">저장된 미로가 없습니다.</p>
+          ) : (
+            saved.map(element => (
+              <>
+                <S.ItemSection>
+                  <p>{element.title}</p>
+                  <img src={element.imgURL} alt="" />
+                  <S.ButtonWrapper>
+                    <button>시작하기</button>
+                  </S.ButtonWrapper>
+                </S.ItemSection>
+              </>
+            ))
+          )}
         </S.MapSection>
       </S.MainSection>
     </>

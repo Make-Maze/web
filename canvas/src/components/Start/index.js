@@ -10,7 +10,7 @@ import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 
 const Start = () => {
-  const { isLogin, setIsLogin, setData, data } = useResultContext()
+  const { isLogin, setIsLogin, setProfile } = useResultContext()
   const clientId =
     '121704372282-6l10fcfppqtqgbhr3mk9guacs6r63pcl.apps.googleusercontent.com'
   const navigate = useNavigate()
@@ -31,7 +31,7 @@ const Start = () => {
         googleId: res.profileObj.googleId,
       })
       .then(function (res) {
-        setData(userData)
+        setProfile(userData)
         setIsLogin(true)
         sessionStorage.setItem('user_id', res.profileObj.googleId)
         toast.success('로그인 성공')

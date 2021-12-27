@@ -39,15 +39,15 @@ export const MapSection = styled.div`
     margin-top: 100px;
     font-size: 60px;
   }
-  .userBackground {
-    position: absolute;
-    top: 5%;
-    left: 20%;
-    z-index: -1;
+
+  .noSave {
+    height: 50vh;
+    text-align: center;
+    font-family: 'appleM';
+    color: #ff8f8f;
+    font-size: 24px;
+    margin: 100px;
   }
-  background-image: url(${UserBackground});
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
 `
 
 export const ItemSection = styled.div`
