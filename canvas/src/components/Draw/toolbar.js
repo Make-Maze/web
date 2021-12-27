@@ -9,12 +9,9 @@ const Toolbar = props => {
   const canvas = props.blockRef.current
   const map = props.map
   const {
+    profile,
     img,
     setImg,
-    title,
-    setTitle,
-    view,
-    setView,
     saved,
     setSaved,
     shared,
@@ -22,65 +19,53 @@ const Toolbar = props => {
     mapData,
     setMapData,
   } = useResultContext()
+
   const save = () => {
     domtoimage.toBlob(canvas).then(blob => {
       const objectURL = URL.createObjectURL(blob)
       setImg(objectURL)
-      setMapData({ ...mapData, imgURL: img })
+      setMapData({ ...mapData, imgURL: URL.createObjectURL(blob) })
       setSaved(saved.concat({ ...mapData }))
       toast.success('저장 완료 ✌✌')
     })
   }
 
   const share = () => {
-    // 제목란이 비어있으면 실행 x
-    if (saved.title !== '') {
-      domtoimage
-        .toBlob(canvas)
-        .then(blob => {
-          const objectURL = URL.createObjectURL(blob)
-          setImg(objectURL)
-          setMapData({ ...mapData, imgURL: img })
-          setShared(shared.concat({ ...mapData }))
-          toast.success('공유 완료 ✌✌')
-        })
-        .catch(function (error) {
-          console.error('oops, something went wrong!', error)
-          toast.error('공유 실패 😭😭')
-        })
-
-      const jsonArray = new Array()
-      // const sendJson = new Array()
-      for (let i = 0; i < 20; i++) {
-        for (let j = 0; j < 100; j++) {
-          let jsonObject = new Object()
-          if (map[i][j] !== 0) {
-            jsonObject = [map[i][j], i, j]
-            jsonObject = JSON.stringify(jsonObject)
-            jsonArray.push(JSON.parse(jsonObject))
-          }
+    const jsonArray = new Array()
+    for (let i = 0; i < 20; i++) {
+      for (let j = 0; j < 100; j++) {
+        let jsonObject = new Object()
+        if (map[i][j] !== 0) {
+          jsonObject = [map[i][j], i, j]
+          jsonObject = JSON.stringify(jsonObject)
+          jsonArray.push(JSON.parse(jsonObject))
         }
       }
-      let jsonObject = new Object()
-      setTitle(props.exTitle)
-      jsonObject.mapName = props.title
-      jsonObject.blocks = jsonArray
-      jsonObject = JSON.stringify(jsonObject)
-      console.log('여기', jsonObject)
-
-      // axios({
-      //   url: 'api',
-      //   method: 'post',
-      //   data: 'jsonObject',
-      // })
-      //   .then(res => console.log(res))
-      //   .catch(err => {
-      //     console.log(err)
-      //   })
-    } else {
-      toast.error('제목을 입력해 주세요.')
-      console.log('asd')
     }
+    let jsonObject = new Object()
+    jsonObject = JSON.stringify(jsonObject)
+    console.log('여기', jsonObject)
+
+    domtoimage.toBlob(canvas).then(blob => {
+      const objectURL = URL.createObjectURL(blob)
+      setImg(objectURL)
+    })
+
+    axios
+      .get(`map${profile.googleId}`, {
+        mapId: '',
+        img: img,
+        content: jsonObject,
+      })
+      .then(function (res) {
+        setMapData({ ...mapData, imgURL: img })
+        setShared(shared.concat({ ...mapData }))
+        toast.success('공유 완료 ✌✌')
+      })
+      .catch(err => {
+        console.log(err)
+        toast.error('공유 실패 😭😭')
+      })
   }
 
   return (

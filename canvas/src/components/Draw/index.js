@@ -59,10 +59,7 @@ const Canvas = props => {
       // }
     }
   }
-  const { img, setImg, title, setTitle, view, setView, shared, setShared } =
-    useResultContext()
-
-  const [exTitle, setexTitle] = useState()
+  const { mapData, setMapData } = useResultContext()
 
   return (
     <div>
@@ -70,8 +67,7 @@ const Canvas = props => {
         <input
           type="text"
           onChange={e => {
-            setShared({ ...shared, title: e.target.value })
-            console.log(shared)
+            setMapData({ ...mapData, title: e.target.value })
           }}
           className="titleBox"
           placeholder="미로 제목을 입력해 주세요"
@@ -112,7 +108,6 @@ const Canvas = props => {
         item={item}
         setItem={setItem}
         map={map}
-        exTitle={exTitle}
       ></Toolbar>
     </div>
   )
