@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 export const MainSection = styled.div`
-  padding: 20vh 7vw 20vw;
+  padding: 20vh 7vw 0vw;
   * {
     margin: 0;
     overflow-x: hidden;
@@ -12,6 +12,23 @@ export const MainSection = styled.div`
 `
 export const Green = styled.span`
   color: #16780d;
+`
+
+export const MapSection = styled.div`
+  overflow: hidden;
+  h1 {
+    margin-top: 100px;
+    font-size: 60px;
+  }
+
+  .noShare {
+    height: 50vh;
+    text-align: center;
+    font-family: 'appleM';
+    color: #ff8f8f;
+    font-size: 24px;
+    margin: 100px;
+  }
 `
 
 export const ItemSection = styled.div`

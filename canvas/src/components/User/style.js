@@ -33,7 +33,6 @@ export const UserSection = styled.div`
 `
 
 export const MapSection = styled.div`
-  position: relative;
   overflow: hidden;
   h1 {
     margin-top: 100px;

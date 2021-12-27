@@ -13,10 +13,13 @@ const Share = () => {
           <S.Green> 미로</S.Green>를 체험해봐요.
         </h1>
         <hr />
-        <div>
-          <h1>자기가 저장한 미로랑 기타 정보</h1>
+        <S.MapSection>
+          <h1>
+            기타 정보 자기가 저장한 <S.Green>미로</S.Green>랑
+            <S.Green>기타 정보</S.Green>
+          </h1>
           {shared.length === 0 ? (
-            <p class="noSave">저장된 미로가 없습니다.</p>
+            <p class="noShare">공유된 미로가 없습니다.</p>
           ) : (
             shared.map(element => (
               <>
@@ -31,7 +34,7 @@ const Share = () => {
               </>
             ))
           )}
-        </div>
+        </S.MapSection>
       </S.MainSection>
     </>
   )

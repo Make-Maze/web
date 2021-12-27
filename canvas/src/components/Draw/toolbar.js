@@ -42,9 +42,8 @@ const Toolbar = props => {
           setImg(objectURL)
           setMapData({ ...mapData, imgURL: img })
           setShared(shared.concat({ ...mapData }))
-          toast.success('저장 완료 ✌✌')
+          toast.success('공유 완료 ✌✌')
         })
-
         .catch(function (error) {
           console.error('oops, something went wrong!', error)
           toast.error('공유 실패 😭😭')
