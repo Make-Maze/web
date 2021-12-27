@@ -9,7 +9,8 @@ export function ResultContextProvider({ children }) {
   const [img, setImg] = useState(null)
   const [title, setTitle] = useState('')
   const [isLogin, setIsLogin] = useState(false)
-
+  const [view, setView] = useState([])
+  const [shared, setShared] = useState({ title: '', imgURL: '' })
   const value = {
     data,
     setData,
@@ -19,6 +20,10 @@ export function ResultContextProvider({ children }) {
     setTitle,
     isLogin,
     setIsLogin,
+    view,
+    setView,
+    shared,
+    setShared,
   }
 
   return (

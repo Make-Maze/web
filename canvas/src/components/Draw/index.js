@@ -3,6 +3,7 @@ import Block from './block'
 import SideBar from './sidebar'
 import Toolbar from './toolbar'
 import '../css/canvas.css'
+import { useResultContext } from '../../Context/Data'
 
 const Canvas = props => {
   const canvasRef = useRef(null)
@@ -58,6 +59,9 @@ const Canvas = props => {
       // }
     }
   }
+  const { img, setImg, title, setTitle, view, setView, shared, setShared } =
+    useResultContext()
+
   const [exTitle, setexTitle] = useState()
 
   return (
@@ -65,7 +69,10 @@ const Canvas = props => {
       <div className="inputBox">
         <input
           type="text"
-          onChange={e => setexTitle(e.target.value)}
+          onChange={e => {
+            setShared({ ...shared, title: e.target.value })
+            console.log(shared)
+          }}
           className="titleBox"
           placeholder="미로 제목을 입력해 주세요"
         />

@@ -8,16 +8,22 @@ import axios from 'axios'
 const Toolbar = props => {
   const canvas = props.blockRef.current
   const map = props.map
-  const { img, setImg, title, setTitle } = useResultContext()
-
+  const { img, setImg, title, setTitle, view, setView, shared, setShared } =
+    useResultContext()
   const save = () => {
-    toast.success(`저장 완료 마이페이지를 확인해보세요`)
+    domtoimage.toBlob(canvas).then(blob => {
+      const objectURL = URL.createObjectURL(blob)
+      setImg(objectURL)
+      setShared({ ...shared, imgURL: objectURL })
+      console.log(shared)
+      setView(view.concat({ ...shared }))
+      toast.success('저장 완료 ✌✌')
+    })
   }
 
   const share = () => {
     // 제목란이 비어있으면 실행 x
-    if (props.exTitle !== undefined) {
-      console.log(props.exTitle)
+    if (shared.title !== '') {
       domtoimage
         .toBlob(canvas)
         .then(blob => {

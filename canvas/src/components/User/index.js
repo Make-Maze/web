@@ -5,7 +5,7 @@ import { useResultContext } from '../../Context/Data'
 import UserBackground from '../../Assets/UserBackground.png'
 
 const User = () => {
-  const { data, title, img } = useResultContext()
+  const { data, title, img, view, setView } = useResultContext()
   console.log(img)
   return (
     <>
@@ -16,19 +16,21 @@ const User = () => {
             <p>이름 : {data.name}</p>
             <p>이메일 : {data.email}</p>
           </div>
-          {/* <img src={mainImg} alt="" className="mainImg" /> */}
         </S.UserSection>
         <hr />
         <S.MapSection>
           <h1>자기가 저장한 미로랑 기타 정보</h1>
-          <S.ItemSection>
-            <p>{title}</p>
-            <img src={img} alt="" />
-            <S.ButtonWrapper>
-              <button>시작하기</button>
-            </S.ButtonWrapper>
-          </S.ItemSection>
-          {/* <img src={UserBackground} alt="" className="userBackground" /> */}
+          {view.map(element => (
+            <>
+              <S.ItemSection>
+                <p>{element.title}</p>
+                <img src={element.imgURL} alt="" />
+                <S.ButtonWrapper>
+                  <button>시작하기</button>
+                </S.ButtonWrapper>
+              </S.ItemSection>
+            </>
+          ))}
         </S.MapSection>
       </S.MainSection>
     </>
