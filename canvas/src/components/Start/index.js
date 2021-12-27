@@ -22,26 +22,26 @@ const Start = () => {
       imageUrl: res.profileObj.imageUrl,
       googleId: res.profileObj.googleId,
     }
-    // console.log(res)
-    // axios
-    //   .post('/login', {
-    //     email: res.profileObj.email,
-    //     name: res.profileObj.name,
-    //     imageUrl: res.profileObj.imageUrl,
-    //     googleId: res.profileObj.googleId,
-    //   })
-    //   .then(sessionStorage.setItem('user_id', res.profileObj.googleId))
-    //   .catch(function (err) {
-    //     console.log(err)
-    //     toast.error('로그인 실패')
-    //     onFailure()
-    //   })
-    setData(userData)
-    sessionStorage.setItem('user_id', res.profileObj.googleId)
-    setIsLogin(true)
-
-    toast.success('로그인 성공')
-    navigate('/Draw')
+    console.log(res)
+    axios
+      .post('/login', {
+        email: res.profileObj.email,
+        name: res.profileObj.name,
+        imageUrl: res.profileObj.imageUrl,
+        googleId: res.profileObj.googleId,
+      })
+      .then(function (res) {
+        setData(userData)
+        setIsLogin(true)
+        sessionStorage.setItem('user_id', res.profileObj.googleId)
+        toast.success('로그인 성공')
+        navigate('/Draw')
+      })
+      .catch(function (err) {
+        console.log(err)
+        toast.error('로그인 실패')
+        onFailure()
+      })
   }
   const onFailure = error => {
     console.log(error)
