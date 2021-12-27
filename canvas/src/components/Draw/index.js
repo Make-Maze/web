@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
-import Block from './Block'
-import SideBar from './Sidebar'
-import Toolbar from './Toolbar'
+import Block from './block'
+import SideBar from './sidebar'
+import Toolbar from './toolbar'
 import '../css/canvas.css'
 
 const Canvas = props => {
@@ -9,8 +9,8 @@ const Canvas = props => {
   const contextRef = useRef(null)
   const blockRef = useRef(null)
 
-  let list = new Array(20)
-  for (let i = 0; i < 20; i++) {
+  let list = new Array(40)
+  for (let i = 0; i < 40; i++) {
     list[i] = new Array(100).fill(0)
   }
   const [ctx, setCtx] = useState()
@@ -47,7 +47,7 @@ const Canvas = props => {
   const drawing = ({ nativeEvent }) => {
     let { offsetX, offsetY } = nativeEvent
     setX(Math.floor((100 / ((window.innerWidth - 100) * 0.6)) * offsetX))
-    setY(Math.floor((100 / ((window.innerHeight - 300) * 2)) * offsetY))
+    setY(Math.floor((100 / (window.innerHeight - 300)) * offsetY))
     if (ctx) {
       // if(!isDrawing){
       //   ctx.beginPath();

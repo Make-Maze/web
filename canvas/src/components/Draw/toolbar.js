@@ -60,6 +60,7 @@ const Toolbar = props => {
       //   })
     } else {
       toast.error('제목을 입력해 주세요.')
+      console.log('asd')
     }
   }
 
