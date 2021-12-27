@@ -1,4 +1,9 @@
-.map {
+.map{
   width: 1vh;
   height: 1.15vh;
+}
+
+.map > img{
+  width: 100%;
+  height: 100%;
 }

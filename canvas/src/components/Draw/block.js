@@ -1,5 +1,14 @@
 import React from 'react'
 import '../css/block.css'
+import potal from '../../Assets/Item/potal.png'
+import guard from '../../Assets/Item/guard.png'
+import gunUp from '../../Assets/Item/gun_up.png'
+import gunDown from '../../Assets/Item/gun_down.png'
+import gunRight from '../../Assets/Item/gun_right.png'
+import gunLeft from '../../Assets/Item/gun_left.png'
+import gasi from '../../Assets/Item/gasi.png'
+import spring from '../../Assets/Item/spring.png'
+import invisible from '../../Assets/Item/invisible.png'
 
 const Block = props => {
   let i
@@ -58,6 +67,72 @@ const Block = props => {
     props.setSelect('wall')
   }
 
+  if(
+    props.isDrawing === true &&
+    Math.floor(props.y / 2) !== 20 &&
+    Math.floor(props.y / 2) !== -1 &&
+    props.select === 'item' &&
+    props.drawMode === 4
+  ){
+    props.map[Math.floor(props.y / 2)][props.x] = 5
+  } else if(
+    props.isDrawing === true &&
+    Math.floor(props.y / 2) !== 20 &&
+    Math.floor(props.y / 2) !== -1 &&
+    props.select === 'item' &&
+    props.drawMode === 5
+  ){
+    props.map[Math.floor(props.y / 2)][props.x] = 6
+  }else if(
+    props.isDrawing === true &&
+    Math.floor(props.y / 2) !== 20 &&
+    Math.floor(props.y / 2) !== -1 &&
+    props.select === 'item' &&
+    props.drawMode === 6
+  ){
+    props.map[Math.floor(props.y / 2)][props.x] = 7
+  }else if(
+    props.isDrawing === true &&
+    Math.floor(props.y / 2) !== 20 &&
+    Math.floor(props.y / 2) !== -1 &&
+    props.select === 'item' &&
+    props.drawMode === 7
+  ){
+    props.map[Math.floor(props.y / 2)][props.x] = 8
+  }else if(
+    props.isDrawing === true &&
+    Math.floor(props.y / 2) !== 20 &&
+    Math.floor(props.y / 2) !== -1 &&
+    props.select === 'item' &&
+    props.drawMode === 8
+  ){
+    props.map[Math.floor(props.y / 2)][props.x] = 9
+  }else if(
+    props.isDrawing === true &&
+    Math.floor(props.y / 2) !== 20 &&
+    Math.floor(props.y / 2) !== -1 &&
+    props.select === 'item' &&
+    props.drawMode === 9
+  ){
+    props.map[Math.floor(props.y / 2)][props.x] = 10
+  }else if(
+    props.isDrawing === true &&
+    Math.floor(props.y / 2) !== 20 &&
+    Math.floor(props.y / 2) !== -1 &&
+    props.select === 'item' &&
+    props.drawMode === 10
+  ){
+    props.map[Math.floor(props.y / 2)][props.x] = 11
+  }else if(
+    props.isDrawing === true &&
+    Math.floor(props.y / 2) !== 20 &&
+    Math.floor(props.y / 2) !== -1 &&
+    props.select === 'item' &&
+    props.drawMode === 11
+  ){
+    props.map[Math.floor(props.y / 2)][props.x] = 12
+  }
+
   for (i = 0; i < 40; i++) {
     if (i !== 0) {
       list.push(<tr></tr>)
@@ -107,7 +182,103 @@ const Block = props => {
             }}
           ></td>
         )
-      } else {
+      } else if (props.map[i][j] === 5){
+        list.push(
+          <td
+            className="map"
+            style={{
+              border: '1px solid gray',
+              padding: '0px',
+            }}
+          >
+            <img src={gunUp}></img>
+          </td>
+        )
+      }else if (props.map[i][j] === 6){
+        list.push(
+          <td
+            className="map"
+            style={{
+              border: '1px solid gray',
+              padding: '0px',
+            }}
+          >
+            <img src={gunDown}></img>
+          </td>
+        )
+      }else if (props.map[i][j] === 7){
+        list.push(
+          <td
+            className="map"
+            style={{
+              border: '1px solid gray',
+              padding: '0px',
+            }}
+          >
+            <img src={gunRight}></img>
+          </td>
+        )
+      }else if (props.map[i][j] === 8){
+        list.push(
+          <td
+            className="map"
+            style={{
+              border: '1px solid gray',
+              padding: '0px',
+            }}
+          >
+            <img src={gunLeft}></img>
+          </td>
+        )
+      }else if (props.map[i][j] === 9){
+        list.push(
+          <td
+            className="map"
+            style={{
+              border: '1px solid gray',
+              padding: '0px',
+            }}
+          >
+            <img src={potal}></img>
+          </td>
+        )
+      }else if (props.map[i][j] === 10){
+        list.push(
+          <td
+            className="map"
+            style={{
+              border: '1px solid gray',
+              padding: '0px',
+            }}
+          >
+            <img src={guard}></img>
+          </td>
+        )
+      }else if (props.map[i][j] === 11){
+        list.push(
+          <td
+            className="map"
+            style={{
+              border: '1px solid gray',
+              padding: '0px',
+            }}
+          >
+            <img src={spring}></img>
+          </td>
+        )
+      }else if (props.map[i][j] === 12){
+        list.push(
+          <td
+            className="map"
+            style={{
+              border: '1px solid gray',
+              padding: '0px',
+            }}
+          >
+            <img src={invisible}></img>
+          </td>
+        )
+      }else {
         list.push(
           <td
             className="map"

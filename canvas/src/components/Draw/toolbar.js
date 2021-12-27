@@ -85,8 +85,17 @@ const Toolbar = props => {
       <button
         onClick={function (e) {
           e.preventDefault()
+          props.setSelect('wall')
+          props.setItem(false)
+        }}
+      >
+        벽
+      </button>
+      <button
+        onClick={function (e) {
+          e.preventDefault()
           props.setSelect()
-          props.setItem(!props.item)
+          props.setItem(true)
         }}
       >
         아이템
