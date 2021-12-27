@@ -50,7 +50,7 @@ const Block = props => {
   ) {
     props.map[Math.floor(props.y / 2)][props.x] = 0
   } else if (props.select === 'Alldel') {
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 40; i++) {
       props.map[i].fill(0)
     }
     // 전체 지우고 난 후 자동으로 브러쉬 선택
@@ -58,7 +58,7 @@ const Block = props => {
     props.setSelect('wall')
   }
 
-  for (i = 0; i < 20; i++) {
+  for (i = 0; i < 40; i++) {
     if (i !== 0) {
       list.push(<tr></tr>)
     }
