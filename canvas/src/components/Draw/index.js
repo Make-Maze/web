@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
-import Block from './Block'
-import SideBar from './Sidebar'
-import Toolbar from './Toolbar'
+import Block from './block'
+import SideBar from './sidebar'
+import Toolbar from './toolbar'
 import '../css/canvas.css'
 
 const Canvas = props => {
