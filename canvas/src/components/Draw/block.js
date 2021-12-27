@@ -15,6 +15,8 @@ const Block = props => {
   let j
   let list = []
 
+  console.log(props.y/2 , props.x)
+
   // 벽인지 확인
   if (
     props.isDrawing === true &&
@@ -133,11 +135,11 @@ const Block = props => {
     props.map[Math.floor(props.y / 2)][props.x] = 12
   }
 
-  for (i = 0; i < 40; i++) {
+  for (i = 0; i < 30; i++) {
     if (i !== 0) {
       list.push(<tr></tr>)
     }
-    for (j = 0; j < 100; j++) {
+    for (j = 0; j < 70; j++) {
       if (props.map[i][j] === 1) {
         list.push(
           <td

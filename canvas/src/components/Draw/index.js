@@ -9,9 +9,9 @@ const Canvas = props => {
   const contextRef = useRef(null)
   const blockRef = useRef(null)
 
-  let list = new Array(40)
-  for (let i = 0; i < 40; i++) {
-    list[i] = new Array(100).fill(0)
+  let list = new Array(30)
+  for (let i = 0; i < 30; i++) {
+    list[i] = new Array(70).fill(0)
   }
   const [ctx, setCtx] = useState()
   const [isDrawing, setIsDrawing] = useState(false)
@@ -46,8 +46,8 @@ const Canvas = props => {
 
   const drawing = ({ nativeEvent }) => {
     let { offsetX, offsetY } = nativeEvent
-    setX(Math.floor((100 / ((window.innerWidth - 100) * 0.6)) * offsetX))
-    setY(Math.floor((100 / (window.innerHeight - 300)) * offsetY))
+    setX(Math.floor((100 / ((window.innerWidth - 100) * 1.15)) * offsetX))
+    setY(Math.floor((100 / (window.innerHeight - 300) * 0.46) * offsetY))
     if (ctx) {
       // if(!isDrawing){
       //   ctx.beginPath();
