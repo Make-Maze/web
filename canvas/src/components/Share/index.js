@@ -14,10 +14,6 @@ const Share = () => {
         </h1>
         <hr />
         <S.MapSection>
-          <h1>
-            기타 정보 자기가 저장한 <S.Green>미로</S.Green>랑
-            <S.Green>기타 정보</S.Green>
-          </h1>
           {shared.length === 0 ? (
             <p class="noShare">공유된 미로가 없습니다.</p>
           ) : (

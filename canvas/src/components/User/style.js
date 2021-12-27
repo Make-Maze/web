@@ -8,6 +8,9 @@ export const MainSection = styled.div`
     overflow-x: hidden;
   }
 `
+export const Green = styled.span`
+  color: #16780d;
+`
 
 export const UserSection = styled.div`
   position: relative;

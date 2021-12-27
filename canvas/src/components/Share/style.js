@@ -32,7 +32,7 @@ export const MapSection = styled.div`
 `
 
 export const ItemSection = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   width: 300px;
   margin-top: 70px;

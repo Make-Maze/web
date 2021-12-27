@@ -19,7 +19,9 @@ const User = () => {
         </S.UserSection>
         <hr />
         <S.MapSection>
-          <h1>자기가 저장한 미로랑 기타 정보</h1>
+          <h1>
+            저장한 <S.Green>미로</S.Green>랑 <S.Green>기타 정보</S.Green>
+          </h1>
           {saved.length === 0 ? (
             <p class="noSave">저장된 미로가 없습니다.</p>
           ) : (
