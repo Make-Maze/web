@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useResultContext } from '../../Context/Data'
 import * as S from './style'
+import axios from 'axios'
 
 const Share = () => {
-  const { img, title, shared, setShared } = useResultContext()
+  const { shared, setShared } = useResultContext()
+  useEffect(() => {
+    axios.get('map').then(res => {
+      setShared(res.data)
+    })
+  }, [setShared, shared])
   return (
     <>
       <S.MainSection>
