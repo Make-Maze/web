@@ -22,29 +22,25 @@ const Start = () => {
       imageUrl: res.profileObj.imageUrl,
       googleId: res.profileObj.googleId,
     }
-    console.log(res)
     axios
-      .post('/login', {
+      .post('http://192.168.137.205:8888/login', {
         email: res.profileObj.email,
-        name: res.profileObj.name,
-        imageUrl: res.profileObj.imageUrl,
+        // name: res.profileObj.name,
+        // imageUrl: res.profileObj.imageUrl,
         googleId: res.profileObj.googleId,
       })
       .then(function (res) {
+        console.log(res)
         setProfile(userData)
         setIsLogin(true)
-        sessionStorage.setItem('user_id', res.profileObj.googleId)
+        sessionStorage.setItem('user_id', res.data.googleId)
         toast.success('로그인 성공')
         navigate('/Draw')
       })
       .catch(function (err) {
         console.log(err)
         toast.error('로그인 실패')
-        onFailure()
       })
-  }
-  const onFailure = error => {
-    console.log(error)
   }
 
   const guestLogin = response => {}
@@ -88,7 +84,6 @@ const Start = () => {
                   prompt="consent"
                   clientId={clientId}
                   onSuccess={onSuccess}
-                  onFailure={onFailure}
                   className="googleLogin"
                 ></GoogleLogin>
                 <img src={GoogleLoginImg} alt="" />
