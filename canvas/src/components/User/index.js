@@ -6,8 +6,7 @@ import UserBackground from '../../Assets/UserBackground.png'
 import { toast } from 'react-toastify'
 
 const User = () => {
-  const { profile, title, img, saved, setSaved, user_id, id } =
-    useResultContext()
+  const { profile, title, img, saved, setSaved, user_id } = useResultContext()
 
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
@@ -29,7 +28,7 @@ const User = () => {
   // 맵 삭제
   const del = () => {
     axios
-      .delete(`http://192.168.137.205:8888/map/${mapId}`)
+      .delete(`http://192.168.137.205:8888/map/${user_id}`) // 나중엔 map id 로 바꿔야함
       .then(res => {
         console.log(res)
         toast.success('삭제 성공')

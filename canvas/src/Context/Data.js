@@ -11,9 +11,15 @@ export function ResultContextProvider({ children }) {
   const [title, setTitle] = useState('')
   const [isLogin, setIsLogin] = useState(false)
   const [view, setView] = useState([])
-  const [mapData, setMapData] = useState({ title: '', imgURL: '' })
+  const [mapData, setMapData] = useState({
+    title: '',
+    imgURL: '',
+    mapId: null,
+    block: '',
+  })
   const [saved, setSaved] = useState([])
   const [shared, setShared] = useState([])
+  const user_id = sessionStorage.getItem('user_id')
   const value = {
     profile,
     setProfile,
@@ -31,6 +37,7 @@ export function ResultContextProvider({ children }) {
     setSaved,
     mapData,
     setMapData,
+    user_id,
   }
 
   return (

@@ -5,12 +5,8 @@ import * as S from './style'
 import axios from 'axios'
 
 const Share = () => {
-  const { shared, setShared } = useResultContext()
-  useEffect(() => {
-    axios.get('map').then(res => {
-      setShared(res.data)
-    })
-  }, [setShared, shared])
+  const { shared, setShared, profile } = useResultContext()
+
   return (
     <>
       <S.MainSection>

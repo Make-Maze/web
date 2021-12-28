@@ -10,9 +10,9 @@ import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 
 const Start = () => {
-  const { isLogin, setIsLogin, setProfile } = useResultContext()
+  const { isLogin, setIsLogin, setProfile, setId } = useResultContext()
   const clientId =
-    '121704372282-6l10fcfppqtqgbhr3mk9guacs6r63pcl.apps.googleusercontent.com'
+    '121704372282-rashscl91o6ulu8grsn2ut8kbdsm2to6.apps.googleusercontent.com'
   const navigate = useNavigate()
 
   function onSuccess(res) {
@@ -22,6 +22,8 @@ const Start = () => {
       imageUrl: res.profileObj.imageUrl,
       googleId: res.profileObj.googleId,
     }
+
+    // 로그인 시도 시 실행
     axios
       .post('http://192.168.137.205:8888/login', {
         email: res.profileObj.email,
@@ -34,6 +36,7 @@ const Start = () => {
         setProfile(userData)
         setIsLogin(true)
         sessionStorage.setItem('user_id', res.data.googleId)
+        setId(sessionStorage.getItem('user_id'))
         toast.success('로그인 성공')
         navigate('/Draw')
       })
