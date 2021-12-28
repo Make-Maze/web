@@ -92,7 +92,7 @@ const Toolbar = props => {
       <button
         onClick={function (e) {
           e.preventDefault()
-          props.setSelect()
+          props.setSelect('item')
           props.setItem(true)
         }}
       >

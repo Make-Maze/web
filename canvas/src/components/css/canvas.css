@@ -63,7 +63,7 @@ canvas {
 
 /* 투명벽 */
 .item11 {
-  cursor: url('../../Assets/Item/invisible.png') 10 20, auto;
+  cursor: url('../../Assets/Item/invisible_lock.png') 10 20, auto;
 }
 
 /* 포션 */
@@ -76,8 +76,12 @@ canvas {
   cursor: url('../../Assets/Item/gasi.png') 10 10, auto;
 }
 
+.item14{
+  cursor: url('../../Assets/Item/invisible_block.png') 10 10, auto;
+}
+
 /* 지우개 */
-.del0, .del1, .del2, .del3, .del4, .del5, .del6, .del7, .del8, .del9, .del10, .del11, .del12, .del13{
+.del0, .del1, .del2, .del3, .del4, .del5, .del6, .del7, .del8, .del9, .del10, .del11, .del12, .del13, .del14{
   cursor: url('../../Assets/Item/eraser.png') 10 20, auto;
 }
 

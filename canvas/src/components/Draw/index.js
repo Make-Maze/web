@@ -23,8 +23,14 @@ const Canvas = props => {
   for (let i = 0; i < 30; i++) {
     list[i] = new Array(70).fill(0)
   }
-  list[0][0] = 99
-  list[29][69] = 100
+  list[0][0] = 91
+  list[0][1] = 92
+  list[1][0] = 93
+  list[1][1] = 94
+  list[28][68] = 95
+  list[28][69] = 96
+  list[29][68] = 97
+  list[29][69] = 98
   const [ctx, setCtx] = useState()
   const [isDrawing, setIsDrawing] = useState(false)
   const [x, setX] = useState(0)
