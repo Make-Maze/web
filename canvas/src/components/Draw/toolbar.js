@@ -47,7 +47,6 @@ const Toolbar = props => {
       jsonObject.mapName = props.title
       jsonObject.blocks = jsonArray
       jsonObject = JSON.stringify(jsonObject)
-      console.log('여기', jsonObject)
 
       // axios({
       //   url: 'api',
@@ -60,7 +59,6 @@ const Toolbar = props => {
       //   })
     } else {
       toast.error('제목을 입력해 주세요.')
-      console.log('asd')
     }
   }
 
