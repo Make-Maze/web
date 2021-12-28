@@ -3,6 +3,16 @@ import Block from './block'
 import SideBar from './sidebar'
 import Toolbar from './toolbar'
 import '../css/canvas.css'
+import potal from '../../Assets/Item/potal.png'
+import guard from '../../Assets/Item/guard.png'
+import gunUp from '../../Assets/Item/gun_up.png'
+import gunDown from '../../Assets/Item/gun_down.png'
+import gunRight from '../../Assets/Item/gun_right.png'
+import gunLeft from '../../Assets/Item/gun_left.png'
+import gasi from '../../Assets/Item/gasi.png'
+import spring from '../../Assets/Item/spring.png'
+import invisible from '../../Assets/Item/invisible.png'
+import potion from '../../Assets/Item/potion.png'
 
 const Canvas = props => {
   const canvasRef = useRef(null)
@@ -13,6 +23,14 @@ const Canvas = props => {
   for (let i = 0; i < 30; i++) {
     list[i] = new Array(70).fill(0)
   }
+  list[0][0] = 91
+  list[0][1] = 92
+  list[1][0] = 93
+  list[1][1] = 94
+  list[28][68] = 95
+  list[28][69] = 96
+  list[29][68] = 97
+  list[29][69] = 98
   const [ctx, setCtx] = useState()
   const [isDrawing, setIsDrawing] = useState(false)
   const [x, setX] = useState(0)
@@ -73,7 +91,7 @@ const Canvas = props => {
       <div className="canvas_wrap">
         <div ref={blockRef}>
           <canvas
-            className="canvas"
+            className={select + drawMode}
             ref={canvasRef}
             onMouseDown={startDrawing}
             onMouseUp={finishDrawing}
@@ -92,6 +110,7 @@ const Canvas = props => {
           ></Block>
         </div>
         <SideBar
+          draw={drawMode}
           setSelect={setSelect}
           drawMode={function (_draw) {
             setDraw(_draw)
