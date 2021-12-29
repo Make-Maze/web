@@ -10,7 +10,6 @@ const Toolbar = props => {
   const map = props.map
   const {
     title,
-    profile,
     img,
     setImg,
     saved,
@@ -23,54 +22,29 @@ const Toolbar = props => {
   } = useResultContext()
 
   const save = () => {
+    let jsonArray = new Array()
+    for (let i = 0; i < 20; i++) {
+      for (let j = 0; j < 100; j++) {
+        let testObject = new Object()
+        if (map[i][j] !== 0) {
+          testObject = [map[i][j], i, j]
+          testObject = JSON.stringify(testObject)
+          jsonArray.push(JSON.parse(testObject))
+        }
+      }
+    }
+    let content = new Object()
+    content = JSON.stringify(jsonArray)
+    console.log(content)
+
+    domtoimage.toBlob(canvas).then(blob => {
+      const objectURL = URL.createObjectURL(blob)
+      setImg(objectURL)
+    })
+
     axios
       .post(`http://192.168.137.205:8888/map/${user_id}`, {
-        block: '',
-        mapName: '',
-      })
-      .then(function (res) {
-        domtoimage.toBlob(canvas).then(blob => {
-          const objectURL = URL.createObjectURL(blob)
-          setImg(objectURL)
-          setMapData({ ...mapData, imgURL: URL.createObjectURL(blob) })
-          setSaved(saved.concat({ ...mapData }))
-          toast.success('저장 완료 ✌✌')
-        })
-        setMapData({ ...mapData, imgURL: img })
-        setShared(shared.concat({ ...mapData }))
-        toast.success('공유 완료 ✌✌')
-      })
-      .catch(err => {
-        console.log(err)
-        toast.error('공유 실패 😭😭')
-      })
-  }
-
-  const share = () => {
-    // const jsonArray = new Array()
-    // for (let i = 0; i < 20; i++) {
-    //   for (let j = 0; j < 100; j++) {
-    //     let jsonObject = new Object()
-    //     if (map[i][j] !== 0) {
-    //       jsonObject = [map[i][j], i, j]
-    //       jsonObject = JSON.stringify(jsonObject)
-    //       jsonArray.push(JSON.parse(jsonObject))
-    //     }
-    //   }
-    // }
-    // let jsonObject = new Object()
-    // jsonObject.blocks = jsonArray
-    // jsonObject = JSON.stringify(jsonObject)
-    // console.log('여기', jsonObject)
-
-    // domtoimage.toBlob(canvas).then(blob => {
-    //   const objectURL = URL.createObjectURL(blob)
-    //   setImg(objectURL)
-    // })
-
-    axios
-      .get(`http://192.168.137.205:8888/map/${user_id}`, {
-        block: '',
+        blocks: content,
         mapName: title,
       })
       .then(function (res) {
@@ -80,10 +54,49 @@ const Toolbar = props => {
           block: res.data.block,
           image: res.data.image,
         })
-        console.log(mapData)
-        console.log(res)
-        console.log(res.request.responseURL)
-        setShared(shared.concat({ ...mapData }))
+        setSaved(saved.concat({ ...mapData }))
+        toast.success('저장 완료 ✌✌')
+      })
+      .catch(err => {
+        console.log(err)
+        toast.error('저장 실패 😭😭')
+      })
+  }
+
+  const share = () => {
+    let jsonArray = new Array()
+    for (let i = 0; i < 20; i++) {
+      for (let j = 0; j < 100; j++) {
+        let testObject = new Object()
+        if (map[i][j] !== 0) {
+          testObject = [map[i][j], i, j]
+          testObject = JSON.stringify(testObject)
+          jsonArray.push(JSON.parse(testObject))
+        }
+      }
+    }
+    let content = new Object()
+    content = JSON.stringify(jsonArray)
+    console.log(content)
+
+    domtoimage.toBlob(canvas).then(blob => {
+      const objectURL = URL.createObjectURL(blob)
+      setImg(objectURL)
+    })
+
+    axios
+      .post(`http://192.168.137.205:8888/map/${user_id}`, {
+        blocks: content,
+        mapName: title,
+      })
+      .then(function (res) {
+        setMapData({
+          ...mapData,
+          mapId: res.data.mapId,
+          block: res.data.block,
+          image: res.data.image,
+        })
+        setSaved(saved.concat({ ...mapData }))
         toast.success('공유 완료 ✌✌')
       })
       .catch(err => {
