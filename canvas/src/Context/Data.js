@@ -21,7 +21,7 @@ export function ResultContextProvider({ children }) {
 
   const [saved, setSaved] = useState([]) // 저장하기
   const [shared, setShared] = useState([]) // 공유하기
-  const [user_id, setId] = useState() // user_id 여부
+  const [user_id, setId] = useState(sessionStorage.getItem('user_id')) // user_id 여부
   const value = {
     profile,
     setProfile,

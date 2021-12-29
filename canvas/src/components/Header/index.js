@@ -10,7 +10,7 @@ const Header = () => {
   const navigate = useNavigate()
   const Logout = () => {
     setIsLogin(false)
-    sessionStorage.removeItem('user_id')
+    sessionStorage.clear()
     navigate('/')
     toast.info('로그아웃 하였습니다.')
   }
