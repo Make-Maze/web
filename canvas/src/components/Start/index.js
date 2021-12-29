@@ -67,13 +67,13 @@ const Start = () => {
           나만의 <S.Green>미로</S.Green>를 즐겨보세요 !
         </h1>
         <hr />
-        <S.Container>
-          {isLogin ? (
-            <S.PlayBtn>
-              <Link to="/Draw">플레이하기</Link>
-            </S.PlayBtn>
-          ) : (
-            <>
+        {isLogin ? (
+          <S.PlayBtn>
+            <Link to="/Draw">플레이하기</Link>
+          </S.PlayBtn>
+        ) : (
+          <>
+            <S.Container>
               <S.LoginSection>
                 <S.Text>
                   <S.Green>맵 제작</S.Green> 및 <S.Green>플레이</S.Green>을 하고
@@ -98,9 +98,9 @@ const Start = () => {
                 <S.LoginBtn onClick={guestLogin}>Guest 로그인</S.LoginBtn>
                 <img src={GuestLogin} alt="" />
               </S.LoginSection>
-            </>
-          )}
-        </S.Container>
+            </S.Container>
+          </>
+        )}
         <img src={Footer} className="footerImg" alt="" />
       </S.MainSection>
     </div>

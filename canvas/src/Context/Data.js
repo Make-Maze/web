@@ -6,20 +6,21 @@ export const ResultContext = createContext(undefined)
 
 export function ResultContextProvider({ children }) {
   ////글로벌하게 관리할 states
-  const [profile, setProfile] = useState({})
-  const [img, setImg] = useState(null)
-  const [title, setTitle] = useState('')
-  const [isLogin, setIsLogin] = useState(false)
-  const [view, setView] = useState([])
+  const [profile, setProfile] = useState({}) // 프로필
+  const [img, setImg] = useState(null) // 이미지 주소
+  const [title, setTitle] = useState('') // 맵 제목
+  const [isLogin, setIsLogin] = useState(false) // 로그인 확인
   const [mapData, setMapData] = useState({
-    title: '',
-    imgURL: '',
-    mapId: null,
-    block: '',
-  })
-  const [saved, setSaved] = useState([])
-  const [shared, setShared] = useState([])
-  const user_id = sessionStorage.getItem('user_id')
+    mapName: '', // 맵 제목
+    image: '', // 맵 이미지 주소
+    mapId: null, // 맵 고유 번호
+    block: '', // 맵 코드 ( json )
+  }) // 맵 정보
+
+  const [saved, setSaved] = useState([]) // 저장하기
+  const [shared, setShared] = useState([]) // 공유하기
+  const user_id = sessionStorage.getItem('user_id') // user_id 여부
+
   const value = {
     profile,
     setProfile,
@@ -29,8 +30,6 @@ export function ResultContextProvider({ children }) {
     setTitle,
     isLogin,
     setIsLogin,
-    view,
-    setView,
     shared,
     setShared,
     saved,
