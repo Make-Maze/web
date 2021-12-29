@@ -11,16 +11,10 @@ const User = () => {
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
     axios
-      .get(`http://192.168.137.205:8888/map/${user_id}}`, [
-        {
-          mapId: '',
-          img: '',
-          content: '',
-        },
-      ])
+      .get(`http://192.168.137.205:8888/map/${user_id}}`)
       .then(res => {
         console.log(res)
-        setSaved(res.data)
+        // setSaved(res.data)
       })
       .catch(err => console.log(err))
   }, [setSaved, saved])
@@ -38,6 +32,7 @@ const User = () => {
         toast.err('삭제 실패')
       })
   }
+
   return (
     <>
       <S.MainSection>

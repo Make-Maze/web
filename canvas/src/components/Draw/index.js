@@ -59,7 +59,7 @@ const Canvas = props => {
       // }
     }
   }
-  const { mapData, setMapData } = useResultContext()
+  const { setTitle } = useResultContext()
 
   return (
     <div>
@@ -67,7 +67,7 @@ const Canvas = props => {
         <input
           type="text"
           onChange={e => {
-            setMapData({ ...mapData, title: e.target.value })
+            setTitle(e.target.value)
           }}
           className="titleBox"
           placeholder="미로 제목을 입력해 주세요"

@@ -36,34 +36,40 @@ const Toolbar = props => {
     let content = new Object()
     content = JSON.stringify(jsonArray)
     console.log(content)
+    const testObject = new Object()
+    testObject.block = content
+    testObject.mapName = title
+    console.log(testObject)
 
-    domtoimage.toBlob(canvas).then(blob => {
-      const objectURL = URL.createObjectURL(blob)
-      setImg(objectURL)
-    })
+    // domtoimage.toBlob(canvas).then(blob => {
+    //   const objectURL = URL.createObjectURL(blob)
+    //   setImg(objectURL)
+    // })
 
-    axios
-      .post(`http://192.168.137.205:8888/map/${user_id}`, {
-        blocks: content,
-        mapName: title,
-      })
-      .then(function (res) {
-        setMapData({
-          ...mapData,
-          mapId: res.data.mapId,
-          block: res.data.block,
-          image: res.data.image,
-        })
-        setSaved(saved.concat({ ...mapData }))
-        toast.success('저장 완료 ✌✌')
-      })
-      .catch(err => {
-        console.log(err)
-        toast.error('저장 실패 😭😭')
-      })
+    // axios
+    //   .post(`http://192.168.137.205:8888/map/${user_id}`, {
+    //     blocks: content,
+    //     mapName: title,
+    //   })
+    //   .then(function (res) {
+    //     setMapData({
+    //       ...mapData,
+    //       mapId: res.data.mapId,
+    //       block: res.data.block,
+    //       image: res.data.image,
+    //       mapCode: res.data.mapCode,
+    //     })
+    //     setSaved(saved.concat({ ...mapData }))
+    //     toast.success('저장 완료 ✌✌')
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //     toast.error('저장 실패 😭😭')
+    //   })
   }
 
   const share = () => {
+    // 서버로 전송할 맵 좌표 만들기
     let jsonArray = new Array()
     for (let i = 0; i < 20; i++) {
       for (let j = 0; j < 100; j++) {
@@ -95,6 +101,7 @@ const Toolbar = props => {
           mapId: res.data.mapId,
           block: res.data.block,
           image: res.data.image,
+          mapCode: res.data.mapCode,
         })
         setSaved(saved.concat({ ...mapData }))
         toast.success('공유 완료 ✌✌')

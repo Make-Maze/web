@@ -11,10 +11,12 @@ export function ResultContextProvider({ children }) {
   const [title, setTitle] = useState('') // 맵 제목
   const [isLogin, setIsLogin] = useState(false) // 로그인 확인
   const [mapData, setMapData] = useState({
+    mapId: null, // 맵 고유 번호
     mapName: '', // 맵 제목
     image: '', // 맵 이미지 주소
-    mapId: null, // 맵 고유 번호
     block: '', // 맵 코드 ( json )
+    content: '',
+    mapCode: '',
   }) // 맵 정보
 
   const [saved, setSaved] = useState([]) // 저장하기

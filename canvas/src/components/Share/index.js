@@ -5,8 +5,17 @@ import * as S from './style'
 import axios from 'axios'
 
 const Share = () => {
-  const { shared, setShared, profile } = useResultContext()
-
+  const { shared, setShared, user_id } = useResultContext()
+  // 구글 아이디가 gooleId 인 사용자의 Map 조회
+  useEffect(() => {
+    axios
+      .get(`http://192.168.137.205:8888/map/${user_id}}`)
+      .then(res => {
+        console.log(res)
+        // setSaved(res.data)
+      })
+      .catch(err => console.log(err))
+  }, [setShared, shared])
   return (
     <>
       <S.MainSection>
