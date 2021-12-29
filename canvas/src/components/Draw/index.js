@@ -3,22 +3,13 @@ import Block from './block'
 import SideBar from './sidebar'
 import Toolbar from './toolbar'
 import '../css/canvas.css'
-import potal from '../../Assets/Item/potal.png'
-import guard from '../../Assets/Item/guard.png'
-import gunUp from '../../Assets/Item/gun_up.png'
-import gunDown from '../../Assets/Item/gun_down.png'
-import gunRight from '../../Assets/Item/gun_right.png'
-import gunLeft from '../../Assets/Item/gun_left.png'
-import gasi from '../../Assets/Item/gasi.png'
-import spring from '../../Assets/Item/spring.png'
-import invisible from '../../Assets/Item/invisible.png'
-import potion from '../../Assets/Item/potion.png'
 
 const Canvas = props => {
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
   const blockRef = useRef(null)
 
+  //전체 맵
   let list = new Array(30)
   for (let i = 0; i < 30; i++) {
     list[i] = new Array(70).fill(0)
@@ -31,16 +22,21 @@ const Canvas = props => {
   list[28][69] = 96
   list[29][68] = 97
   list[29][69] = 98
+
+  //포탈 좌표
+  let list2 = new Array()
   const [ctx, setCtx] = useState()
   const [isDrawing, setIsDrawing] = useState(false)
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
   const [map] = useState(list)
+  const [potalInfo] = useState(list2)
   const [height, setHeight] = useState()
   const [width, setWidth] = useState()
   const [item, setItem] = useState(false)
   const [drawMode, setDraw] = useState(0)
   const [select, setSelect] = useState('wall')
+
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -103,6 +99,7 @@ const Canvas = props => {
             y={y}
             isDrawing={isDrawing}
             map={map}
+            potalInfo={potalInfo}
             select={select}
             setSelect={setSelect}
             setDraw={setDraw}
@@ -124,6 +121,7 @@ const Canvas = props => {
         item={item}
         setItem={setItem}
         map={map}
+        potalInfo={potalInfo}
         exTitle={exTitle}
       ></Toolbar>
     </div>

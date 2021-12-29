@@ -16,19 +16,19 @@
 }
 
 .blackCircle {
-  background-color: black;
+  background-image: url('../../Assets/Item/block3.png');
 }
 
 .redCircle {
-  background-color: #ff8f8f;
+  background-image: url('../../Assets/Item/block2.png');
 }
 
 .yellowCircle {
-  background-color: #f8e68c;
+  background-image: url('../../Assets/Item/block.png');
 }
 
 .greenCircle {
-  background-color: green;
+  background-image: url('../../Assets/Item/block4.png');
 }
 
 a > img{
