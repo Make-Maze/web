@@ -37,10 +37,10 @@ const User = () => {
     <>
       <S.MainSection>
         <S.UserSection>
-          <img src={profile.imageUrl} alt="" />
+          <img src={sessionStorage.getItem('user_img')} alt="" />
           <div>
-            <p>이름 : {profile.name}</p>
-            <p>이메일 : {profile.email}</p>
+            <p>이름 : {sessionStorage.getItem('user_name')}</p>
+            <p>이메일 : {sessionStorage.getItem('user_email')}</p>
           </div>
         </S.UserSection>
         <hr />

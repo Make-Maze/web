@@ -46,26 +46,26 @@ const Toolbar = props => {
     //   setImg(objectURL)
     // })
 
-    // axios
-    //   .post(`http://192.168.137.205:8888/map/${user_id}`, {
-    //     blocks: content,
-    //     mapName: title,
-    //   })
-    //   .then(function (res) {
-    //     setMapData({
-    //       ...mapData,
-    //       mapId: res.data.mapId,
-    //       block: res.data.block,
-    //       image: res.data.image,
-    //       mapCode: res.data.mapCode,
-    //     })
-    //     setSaved(saved.concat({ ...mapData }))
-    //     toast.success('저장 완료 ✌✌')
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //     toast.error('저장 실패 😭😭')
-    //   })
+    axios
+      .post(`http://192.168.137.195:8888/map/${user_id}`, {
+        blocks: content,
+        mapName: title,
+      })
+      .then(function (res) {
+        setMapData({
+          ...mapData,
+          mapId: res.data.mapId,
+          block: res.data.block,
+          image: res.data.image,
+          mapCode: res.data.mapCode,
+        })
+        setSaved(saved.concat({ ...mapData }))
+        toast.success('저장 완료 ✌✌')
+      })
+      .catch(err => {
+        console.log(err)
+        toast.error('저장 실패 😭😭')
+      })
   }
 
   const share = () => {
@@ -91,7 +91,7 @@ const Toolbar = props => {
     })
 
     axios
-      .post(`http://192.168.137.205:8888/map/${user_id}`, {
+      .post(`http://192.168.137.195:8888/map/${user_id}`, {
         blocks: content,
         mapName: title,
       })

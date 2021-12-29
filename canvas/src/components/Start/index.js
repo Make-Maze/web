@@ -25,17 +25,20 @@ const Start = () => {
 
     // 로그인 시도 시 실행
     axios
-      .post('http://192.168.137.205:8888/login', {
+      .post('http://192.168.137.195:8888/login', {
         email: res.profileObj.email,
-        // name: res.profileObj.name,
-        // imageUrl: res.profileObj.imageUrl,
+        name: res.profileObj.name,
+        imageUrl: res.profileObj.imageUrl,
         googleId: res.profileObj.googleId,
       })
       .then(function (res) {
-        console.log(res)
-        setProfile(userData)
         setIsLogin(true)
-        sessionStorage.setItem('user_id', res.data.googleId)
+
+        sessionStorage.setItem('user_id', userData.googleId)
+        sessionStorage.setItem('user_name', userData.name)
+        sessionStorage.setItem('user_img', userData.imageUrl)
+        sessionStorage.setItem('user_email', userData.email)
+
         setId(sessionStorage.getItem('user_id'))
         toast.success('로그인 성공')
         navigate('/Draw')
@@ -57,6 +60,7 @@ const Start = () => {
       // 로그인 상태 변경
       setIsLogin(true)
     }
+
     console.log(isLogin)
   }, [isLogin, setIsLogin])
 
