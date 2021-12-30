@@ -9,7 +9,6 @@ const Toolbar = props => {
   const canvas = props.blockRef.current
   const map = props.map
   const { img, setImg, title, setTitle } = useResultContext()
-  const [btn, setBtn] = useState('btn_lock')
   let save_title
   let save_map
   
@@ -35,12 +34,12 @@ const Toolbar = props => {
       toast.success(`저장 완료 마이페이지를 확인해보세요`)
       save_title = title
       save_map = map
-      setBtn('btn_open')
+      props.setBtn('btn_open')
     }
   }
 
   const share = () => {
-    if(btn === 'btn_lock'){
+    if(props.btn === 'btn_lock'){
       toast.error(`저장하기를 먼저 해주세요`)
     } else {
       domtoimage
@@ -49,7 +48,7 @@ const Toolbar = props => {
             const objectURL = URL.createObjectURL(blob)
             setImg(objectURL)
             toast.success('공유 완료 ✌✌')
-            setBtn('btn_lock')
+            props.setBtn('btn_lock')
           })
           .catch(function (error) {
             console.error('oops, something went wrong!', error)
@@ -136,7 +135,7 @@ const Toolbar = props => {
         아이템
       </button>
       <button onClick={save}>저장하기</button>
-      <button onClick={share} className={btn}>공유하기</button>
+      <button onClick={share} className={props.btn}>공유하기</button>
     </div>
   )
 }

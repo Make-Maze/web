@@ -36,6 +36,7 @@ const Canvas = props => {
   const [item, setItem] = useState(false)
   const [drawMode, setDraw] = useState(0)
   const [select, setSelect] = useState('wall')
+  const [btn, setBtn] = useState('btn_lock')
 
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const Canvas = props => {
 
   const startDrawing = () => {
     setIsDrawing(true)
+    setBtn('btn_lock')
   }
 
   const finishDrawing = () => {
@@ -79,7 +81,10 @@ const Canvas = props => {
       <div className="inputBox">
         <input
           type="text"
-          onChange={e => setexTitle(e.target.value)}
+          onChange={function(e){
+            setexTitle(e.target.value)
+            setBtn('btn_lock')
+          }}
           className="titleBox"
           placeholder="미로 제목을 입력해 주세요"
         />
@@ -116,6 +121,8 @@ const Canvas = props => {
         ></SideBar>
       </div>
       <Toolbar
+        btn={btn}
+        setBtn={setBtn}
         setSelect={setSelect}
         blockRef={blockRef}
         item={item}
