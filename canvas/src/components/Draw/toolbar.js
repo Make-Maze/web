@@ -41,11 +41,6 @@ const Toolbar = props => {
     testObject.mapName = title
     console.log(testObject)
 
-    // domtoimage.toBlob(canvas).then(blob => {
-    //   const objectURL = URL.createObjectURL(blob)
-    //   setImg(objectURL)
-    // })
-
     axios
       .post(`http://192.168.137.195:8888/map/${user_id}`, {
         blocks: content,

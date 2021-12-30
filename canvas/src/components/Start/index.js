@@ -10,7 +10,7 @@ import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 
 const Start = () => {
-  const { isLogin, setIsLogin, setProfile, setId } = useResultContext()
+  const { isLogin, setIsLogin, setProfile, setId, profile } = useResultContext()
   const clientId =
     '121704372282-rashscl91o6ulu8grsn2ut8kbdsm2to6.apps.googleusercontent.com'
   const navigate = useNavigate()
@@ -34,12 +34,15 @@ const Start = () => {
       .then(function (res) {
         setIsLogin(true)
 
-        sessionStorage.setItem('user_id', userData.googleId)
-        sessionStorage.setItem('user_name', userData.name)
-        sessionStorage.setItem('user_img', userData.imageUrl)
-        sessionStorage.setItem('user_email', userData.email)
+        setProfile({
+          id: sessionStorage.setItem('user_id', userData.googleId),
+          name: sessionStorage.setItem('user_name', userData.name),
+          image: sessionStorage.setItem('user_img', userData.imageUrl),
+          email: sessionStorage.setItem('user_email', userData.email),
+        })
 
         setId(sessionStorage.getItem('user_id'))
+
         toast.success('로그인 성공')
         navigate('/Draw')
       })

@@ -34,8 +34,7 @@ const Share = () => {
                   <p>{element.title}</p>
                   <img src={element.imgURL} alt="" />
                   <S.ButtonWrapper>
-                    <button>시작하기</button>
-                    <button>공유하기</button>
+                    <button>저장하기</button>
                   </S.ButtonWrapper>
                 </S.ItemSection>
               </>

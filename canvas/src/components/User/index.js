@@ -58,7 +58,6 @@ const User = () => {
                   <p>{element.title}</p>
                   <img src={element.imgURL} alt="" />
                   <S.ButtonWrapper>
-                    <button>시작하기</button>
                     <button onClick={del}>삭제하기</button>
                   </S.ButtonWrapper>
                 </S.ItemSection>

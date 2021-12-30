@@ -6,8 +6,12 @@ export const ResultContext = createContext(undefined)
 
 export function ResultContextProvider({ children }) {
   ////글로벌하게 관리할 states
-  const [profile, setProfile] = useState({}) // 프로필
-  const [img, setImg] = useState(null) // 이미지 주소
+  const [profile, setProfile] = useState({
+    id: '',
+    email: '',
+    name: '',
+    image: '',
+  }) // 프로필
   const [title, setTitle] = useState('') // 맵 제목
   const [isLogin, setIsLogin] = useState(false) // 로그인 확인
   const [mapData, setMapData] = useState({
@@ -25,8 +29,6 @@ export function ResultContextProvider({ children }) {
   const value = {
     profile,
     setProfile,
-    img,
-    setImg,
     title,
     setTitle,
     isLogin,
