@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../css/block.css'
 import potal from '../../Assets/Item/potal.png'
 import guard from '../../Assets/Item/guard.png'
@@ -19,6 +19,10 @@ import end1 from '../../Assets/Item/end1.png'
 import end2 from '../../Assets/Item/end2.png'
 import end3 from '../../Assets/Item/end3.png'
 import end4 from '../../Assets/Item/end4.png'
+import block1 from '../../Assets/Item/block3.png'
+import block2 from '../../Assets/Item/block2.png'
+import block3 from '../../Assets/Item/block.png'
+import block4 from '../../Assets/Item/block4.png'
 
 const Block = props => {
   let i
@@ -27,6 +31,8 @@ const Block = props => {
 
   function isStartEnd(){
     if(
+      props.isDrawing === true &&
+      Math.floor(props.y / 2) !== -1 &&
       (Math.floor(props.y / 2) !== 0 || props.x !== 0) &&
       (Math.floor(props.y / 2) !== 0 || props.x !== 1) &&
       (Math.floor(props.y / 2) !== 1 || props.x !== 0) &&
@@ -45,32 +51,24 @@ const Block = props => {
 
   // 벽인지 확인
   if (
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'wall' &&
     props.drawMode === 0
   ) {
     props.map[Math.floor(props.y / 2)][props.x] = 1
   } else if (
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'wall' &&
     props.drawMode === 1
   ) {
     props.map[Math.floor(props.y / 2)][props.x] = 2
   } else if (
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'wall' &&
     props.drawMode === 2
   ) {
     props.map[Math.floor(props.y / 2)][props.x] = 3
   } else if (
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'wall' &&
     props.drawMode === 3
@@ -80,16 +78,21 @@ const Block = props => {
 
   //del인지 확인
   if (
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'del'
   ) {
+    for(let i = 0; i < props.potalInfo.length; i++){
+      if(props.potalInfo[i][0] === Math.floor(props.y / 2) && props.potalInfo[i][1] === props.x){
+        props.potalInfo.splice(i, 2)
+        break
+      }
+    }
     props.map[Math.floor(props.y / 2)][props.x] = 0
   } else if (props.select === 'Alldel') {
     for (let i = 0; i < 30; i++) {
       props.map[i].fill(0)
     }
+    props.potalInfo.splice(0, props.potalInfo.length)
     // 전체 지우고 난 후 자동으로 브러쉬 선택
     props.setDraw(0)
     props.setSelect('wall')
@@ -104,88 +107,68 @@ const Block = props => {
   }
 
   if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 4
   ){
     props.map[Math.floor(props.y / 2)][props.x] = 5
   } else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 5
   ){
     props.map[Math.floor(props.y / 2)][props.x] = 6
   }else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 6
   ){
     props.map[Math.floor(props.y / 2)][props.x] = 7
   }else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 7
   ){
     props.map[Math.floor(props.y / 2)][props.x] = 8
   }else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 8
   ){
+    props.potalInfo[props.potalInfo.length] = [Math.floor(props.y / 2), props.x]
+    console.log(props.potalInfo)
     props.map[Math.floor(props.y / 2)][props.x] = 9
   }else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 9
   ){
     props.map[Math.floor(props.y / 2)][props.x] = 10
   }else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 10
   ){
     props.map[Math.floor(props.y / 2)][props.x] = 11
   }else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 11
   ){
     props.map[Math.floor(props.y / 2)][props.x] = 12
   } else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 12
   ){
     props.map[Math.floor(props.y / 2)][props.x] = 13
   } else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 13
   ){
     props.map[Math.floor(props.y / 2)][props.x] = 14
   } else if(
-    props.isDrawing === true &&
-    Math.floor(props.y / 2) !== -1 &&
     isStartEnd() &&
     props.select === 'item' &&
     props.drawMode === 14
@@ -205,9 +188,10 @@ const Block = props => {
             style={{
               border: '1px solid gray ',
               padding: '0px',
-              backgroundColor: 'black',
             }}
-          ></td>
+          >
+            <img src={block1}></img>
+          </td>
         )
       } else if (props.map[i][j] === 2) {
         list.push(
@@ -216,9 +200,10 @@ const Block = props => {
             style={{
               border: '1px solid gray',
               padding: '0px',
-              backgroundColor: '#FF8F8F',
             }}
-          ></td>
+          >
+            <img src={block2}></img>
+          </td>
         )
       } else if (props.map[i][j] === 3) {
         list.push(
@@ -229,7 +214,9 @@ const Block = props => {
               padding: '0px',
               backgroundColor: '#F8E68C',
             }}
-          ></td>
+          >
+            <img src={block3}></img>
+          </td>
         )
       } else if (props.map[i][j] === 4) {
         list.push(
@@ -240,7 +227,9 @@ const Block = props => {
               padding: '0px',
               backgroundColor: 'green',
             }}
-          ></td>
+          >
+            <img src={block4}></img>
+          </td>
         )
       } else if (props.map[i][j] === 5){
         list.push(
@@ -338,7 +327,7 @@ const Block = props => {
             <img src={invisible}></img>
           </td>
         )
-      }else if (props.map[i][j] === 13){
+      }else if (props.map[i][j]  === 13){
         list.push(
           <td
             class="map"

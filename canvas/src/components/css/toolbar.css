@@ -12,3 +12,12 @@ button:hover {
   transform: scale(0.9);
   transition: 0.2s;
 }
+
+.btn_lock {
+  background-color: rgb(212, 197, 228);
+}
+
+.btn_lock:hover {
+  transform: none;
+  transition: none;
+}
