@@ -7,6 +7,7 @@
   border-radius: 25px;
   cursor: pointer;
   margin: 0 20px 20px;
+  display: table;
 }
 
 .sidebar > div:hover {
@@ -15,17 +16,22 @@
 }
 
 .blackCircle {
-  background-color: black;
+  background-image: url('../../Assets/Item/block3.png');
 }
 
 .redCircle {
-  background-color: #ff8f8f;
+  background-image: url('../../Assets/Item/block2.png');
 }
 
 .yellowCircle {
-  background-color: #f8e68c;
+  background-image: url('../../Assets/Item/block.png');
 }
 
 .greenCircle {
-  background-color: green;
+  background-image: url('../../Assets/Item/block4.png');
+}
+
+a > img{
+  width:  40px;
+  height: 40px;
 }

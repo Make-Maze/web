@@ -10,20 +10,35 @@ const Canvas = props => {
   const contextRef = useRef(null)
   const blockRef = useRef(null)
 
-  let list = new Array(40)
-  for (let i = 0; i < 40; i++) {
-    list[i] = new Array(100).fill(0)
+  //전체 맵
+  let list = new Array(30)
+  for (let i = 0; i < 30; i++) {
+    list[i] = new Array(70).fill(0)
   }
+  list[0][0] = 91
+  list[0][1] = 92
+  list[1][0] = 93
+  list[1][1] = 94
+  list[28][68] = 95
+  list[28][69] = 96
+  list[29][68] = 97
+  list[29][69] = 98
+
+  //포탈 좌표
+  let list2 = new Array()
   const [ctx, setCtx] = useState()
   const [isDrawing, setIsDrawing] = useState(false)
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
   const [map] = useState(list)
+  const [potalInfo] = useState(list2)
   const [height, setHeight] = useState()
   const [width, setWidth] = useState()
   const [item, setItem] = useState(false)
   const [drawMode, setDraw] = useState(0)
   const [select, setSelect] = useState('wall')
+  const [btn, setBtn] = useState('btn_lock')
+
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -39,6 +54,7 @@ const Canvas = props => {
 
   const startDrawing = () => {
     setIsDrawing(true)
+    setBtn('btn_lock')
   }
 
   const finishDrawing = () => {
@@ -47,8 +63,8 @@ const Canvas = props => {
 
   const drawing = ({ nativeEvent }) => {
     let { offsetX, offsetY } = nativeEvent
-    setX(Math.floor((100 / ((window.innerWidth - 100) * 0.6)) * offsetX))
-    setY(Math.floor((100 / (window.innerHeight - 300)) * offsetY))
+    setX(Math.floor((100 / ((window.innerWidth - 100) * 1.15)) * offsetX))
+    setY(Math.floor((100 / (window.innerHeight - 300) * 0.46) * offsetY))
     if (ctx) {
       // if(!isDrawing){
       //   ctx.beginPath();
@@ -66,8 +82,14 @@ const Canvas = props => {
       <div className="inputBox">
         <input
           type="text"
+
           onChange={e => {
             setTitle(e.target.value)
+
+          onChange={function(e){
+            setexTitle(e.target.value)
+            setBtn('btn_lock')
+
           }}
           className="titleBox"
           placeholder="미로 제목을 입력해 주세요"
@@ -76,7 +98,7 @@ const Canvas = props => {
       <div className="canvas_wrap">
         <div ref={blockRef}>
           <canvas
-            className="canvas"
+            className={select + drawMode}
             ref={canvasRef}
             onMouseDown={startDrawing}
             onMouseUp={finishDrawing}
@@ -88,6 +110,7 @@ const Canvas = props => {
             y={y}
             isDrawing={isDrawing}
             map={map}
+            potalInfo={potalInfo}
             select={select}
             setSelect={setSelect}
             setDraw={setDraw}
@@ -95,6 +118,7 @@ const Canvas = props => {
           ></Block>
         </div>
         <SideBar
+          draw={drawMode}
           setSelect={setSelect}
           drawMode={function (_draw) {
             setDraw(_draw)
@@ -103,11 +127,17 @@ const Canvas = props => {
         ></SideBar>
       </div>
       <Toolbar
+        btn={btn}
+        setBtn={setBtn}
         setSelect={setSelect}
         blockRef={blockRef}
         item={item}
         setItem={setItem}
         map={map}
+
+        potalInfo={potalInfo}
+        exTitle={exTitle}
+
       ></Toolbar>
     </div>
   )
