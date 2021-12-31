@@ -39,7 +39,6 @@ const Canvas = props => {
   const [select, setSelect] = useState('wall')
   const [btn, setBtn] = useState('btn_lock')
 
-
   useEffect(() => {
     const canvas = canvasRef.current
 
@@ -64,7 +63,7 @@ const Canvas = props => {
   const drawing = ({ nativeEvent }) => {
     let { offsetX, offsetY } = nativeEvent
     setX(Math.floor((100 / ((window.innerWidth - 100) * 1.15)) * offsetX))
-    setY(Math.floor((100 / (window.innerHeight - 300) * 0.46) * offsetY))
+    setY(Math.floor((100 / (window.innerHeight - 300)) * 0.46 * offsetY))
     if (ctx) {
       // if(!isDrawing){
       //   ctx.beginPath();
@@ -82,14 +81,8 @@ const Canvas = props => {
       <div className="inputBox">
         <input
           type="text"
-
           onChange={e => {
             setTitle(e.target.value)
-
-          onChange={function(e){
-            setexTitle(e.target.value)
-            setBtn('btn_lock')
-
           }}
           className="titleBox"
           placeholder="미로 제목을 입력해 주세요"
@@ -134,10 +127,7 @@ const Canvas = props => {
         item={item}
         setItem={setItem}
         map={map}
-
         potalInfo={potalInfo}
-        exTitle={exTitle}
-
       ></Toolbar>
     </div>
   )
