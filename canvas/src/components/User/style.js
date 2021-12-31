@@ -8,6 +8,9 @@ export const MainSection = styled.div`
     overflow-x: hidden;
   }
 `
+export const Green = styled.span`
+  color: #16780d;
+`
 
 export const UserSection = styled.div`
   position: relative;
@@ -33,21 +36,20 @@ export const UserSection = styled.div`
 `
 
 export const MapSection = styled.div`
-  position: relative;
   overflow: hidden;
   h1 {
     margin-top: 100px;
     font-size: 60px;
   }
-  .userBackground {
-    position: absolute;
-    top: 5%;
-    left: 20%;
-    z-index: -1;
+
+  .noSave {
+    height: 50vh;
+    text-align: center;
+    font-family: 'appleM';
+    color: #ff8f8f;
+    font-size: 24px;
+    margin: 100px;
   }
-  background-image: url(${UserBackground});
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
 `
 
 export const ItemSection = styled.div`

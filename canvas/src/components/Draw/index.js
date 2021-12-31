@@ -3,6 +3,7 @@ import Block from './block'
 import SideBar from './sidebar'
 import Toolbar from './toolbar'
 import '../css/canvas.css'
+import { useResultContext } from '../../Context/Data'
 
 const Canvas = props => {
   const canvasRef = useRef(null)
@@ -74,16 +75,21 @@ const Canvas = props => {
       // }
     }
   }
-  const [exTitle, setexTitle] = useState()
+  const { setTitle } = useResultContext()
 
   return (
     <div>
       <div className="inputBox">
         <input
           type="text"
+
+          onChange={e => {
+            setTitle(e.target.value)
+
           onChange={function(e){
             setexTitle(e.target.value)
             setBtn('btn_lock')
+
           }}
           className="titleBox"
           placeholder="미로 제목을 입력해 주세요"
@@ -128,8 +134,10 @@ const Canvas = props => {
         item={item}
         setItem={setItem}
         map={map}
+
         potalInfo={potalInfo}
         exTitle={exTitle}
+
       ></Toolbar>
     </div>
   )

@@ -62,4 +62,9 @@ export const LoginBtn = styled.div`
 
 export const PlayBtn = styled.div`
   text-align: center;
+  padding-bottom: 100px;
+  font-size: 20px;
+  & :hover {
+    color: #16780d;
+  }
 `
