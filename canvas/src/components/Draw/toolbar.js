@@ -20,11 +20,33 @@ const Toolbar = props => {
 
   function save() {
     let jsonArray = new Array()
+    let potalObject = new Object()
+    for (let i = 0; i < props.potalInfo.length; i += 2) {
+      if (potalObject.length === 3) {
+        potalObject = potalObject.concat(
+          props.potalInfo[i][0],
+          props.potalInfo[i][1]
+        )
+        potalObject = JSON.stringify(potalObject)
+        jsonArray.push(JSON.parse(potalObject))
+        potalObject = new Object()
+      } else {
+        potalObject = {
+          kind: 9,
+          x: props.potalInfo[i][0],
+          y: props.potalInfo[i][1],
+        }
+      }
+    }
     for (let i = 0; i < 20; i++) {
       for (let j = 0; j < 100; j++) {
         let testObject = new Object()
-        if (map[i][j] !== 0) {
-          testObject = [map[i][j], i, j]
+        if (map[i][j] !== 0 && map[i][j] !== 9) {
+          testObject = {
+            kind: map[i][j],
+            x: i,
+            y: j,
+          }
           testObject = JSON.stringify(testObject)
           jsonArray.push(JSON.parse(testObject))
         }
