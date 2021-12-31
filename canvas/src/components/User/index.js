@@ -6,25 +6,25 @@ import UserBackground from '../../Assets/UserBackground.png'
 import { toast } from 'react-toastify'
 
 const User = () => {
-  const { profile, title, saved, setSaved, googleId } = useResultContext()
+  const { profile, title, saved, setSaved, googleId, setMapData } =
+    useResultContext()
 
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
     console.log(saved)
 
     axios
-      .get(`http://192.168.137.6:8888/like/${googleId}}`)
+      .get(`http://192.168.137.139:8888/like/${googleId}}`)
       .then(res => {
         console.log(res)
-        // setSaved(res.data)
       })
       .catch(err => console.log(err))
-  }, [setSaved, saved])
+  }, [saved])
 
   // 맵 삭제
   const del = () => {
     // axios
-    //   .delete(`http://192.168.137.6.137.205:8888/map/${googleId}`) // 나중엔 map id 로 바꿔야함
+    //   .delete(`http://192.168.137.139.137.205:8888/map/${googleId}`) // 나중엔 map id 로 바꿔야함
     //   .then(res => {
     //     console.log(res)
     //     toast.success('삭제 성공')
@@ -64,14 +64,25 @@ const User = () => {
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {
-                        axios
-                          .delete(
-                            `http://192.168.137.6:8888/map/${element.mapId}`
+                        console.log(element)
+                        setSaved(
+                          saved.filter(
+                            mapData => mapData.mapId !== element.mapId
                           )
-                          .then(res => {
-                            element = null
-                          })
+                        )
                       }}
+                      //   axios
+                      //     .delete(
+                      //       `http://192.168.137.139:8888/map/${element.mapId}`
+                      //     )
+                      //     .then(res => {
+
+                      //       )
+                      //     })
+                      //     .catch(err => {
+                      //       console.log(err)
+                      //     })
+                      // }}
                     >
                       삭제하기
                     </button>

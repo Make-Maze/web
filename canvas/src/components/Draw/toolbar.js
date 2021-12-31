@@ -33,24 +33,25 @@ const Toolbar = props => {
 
     let mapJSON = new Object()
     mapJSON = JSON.stringify(jsonArray)
-    console.log(mapJSON)
     axios
-      .post(`http://192.168.137.6:8888/map/${googleId}`, {
+      .post(`http://192.168.137.139:8888/map/${googleId}`, {
         block: mapJSON,
         mapName: title,
       })
-      .then(function (res) {
+      .then(res => {
         console.log(res)
         setMapData({
-          ...mapData,
-          mapId: res.data.mapId,
-          mapName: res.data.mapName,
-          mapCode: res.data.mapCode,
           block: res.data.block,
-          // img: res.data.image,
+          img: sessionStorage.getItem('user_image'),
+          mapId: res.data.mapId,
+          mapCode: res.data.mapCode,
+          mapName: res.data.mapName,
+          userName: sessionStorage.getItem('user_name'),
         })
-        setSaved(saved.concat({ ...mapData }))
+        setSaved(saved.concat(res.data))
+        console.log(saved)
         toast.success('저장 완료 ✌✌')
+        console.log(mapData)
       })
       .catch(err => {
         console.log(err)
@@ -60,14 +61,14 @@ const Toolbar = props => {
 
   const share = () => {
     axios
-      .post(`http://192.168.137.6:8888/map/${googleId}`, {
-        block: map.block,
-        mapName: map.mapName,
+      .post(`http://192.168.137.139:8888/map/${googleId}`, {
+        block: mapData.block,
+        mapName: mapData.mapName,
       })
       .then(function (res) {
         console.log(mapData)
         console.log(res)
-        setShared(shared.concat({ mapData }))
+        setShared(shared.concat(res.data))
         toast.success('공유 완료 ✌✌')
         console.log(shared)
       })
