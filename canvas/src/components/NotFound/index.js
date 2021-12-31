@@ -7,7 +7,7 @@ const NotFound = () => {
   const { isLogin, setIsLogin } = useResultContext()
 
   useEffect(() => {
-    if (sessionStorage.getItem('user_id') === null) {
+    if (sessionStorage.getItem('googleId') === null) {
       setIsLogin(false)
     } else {
       setIsLogin(true)

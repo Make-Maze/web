@@ -16,32 +16,31 @@ const Start = () => {
   const navigate = useNavigate()
 
   function onSuccess(res) {
-    const userData = {
-      email: res.profileObj.email,
-      name: res.profileObj.name,
-      imageUrl: res.profileObj.imageUrl,
-      googleId: res.profileObj.googleId,
-    }
+    // const userData = {
+    //   email: res.profileObj.email,
+    //   name: res.profileObj.name,
+    //   imageUrl: res.profileObj.imageUrl,
+    //   googleId: res.profileObj.googleId,
+    // }
 
     // 로그인 시도 시 실행
     axios
-      .post('http://192.168.137.195:8888/login', {
+      .post('http://192.168.137.6:8888/login', {
+        googleId: res.profileObj.googleId,
         email: res.profileObj.email,
         name: res.profileObj.name,
-        imageUrl: res.profileObj.imageUrl,
-        googleId: res.profileObj.googleId,
+        img: res.profileObj.imageUrl,
       })
       .then(function (res) {
         setIsLogin(true)
 
-        setProfile({
-          id: sessionStorage.setItem('user_id', userData.googleId),
-          name: sessionStorage.setItem('user_name', userData.name),
-          image: sessionStorage.setItem('user_img', userData.imageUrl),
-          email: sessionStorage.setItem('user_email', userData.email),
-        })
+        sessionStorage.setItem('number', res.data.userId)
+        sessionStorage.setItem('googleId', res.data.googleId)
+        sessionStorage.setItem('user_email', res.data.email)
+        sessionStorage.setItem('user_name', res.data.name)
+        sessionStorage.setItem('user_image', res.data.img)
 
-        setId(sessionStorage.getItem('user_id'))
+        setId(sessionStorage.getItem('googleId'))
 
         toast.success('로그인 성공')
         navigate('/Draw')
@@ -55,11 +54,11 @@ const Start = () => {
   const guestLogin = response => {}
 
   useEffect(() => {
-    if (sessionStorage.getItem('user_id') === null) {
-      // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
+    if (sessionStorage.getItem('googleId') === null) {
+      // sessionStorage 에 googleId 라는 key 값으로 저장된 값이 없다면
       setIsLogin(false)
     } else {
-      // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
+      // sessionStorage 에 googleId 라는 key 값으로 저장된 값이 있다면
       // 로그인 상태 변경
       setIsLogin(true)
     }

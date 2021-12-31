@@ -6,12 +6,14 @@ import UserBackground from '../../Assets/UserBackground.png'
 import { toast } from 'react-toastify'
 
 const User = () => {
-  const { profile, title, img, saved, setSaved, user_id } = useResultContext()
+  const { profile, title, saved, setSaved, googleId } = useResultContext()
 
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
+    console.log(saved)
+
     axios
-      .get(`http://192.168.137.205:8888/map/${user_id}}`)
+      .get(`http://192.168.137.6:8888/like/${googleId}}`)
       .then(res => {
         console.log(res)
         // setSaved(res.data)
@@ -21,23 +23,23 @@ const User = () => {
 
   // 맵 삭제
   const del = () => {
-    axios
-      .delete(`http://192.168.137.205:8888/map/${user_id}`) // 나중엔 map id 로 바꿔야함
-      .then(res => {
-        console.log(res)
-        toast.success('삭제 성공')
-      })
-      .catch(err => {
-        console.log(err)
-        toast.err('삭제 실패')
-      })
+    // axios
+    //   .delete(`http://192.168.137.6.137.205:8888/map/${googleId}`) // 나중엔 map id 로 바꿔야함
+    //   .then(res => {
+    //     console.log(res)
+    //     toast.success('삭제 성공')
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //     toast.err('삭제 실패')
+    //   })
   }
 
   return (
     <>
       <S.MainSection>
         <S.UserSection>
-          <img src={sessionStorage.getItem('user_img')} alt="" />
+          <img src={sessionStorage.getItem('user_image')} alt="" />
           <div>
             <p>이름 : {sessionStorage.getItem('user_name')}</p>
             <p>이메일 : {sessionStorage.getItem('user_email')}</p>
@@ -55,10 +57,24 @@ const User = () => {
             saved.map(element => (
               <>
                 <S.ItemSection>
-                  <p>{element.title}</p>
-                  <img src={element.imgURL} alt="" />
+                  <img src={element.image} alt="" />
+                  <p>
+                    {element.name}님이 제작한 [{element.mapName}]
+                  </p>
                   <S.ButtonWrapper>
-                    <button onClick={del}>삭제하기</button>
+                    <button
+                      onClick={() => {
+                        axios
+                          .delete(
+                            `http://192.168.137.6:8888/map/${element.mapId}`
+                          )
+                          .then(res => {
+                            element = null
+                          })
+                      }}
+                    >
+                      삭제하기
+                    </button>
                   </S.ButtonWrapper>
                 </S.ItemSection>
               </>

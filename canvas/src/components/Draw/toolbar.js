@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import '../css/toolbar.css'
-import domtoimage from 'dom-to-image'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -10,18 +9,16 @@ const Toolbar = props => {
   const map = props.map
   const {
     title,
-    img,
-    setImg,
     saved,
     setSaved,
     shared,
     setShared,
     mapData,
     setMapData,
-    user_id,
+    googleId,
   } = useResultContext()
 
-  const save = () => {
+  function save() {
     let jsonArray = new Array()
     for (let i = 0; i < 20; i++) {
       for (let j = 0; j < 100; j++) {
@@ -33,26 +30,24 @@ const Toolbar = props => {
         }
       }
     }
-    let content = new Object()
-    content = JSON.stringify(jsonArray)
-    console.log(content)
-    const testObject = new Object()
-    testObject.block = content
-    testObject.mapName = title
-    console.log(testObject)
 
+    let mapJSON = new Object()
+    mapJSON = JSON.stringify(jsonArray)
+    console.log(mapJSON)
     axios
-      .post(`http://192.168.137.195:8888/map/${user_id}`, {
-        blocks: content,
+      .post(`http://192.168.137.6:8888/map/${googleId}`, {
+        block: mapJSON,
         mapName: title,
       })
       .then(function (res) {
+        console.log(res)
         setMapData({
           ...mapData,
           mapId: res.data.mapId,
-          block: res.data.block,
-          image: res.data.image,
+          mapName: res.data.mapName,
           mapCode: res.data.mapCode,
+          block: res.data.block,
+          // img: res.data.image,
         })
         setSaved(saved.concat({ ...mapData }))
         toast.success('저장 완료 ✌✌')
@@ -64,42 +59,17 @@ const Toolbar = props => {
   }
 
   const share = () => {
-    // 서버로 전송할 맵 좌표 만들기
-    let jsonArray = new Array()
-    for (let i = 0; i < 20; i++) {
-      for (let j = 0; j < 100; j++) {
-        let testObject = new Object()
-        if (map[i][j] !== 0) {
-          testObject = [map[i][j], i, j]
-          testObject = JSON.stringify(testObject)
-          jsonArray.push(JSON.parse(testObject))
-        }
-      }
-    }
-    let content = new Object()
-    content = JSON.stringify(jsonArray)
-    console.log(content)
-
-    domtoimage.toBlob(canvas).then(blob => {
-      const objectURL = URL.createObjectURL(blob)
-      setImg(objectURL)
-    })
-
     axios
-      .post(`http://192.168.137.195:8888/map/${user_id}`, {
-        blocks: content,
-        mapName: title,
+      .post(`http://192.168.137.6:8888/map/${googleId}`, {
+        block: map.block,
+        mapName: map.mapName,
       })
       .then(function (res) {
-        setMapData({
-          ...mapData,
-          mapId: res.data.mapId,
-          block: res.data.block,
-          image: res.data.image,
-          mapCode: res.data.mapCode,
-        })
-        setSaved(saved.concat({ ...mapData }))
+        console.log(mapData)
+        console.log(res)
+        setShared(shared.concat({ mapData }))
         toast.success('공유 완료 ✌✌')
+        console.log(shared)
       })
       .catch(err => {
         console.log(err)
