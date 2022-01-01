@@ -46,7 +46,34 @@ const Toolbar = props => {
       props.setBtn('btn_open')
     }
     let jsonArray = new Array()
-
+    let potalObject = {}
+    let potalObject1 = {}
+    let potalObject2 = {}
+    let mode = 0
+    for (let i = 0; i < props.potalInfo.length; i += 2) {
+      if (mode === 1) {
+        console.log(potalObject1)
+        potalObject2 = {
+          x2: props.potalInfo[i][0],
+          y2: props.potalInfo[i][1]}
+        potalObject = {
+          ...potalObject1,
+          ...potalObject2
+        }
+        potalObject = JSON.stringify(potalObject)
+        jsonArray.push(JSON.parse(potalObject))
+        mode = 0
+      } else {
+        console.log('실행')
+        potalObject1 = {
+          kind: 9,
+          x: props.potalInfo[i][0],
+          y: props.potalInfo[i][1],
+        }
+        mode = 1
+      }
+    }
+    console.log(jsonArray)
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
         let testObject = new Object()
@@ -73,22 +100,7 @@ const Toolbar = props => {
         console.error('oops, something went wrong!', error)
         toast.error('공유 실패 😭😭')
       })
-
       const jsonArray = new Array()
-      let potalObject = new Object()
-      for (let i = 0; i < props.potalInfo.length; i += 2) {
-        if (potalObject.length === 3) {
-          potalObject = potalObject.concat(
-            props.potalInfo[i][0],
-            props.potalInfo[i][1]
-          )
-          potalObject = JSON.stringify(potalObject)
-          jsonArray.push(JSON.parse(potalObject))
-          potalObject = new Object()
-        } else {
-          potalObject = [9, props.potalInfo[i][0], props.potalInfo[i][1]]
-        }
-      }
       // const sendJson = new Array()
       for (let i = 0; i < 30; i++) {
         for (let j = 0; j < 70; j++) {
