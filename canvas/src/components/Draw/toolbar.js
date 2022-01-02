@@ -44,7 +44,34 @@ const Toolbar = props => {
       toast.success('저장 완료 ✌✌')
     }
     let jsonArray = new Array()
-
+    let potalObject = {}
+    let potalObject1 = {}
+    let potalObject2 = {}
+    let mode = 0
+    for (let i = 0; i < props.potalInfo.length; i += 2) {
+      if (mode === 1) {
+        console.log(potalObject1)
+        potalObject2 = {
+          x2: props.potalInfo[i][0],
+          y2: props.potalInfo[i][1]}
+        potalObject = {
+          ...potalObject1,
+          ...potalObject2
+        }
+        potalObject = JSON.stringify(potalObject)
+        jsonArray.push(JSON.parse(potalObject))
+        mode = 0
+      } else {
+        console.log('실행')
+        potalObject1 = {
+          kind: 9,
+          x: props.potalInfo[i][0],
+          y: props.potalInfo[i][1],
+        }
+        mode = 1
+      }
+    }
+    console.log(jsonArray)
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
         let testObject = new Object()
@@ -93,6 +120,7 @@ const Toolbar = props => {
     if (props.btn === 'btn_lock') {
       toast.error(`저장하기를 먼저 해주세요`)
     } else {
+
       axios
         .post(`http://192.168.137.139:8888/map/${googleId}`, {
           block: mapData.block,
@@ -110,6 +138,40 @@ const Toolbar = props => {
           console.log(err)
           toast.error('공유 실패 😭😭')
         })
+
+      toast.success('공유 완료 ✌✌')
+      props.setBtn('btn_lock').catch(function (error) {
+        console.error('oops, something went wrong!', error)
+        toast.error('공유 실패 😭😭')
+      })
+      const jsonArray = new Array()
+      // const sendJson = new Array()
+      for (let i = 0; i < 30; i++) {
+        for (let j = 0; j < 70; j++) {
+          if (map[i][j] !== 9 && map[i][j] !== 0) {
+            let jsonObject = new Object()
+            jsonObject = [map[i][j], i, j]
+            jsonObject = JSON.stringify(jsonObject)
+            jsonArray.push(JSON.parse(jsonObject))
+          }
+        }
+      }
+      let jsonObject = new Object()
+      jsonObject.mapName = props.title
+      jsonObject.blocks = jsonArray
+      jsonObject = JSON.stringify(jsonObject)
+      console.log(jsonObject)
+
+      // axios({
+      //   url: 'api',
+      //   method: 'post',
+      //   data: 'jsonObject',
+      // })
+      //   .then(res => console.log(res))
+      //   .catch(err => {
+      //     console.log(err)
+      //   })
+
     }
   }
 
