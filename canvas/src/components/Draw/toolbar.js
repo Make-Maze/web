@@ -89,7 +89,7 @@ const Toolbar = props => {
     } else {
       axios
         .post(`http://192.168.137.163:8888/map/${googleId}`, {
-          block: jsonArray,
+          block: 'ㅁㄴㅇㅁㄴ',
           mapName: title,
         })
         .then(res => {

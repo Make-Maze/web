@@ -56,9 +56,9 @@ const User = () => {
             saved.map(element => (
               <>
                 <S.ItemSection>
-                  <img src={element.image} alt="" />
+                  <img src={element.img} alt="" />
                   <p>
-                    {element.name}님이 제작한 [{element.mapName}]
+                    {element.userName}님이 제작한 [{element.mapName}]
                   </p>
                   <S.ButtonWrapper>
                     <button
