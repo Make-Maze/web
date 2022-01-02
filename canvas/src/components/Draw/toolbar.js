@@ -40,10 +40,8 @@ const Toolbar = props => {
     } else if (map_state === 2092) {
       toast.error('맵을 다 그려 주세요')
     } else {
-      toast.success(`저장 완료 마이페이지를 확인해보세요`)
-      save_title = title
-      save_map = map
       props.setBtn('btn_open')
+      toast.success('저장 완료 ✌✌')
     }
     let jsonArray = new Array()
     let potalObject = {}
@@ -88,6 +86,33 @@ const Toolbar = props => {
         }
       }
     }
+
+    let mapJSON = new Object()
+    mapJSON = JSON.stringify(jsonArray)
+    console.log(mapJSON)
+    axios
+      .post(`http://192.168.137.139:8888/map/${googleId}`, {
+        block: mapJSON,
+        mapName: title,
+      })
+      .then(res => {
+        console.log(res)
+        setMapData({
+          block: res.data.block,
+          img: sessionStorage.getItem('user_image'),
+          mapId: res.data.mapId,
+          mapCode: res.data.mapCode,
+          mapName: res.data.mapName,
+          userName: sessionStorage.getItem('user_name'),
+        })
+        setSaved(saved.concat(res.data))
+        console.log(saved)
+        console.log(mapData)
+      })
+      .catch(err => {
+        console.log(err)
+        toast.error('저장 실패 😭😭')
+      })
     console.log(jsonArray)
   }
 
@@ -95,6 +120,25 @@ const Toolbar = props => {
     if (props.btn === 'btn_lock') {
       toast.error(`저장하기를 먼저 해주세요`)
     } else {
+
+      axios
+        .post(`http://192.168.137.139:8888/map/${googleId}`, {
+          block: mapData.block,
+          mapName: mapData.mapName,
+        })
+        .then(function (res) {
+          console.log(mapData)
+          console.log(res)
+          setShared(shared.concat(res.data))
+          toast.success('공유 완료 ✌✌')
+          props.setBtn('btn_lock')
+          console.log(shared)
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error('공유 실패 😭😭')
+        })
+
       toast.success('공유 완료 ✌✌')
       props.setBtn('btn_lock').catch(function (error) {
         console.error('oops, something went wrong!', error)
@@ -127,8 +171,10 @@ const Toolbar = props => {
       //   .catch(err => {
       //     console.log(err)
       //   })
+
     }
   }
+
   return (
     <div className="toolbar">
       <button

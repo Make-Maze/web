@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import * as S from './style'
 import axios from 'axios'
 import { useResultContext } from '../../Context/Data'
-import UserBackground from '../../Assets/UserBackground.png'
 import { toast } from 'react-toastify'
 
 const User = () => {
