@@ -40,10 +40,8 @@ const Toolbar = props => {
     } else if (map_state === 2092) {
       toast.error('맵을 다 그려 주세요')
     } else {
-      toast.success(`저장 완료 마이페이지를 확인해보세요`)
-      save_title = title
-      save_map = map
       props.setBtn('btn_open')
+      toast.success('저장 완료 ✌✌')
     }
     let jsonArray = new Array()
 
@@ -61,6 +59,33 @@ const Toolbar = props => {
         }
       }
     }
+
+    let mapJSON = new Object()
+    mapJSON = JSON.stringify(jsonArray)
+    console.log(mapJSON)
+    axios
+      .post(`http://192.168.137.139:8888/map/${googleId}`, {
+        block: mapJSON,
+        mapName: title,
+      })
+      .then(res => {
+        console.log(res)
+        setMapData({
+          block: res.data.block,
+          img: sessionStorage.getItem('user_image'),
+          mapId: res.data.mapId,
+          mapCode: res.data.mapCode,
+          mapName: res.data.mapName,
+          userName: sessionStorage.getItem('user_name'),
+        })
+        setSaved(saved.concat(res.data))
+        console.log(saved)
+        console.log(mapData)
+      })
+      .catch(err => {
+        console.log(err)
+        toast.error('저장 실패 😭😭')
+      })
     console.log(jsonArray)
   }
 
@@ -68,55 +93,26 @@ const Toolbar = props => {
     if (props.btn === 'btn_lock') {
       toast.error(`저장하기를 먼저 해주세요`)
     } else {
-      toast.success('공유 완료 ✌✌')
-      props.setBtn('btn_lock').catch(function (error) {
-        console.error('oops, something went wrong!', error)
-        toast.error('공유 실패 😭😭')
-      })
-
-      const jsonArray = new Array()
-      let potalObject = new Object()
-      for (let i = 0; i < props.potalInfo.length; i += 2) {
-        if (potalObject.length === 3) {
-          potalObject = potalObject.concat(
-            props.potalInfo[i][0],
-            props.potalInfo[i][1]
-          )
-          potalObject = JSON.stringify(potalObject)
-          jsonArray.push(JSON.parse(potalObject))
-          potalObject = new Object()
-        } else {
-          potalObject = [9, props.potalInfo[i][0], props.potalInfo[i][1]]
-        }
-      }
-      // const sendJson = new Array()
-      for (let i = 0; i < 30; i++) {
-        for (let j = 0; j < 70; j++) {
-          if (map[i][j] !== 9 && map[i][j] !== 0) {
-            let jsonObject = new Object()
-            jsonObject = [map[i][j], i, j]
-            jsonObject = JSON.stringify(jsonObject)
-            jsonArray.push(JSON.parse(jsonObject))
-          }
-        }
-      }
-      let jsonObject = new Object()
-      jsonObject.mapName = props.title
-      jsonObject.blocks = jsonArray
-      jsonObject = JSON.stringify(jsonObject)
-      console.log(jsonObject)
-
-      // axios({
-      //   url: 'api',
-      //   method: 'post',
-      //   data: 'jsonObject',
-      // })
-      //   .then(res => console.log(res))
-      //   .catch(err => {
-      //     console.log(err)
-      //   })
+      axios
+        .post(`http://192.168.137.139:8888/map/${googleId}`, {
+          block: mapData.block,
+          mapName: mapData.mapName,
+        })
+        .then(function (res) {
+          console.log(mapData)
+          console.log(res)
+          setShared(shared.concat(res.data))
+          toast.success('공유 완료 ✌✌')
+          props.setBtn('btn_lock')
+          console.log(shared)
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error('공유 실패 😭😭')
+        })
     }
   }
+
   return (
     <div className="toolbar">
       <button

@@ -29,8 +29,8 @@ const Block = props => {
   let j
   let list = []
 
-  function isStartEnd(){
-    if(
+  function isStartEnd() {
+    if (
       props.isDrawing === true &&
       Math.floor(props.y / 2) !== -1 &&
       (Math.floor(props.y / 2) !== 0 || props.x !== 0) &&
@@ -41,48 +41,30 @@ const Block = props => {
       (Math.floor(props.y / 2) !== 28 || props.x !== 69) &&
       (Math.floor(props.y / 2) !== 29 || props.x !== 68) &&
       (Math.floor(props.y / 2) !== 28 || props.x !== 68)
-      ){
+    ) {
       return true
     }
     return false
   }
 
-
-
   // 벽인지 확인
-  if (
-    isStartEnd() &&
-    props.select === 'wall' &&
-    props.drawMode === 0
-  ) {
+  if (isStartEnd() && props.select === 'wall' && props.drawMode === 0) {
     props.map[Math.floor(props.y / 2)][props.x] = 1
-  } else if (
-    isStartEnd() &&
-    props.select === 'wall' &&
-    props.drawMode === 1
-  ) {
+  } else if (isStartEnd() && props.select === 'wall' && props.drawMode === 1) {
     props.map[Math.floor(props.y / 2)][props.x] = 2
-  } else if (
-    isStartEnd() &&
-    props.select === 'wall' &&
-    props.drawMode === 2
-  ) {
+  } else if (isStartEnd() && props.select === 'wall' && props.drawMode === 2) {
     props.map[Math.floor(props.y / 2)][props.x] = 3
-  } else if (
-    isStartEnd() &&
-    props.select === 'wall' &&
-    props.drawMode === 3
-  ) {
+  } else if (isStartEnd() && props.select === 'wall' && props.drawMode === 3) {
     props.map[Math.floor(props.y / 2)][props.x] = 4
   }
 
   //del인지 확인
-  if (
-    isStartEnd() &&
-    props.select === 'del'
-  ) {
-    for(let i = 0; i < props.potalInfo.length; i++){
-      if(props.potalInfo[i][0] === Math.floor(props.y / 2) && props.potalInfo[i][1] === props.x){
+  if (isStartEnd() && props.select === 'del') {
+    for (let i = 0; i < props.potalInfo.length; i++) {
+      if (
+        props.potalInfo[i][0] === Math.floor(props.y / 2) &&
+        props.potalInfo[i][1] === props.x
+      ) {
         props.potalInfo.splice(i, 2)
         break
       }
@@ -106,73 +88,28 @@ const Block = props => {
     props.map[29][69] = 98
   }
 
-  if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 4
-  ){
+  if (isStartEnd() && props.select === 'item' && props.drawMode === 4) {
     props.map[Math.floor(props.y / 2)][props.x] = 5
-  } else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 5
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 5) {
     props.map[Math.floor(props.y / 2)][props.x] = 6
-  }else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 6
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 6) {
     props.map[Math.floor(props.y / 2)][props.x] = 7
-  }else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 7
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 7) {
     props.map[Math.floor(props.y / 2)][props.x] = 8
-  }else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 8
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 8) {
     props.potalInfo[props.potalInfo.length] = [Math.floor(props.y / 2), props.x]
-    console.log(props.potalInfo)
     props.map[Math.floor(props.y / 2)][props.x] = 9
-  }else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 9
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 9) {
     props.map[Math.floor(props.y / 2)][props.x] = 10
-  }else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 10
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 10) {
     props.map[Math.floor(props.y / 2)][props.x] = 11
-  }else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 11
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 11) {
     props.map[Math.floor(props.y / 2)][props.x] = 12
-  } else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 12
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 12) {
     props.map[Math.floor(props.y / 2)][props.x] = 13
-  } else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 13
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 13) {
     props.map[Math.floor(props.y / 2)][props.x] = 14
-  } else if(
-    isStartEnd() &&
-    props.select === 'item' &&
-    props.drawMode === 14
-  ){
+  } else if (isStartEnd() && props.select === 'item' && props.drawMode === 14) {
     props.map[Math.floor(props.y / 2)][props.x] = 15
   }
 
@@ -231,7 +168,7 @@ const Block = props => {
             <img src={block4}></img>
           </td>
         )
-      } else if (props.map[i][j] === 5){
+      } else if (props.map[i][j] === 5) {
         list.push(
           <td
             class="map"
@@ -243,7 +180,7 @@ const Block = props => {
             <img src={gunUp}></img>
           </td>
         )
-      }else if (props.map[i][j] === 6){
+      } else if (props.map[i][j] === 6) {
         list.push(
           <td
             class="map"
@@ -255,7 +192,7 @@ const Block = props => {
             <img src={gunDown}></img>
           </td>
         )
-      }else if (props.map[i][j] === 7){
+      } else if (props.map[i][j] === 7) {
         list.push(
           <td
             class="map"
@@ -267,7 +204,7 @@ const Block = props => {
             <img src={gunRight}></img>
           </td>
         )
-      }else if (props.map[i][j] === 8){
+      } else if (props.map[i][j] === 8) {
         list.push(
           <td
             class="map"
@@ -279,7 +216,7 @@ const Block = props => {
             <img src={gunLeft}></img>
           </td>
         )
-      }else if (props.map[i][j] === 9){
+      } else if (props.map[i][j] === 9) {
         list.push(
           <td
             class="map"
@@ -291,7 +228,7 @@ const Block = props => {
             <img src={potal}></img>
           </td>
         )
-      }else if (props.map[i][j] === 10){
+      } else if (props.map[i][j] === 10) {
         list.push(
           <td
             class="map"
@@ -303,7 +240,7 @@ const Block = props => {
             <img src={guard}></img>
           </td>
         )
-      }else if (props.map[i][j] === 11){
+      } else if (props.map[i][j] === 11) {
         list.push(
           <td
             class="map"
@@ -315,7 +252,7 @@ const Block = props => {
             <img src={spring}></img>
           </td>
         )
-      }else if (props.map[i][j] === 12){
+      } else if (props.map[i][j] === 12) {
         list.push(
           <td
             class="map"
@@ -327,7 +264,7 @@ const Block = props => {
             <img src={invisible}></img>
           </td>
         )
-      }else if (props.map[i][j]  === 13){
+      } else if (props.map[i][j] === 13) {
         list.push(
           <td
             class="map"
@@ -339,7 +276,7 @@ const Block = props => {
             <img src={potion}></img>
           </td>
         )
-      }else if (props.map[i][j] === 14){
+      } else if (props.map[i][j] === 14) {
         list.push(
           <td
             class="map"
@@ -351,7 +288,7 @@ const Block = props => {
             <img src={gasi}></img>
           </td>
         )
-      } else if (props.map[i][j] === 15){
+      } else if (props.map[i][j] === 15) {
         list.push(
           <td
             class="map"
@@ -363,7 +300,7 @@ const Block = props => {
             <img src={invisible_block}></img>
           </td>
         )
-      } else if (props.map[i][j] === 91){
+      } else if (props.map[i][j] === 91) {
         list.push(
           <td
             class="map"
@@ -375,7 +312,7 @@ const Block = props => {
             <img src={start1}></img>
           </td>
         )
-      } else if (props.map[i][j] === 92){
+      } else if (props.map[i][j] === 92) {
         list.push(
           <td
             class="map"
@@ -387,7 +324,7 @@ const Block = props => {
             <img src={start2}></img>
           </td>
         )
-      } else if (props.map[i][j] === 93){
+      } else if (props.map[i][j] === 93) {
         list.push(
           <td
             class="map"
@@ -399,7 +336,7 @@ const Block = props => {
             <img src={start3}></img>
           </td>
         )
-      } else if (props.map[i][j] === 94){
+      } else if (props.map[i][j] === 94) {
         list.push(
           <td
             class="map"
@@ -411,7 +348,7 @@ const Block = props => {
             <img src={start4}></img>
           </td>
         )
-      } else if (props.map[i][j] === 95){
+      } else if (props.map[i][j] === 95) {
         list.push(
           <td
             class="map"
@@ -423,7 +360,7 @@ const Block = props => {
             <img src={end1}></img>
           </td>
         )
-      }else if (props.map[i][j] === 96){
+      } else if (props.map[i][j] === 96) {
         list.push(
           <td
             class="map"
@@ -435,7 +372,7 @@ const Block = props => {
             <img src={end2}></img>
           </td>
         )
-      }else if (props.map[i][j] === 97){
+      } else if (props.map[i][j] === 97) {
         list.push(
           <td
             class="map"
@@ -447,7 +384,7 @@ const Block = props => {
             <img src={end3}></img>
           </td>
         )
-      }else if (props.map[i][j] === 98){
+      } else if (props.map[i][j] === 98) {
         list.push(
           <td
             class="map"
@@ -459,7 +396,7 @@ const Block = props => {
             <img src={end4}></img>
           </td>
         )
-      }else {
+      } else {
         list.push(
           <td
             class="map"
