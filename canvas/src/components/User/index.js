@@ -13,7 +13,7 @@ const User = () => {
     console.log(saved)
 
     axios
-      .get(`http://192.168.137.139:8888/like/${googleId}}`)
+      .get(`http://192.168.137.163:8888/like/${googleId}}`)
       .then(res => {
         console.log(res)
       })
@@ -23,7 +23,7 @@ const User = () => {
   // 맵 삭제
   const del = () => {
     // axios
-    //   .delete(`http://192.168.137.139.137.205:8888/map/${googleId}`) // 나중엔 map id 로 바꿔야함
+    //   .delete(`http://192.168.137.163.137.205:8888/map/${googleId}`) // 나중엔 map id 로 바꿔야함
     //   .then(res => {
     //     console.log(res)
     //     toast.success('삭제 성공')
@@ -72,7 +72,7 @@ const User = () => {
                       }}
                       //   axios
                       //     .delete(
-                      //       `http://192.168.137.139:8888/map/${element.mapId}`
+                      //       `http://192.168.137.163:8888/map/${element.mapId}`
                       //     )
                       //     .then(res => {
 

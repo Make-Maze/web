@@ -25,7 +25,7 @@ const Start = () => {
 
     // 로그인 시도 시 실행
     axios
-      .post('http://192.168.137.139:8888/login', {
+      .post('http://192.168.137.163:8888/login', {
         googleId: res.profileObj.googleId,
         email: res.profileObj.email,
         name: res.profileObj.name,

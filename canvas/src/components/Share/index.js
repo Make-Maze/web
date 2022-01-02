@@ -11,7 +11,7 @@ const Share = () => {
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
     axios
-      .get(`http://192.168.137.139:8888/map/${googleId}}`)
+      .get(`http://192.168.137.163:8888/map/${googleId}}`)
       .then(res => {
         // setShared(res.data)
         console.log(res)
@@ -21,7 +21,7 @@ const Share = () => {
 
   // useEffect(() => {
   //   axios
-  //     .get(`http://192.168.137.139:8888/like/${googleId}}`)
+  //     .get(`http://192.168.137.163:8888/like/${googleId}}`)
   //     .then(res => {
   //       setShared(res.data)
   //     })
@@ -51,7 +51,7 @@ const Share = () => {
                       onClick={() => {
                         axios
                           .get(
-                            `http://192.168.137.139:8888/like/${googleId}/${element.mapData.mapId}`
+                            `http://192.168.137.163:8888/like/${googleId}/${element.mapData.mapId}`
                           )
                           .then(res => {
                             setMapData({

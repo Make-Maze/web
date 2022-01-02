@@ -88,8 +88,8 @@ const Toolbar = props => {
       toast.error('맵을 다 그려 주세요')
     } else {
       axios
-        .post(`http://192.168.137.139:8888/map/${googleId}`, {
-          block: mapJSON,
+        .post(`http://192.168.137.163:8888/map/${googleId}`, {
+          block: jsonArray,
           mapName: title,
         })
         .then(res => {
@@ -120,7 +120,7 @@ const Toolbar = props => {
       toast.error(`저장하기를 먼저 해주세요`)
     } else {
       axios
-        .post(`http://192.168.137.139:8888/map/${googleId}`, {
+        .post(`http://192.168.137.163:8888/map/${googleId}`, {
           block: mapData.block,
           mapName: mapData.mapName,
         })
