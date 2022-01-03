@@ -12,9 +12,16 @@ export const MainSection = styled.div`
     height: 300px;
     border-radius: 50%;
   }
+  .profile {
+    font-size: 60px;
+  }
+
+  hr {
+    margin: 5px 0 40px;
+  }
 `
 export const Green = styled.span`
-  color: #16780d;
+  color: #9ecc93;
 `
 
 export const UserSection = styled.div`
@@ -47,7 +54,6 @@ export const MapSection = styled.div`
     height: 50vh;
     text-align: center;
     font-family: 'appleM';
-    color: #ff8f8f;
     font-size: 24px;
     margin: 100px;
   }
@@ -56,21 +62,21 @@ export const MapSection = styled.div`
 export const ItemSection = styled.div`
   display: inline-flex;
   flex-direction: column;
-  height: 700px;
   width: 300px;
   margin: 70px 200px 0 0;
   * {
     overflow: hidden;
   }
   p {
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
-    margin: 20px;
-    height: 55px;
+    margin-top: 20px;
   }
   .title {
-    color: #16780d;
+    color: #9ecc93;
     text-align: center;
+    font-size: 28px;
+    margin: 5px;
   }
 `
 

@@ -62,7 +62,8 @@ const Start = () => {
     <div>
       <S.MainSection>
         <h1>
-          나만의 <S.Green>미로</S.Green>를 즐겨보세요 !
+          나만의 미로를 즐기는 게임 <br />
+          <S.Green>M & M</S.Green>
         </h1>
         <hr />
         {isLogin ? (
@@ -72,23 +73,18 @@ const Start = () => {
         ) : (
           <>
             <S.Container>
-              <S.LoginSection>
-                <S.Text>
-                  <S.Green>맵 제작</S.Green> 및 <S.Green>플레이</S.Green>을 하고
-                  싶으시다면
-                </S.Text>
-                <GoogleLogin
-                  buttonText="구글 로그인"
-                  accessType="offline"
-                  responseType="permission"
-                  approvalPrompt="force"
-                  prompt="consent"
-                  clientId={clientId}
-                  onSuccess={onSuccess}
-                  className="googleLogin"
-                ></GoogleLogin>
-                <img src={GoogleLoginImg} alt="" />
-              </S.LoginSection>
+              <S.Text>게임을 플레이 하시고 싶으시다면</S.Text>
+              <GoogleLogin
+                buttonText="구글 로그인"
+                accessType="offline"
+                responseType="permission"
+                approvalPrompt="force"
+                prompt="consent"
+                clientId={clientId}
+                onSuccess={onSuccess}
+                className="googleLogin"
+              ></GoogleLogin>
+              {/* <img src={GoogleLoginImg} alt="" /> */}
             </S.Container>
           </>
         )}

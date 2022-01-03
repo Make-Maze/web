@@ -127,7 +127,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={block1}></img>
+            <img alt="" src={block1}></img>
           </td>
         )
       } else if (props.map[i][j] === 2) {
@@ -139,7 +139,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={block2}></img>
+            <img alt="" src={block2}></img>
           </td>
         )
       } else if (props.map[i][j] === 3) {
@@ -152,7 +152,7 @@ const Block = props => {
               backgroundColor: '#F8E68C',
             }}
           >
-            <img src={block3}></img>
+            <img alt="" src={block3}></img>
           </td>
         )
       } else if (props.map[i][j] === 4) {
@@ -165,7 +165,7 @@ const Block = props => {
               backgroundColor: 'green',
             }}
           >
-            <img src={block4}></img>
+            <img alt="" src={block4}></img>
           </td>
         )
       } else if (props.map[i][j] === 5) {
@@ -177,7 +177,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={gunUp}></img>
+            <img alt="" src={gunUp}></img>
           </td>
         )
       } else if (props.map[i][j] === 6) {
@@ -189,7 +189,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={gunDown}></img>
+            <img alt="" src={gunDown}></img>
           </td>
         )
       } else if (props.map[i][j] === 7) {
@@ -201,7 +201,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={gunRight}></img>
+            <img alt="" src={gunRight}></img>
           </td>
         )
       } else if (props.map[i][j] === 8) {
@@ -213,7 +213,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={gunLeft}></img>
+            <img alt="" src={gunLeft}></img>
           </td>
         )
       } else if (props.map[i][j] === 9) {
@@ -225,7 +225,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={potal}></img>
+            <img alt="" src={potal}></img>
           </td>
         )
       } else if (props.map[i][j] === 10) {
@@ -237,7 +237,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={guard}></img>
+            <img alt="" src={guard}></img>
           </td>
         )
       } else if (props.map[i][j] === 11) {
@@ -249,7 +249,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={spring}></img>
+            <img alt="" src={spring}></img>
           </td>
         )
       } else if (props.map[i][j] === 12) {
@@ -261,7 +261,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={invisible}></img>
+            <img alt="" src={invisible}></img>
           </td>
         )
       } else if (props.map[i][j] === 13) {
@@ -273,7 +273,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={potion}></img>
+            <img alt="" src={potion}></img>
           </td>
         )
       } else if (props.map[i][j] === 14) {
@@ -285,7 +285,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={gasi}></img>
+            <img alt="" src={gasi}></img>
           </td>
         )
       } else if (props.map[i][j] === 15) {
@@ -297,7 +297,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={invisible_block}></img>
+            <img alt="" src={invisible_block}></img>
           </td>
         )
       } else if (props.map[i][j] === 91) {
@@ -309,7 +309,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={start1}></img>
+            <img alt="" src={start1}></img>
           </td>
         )
       } else if (props.map[i][j] === 92) {
@@ -321,7 +321,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={start2}></img>
+            <img alt="" src={start2}></img>
           </td>
         )
       } else if (props.map[i][j] === 93) {
@@ -333,7 +333,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={start3}></img>
+            <img alt="" src={start3}></img>
           </td>
         )
       } else if (props.map[i][j] === 94) {
@@ -345,7 +345,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={start4}></img>
+            <img alt="" src={start4}></img>
           </td>
         )
       } else if (props.map[i][j] === 95) {
@@ -357,7 +357,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={end1}></img>
+            <img alt="" src={end1}></img>
           </td>
         )
       } else if (props.map[i][j] === 96) {
@@ -369,7 +369,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={end2}></img>
+            <img alt="" src={end2}></img>
           </td>
         )
       } else if (props.map[i][j] === 97) {
@@ -381,7 +381,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={end3}></img>
+            <img alt="" src={end3}></img>
           </td>
         )
       } else if (props.map[i][j] === 98) {
@@ -393,7 +393,7 @@ const Block = props => {
               padding: '0px',
             }}
           >
-            <img src={end4}></img>
+            <img alt="" src={end4}></img>
           </td>
         )
       } else {

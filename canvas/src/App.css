@@ -42,7 +42,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 button {
-  background-color: #16780d;
+  /* background-color: #9ecc93; */
   color: white;
   border: none;
   width: 100px;

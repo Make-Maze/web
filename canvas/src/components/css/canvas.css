@@ -1,10 +1,10 @@
+.wrapper {
+  padding: 50px 10vw;
+}
 .canvas_wrap {
   position: relative;
   display: flex;
-  width: 100vw;
-  margin: 0 auto;
-  justify-content: center;
-  padding-top: 50px;
+  padding-top: 20px;
   overflow: hidden;
 }
 
@@ -14,16 +14,12 @@ canvas {
   position: absolute;
 }
 
-.inputBox {
-  width: 120vh;
-  margin: 50px auto 0px;
-}
-
 .titleBox {
   width: 250px;
   height: 40px;
   font-size: 20px;
   padding-left: 10px;
+  margin-top: 50px;
 }
 
 /* 위대포 */
@@ -76,16 +72,33 @@ canvas {
   cursor: url('../../Assets/Item/gasi.png') 10 10, auto;
 }
 
-.item14{
+.item14 {
   cursor: url('../../Assets/Item/invisible_block.png') 10 10, auto;
 }
 
 /* 지우개 */
-.del0, .del1, .del2, .del3, .del4, .del5, .del6, .del7, .del8, .del9, .del10, .del11, .del12, .del13, .del14{
+.del0,
+.del1,
+.del2,
+.del3,
+.del4,
+.del5,
+.del6,
+.del7,
+.del8,
+.del9,
+.del10,
+.del11,
+.del12,
+.del13,
+.del14 {
   cursor: url('../../Assets/Item/eraser.png') 10 20, auto;
 }
 
 /* 벽 */
-.wall0, .wall1, .wall2, .wall3 {
+.wall0,
+.wall1,
+.wall2,
+.wall3 {
   cursor: url('../../Assets/Item/hamer.png') 10 10, auto;
 }

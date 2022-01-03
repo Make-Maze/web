@@ -4,6 +4,7 @@ import * as S from './style'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import logo from '../../Assets/logo.png'
 
 const Header = () => {
   const { isLogin, setIsLogin } = useResultContext()
@@ -18,7 +19,7 @@ const Header = () => {
   return (
     <S.Header>
       <div>
-        <span>여기에 로고 있으면 좋을듯</span>
+        <img className="logo" src={logo} alt="" />
       </div>
       <div>
         <Link to="/Draw">만들기</Link>

@@ -16,7 +16,7 @@ export const MainSection = styled.div`
   }
 `
 export const Green = styled.span`
-  color: #16780d;
+  color: #9ecc93;
 `
 
 export const MapSection = styled.div`
@@ -30,7 +30,6 @@ export const MapSection = styled.div`
     height: 50vh;
     text-align: center;
     font-family: 'appleM';
-    color: #ff8f8f;
     font-size: 24px;
     margin: 100px;
   }
@@ -48,16 +47,17 @@ export const ItemSection = styled.div`
   p {
     font-size: 20px;
     text-align: center;
-    margin-bottom: 20px;
-    height: 100px;
+    margin-top: 20px;
   }
   .title {
-    color: #16780d;
+    color: #9ecc93;
     text-align: center;
+    font-size: 28px;
+    margin: 5px;
   }
 `
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `

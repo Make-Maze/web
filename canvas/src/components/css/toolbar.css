@@ -1,9 +1,3 @@
-.toolbar {
-  width: 120vh;
-  height: 30vh;
-  margin: 0 auto;
-}
-
 .toolbar > button {
   margin: 50px 20px 0 0;
 }
