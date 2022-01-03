@@ -7,8 +7,7 @@ import GuestLogin from '../../Assets/GuestLogin.png'
 import GoogleLogin from 'react-google-login'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
-import api from '../../App'
-import axios from 'axios'
+import { api } from '../../App'
 
 const Start = () => {
   const { isLogin, setIsLogin, setProfile, setId, profile } = useResultContext()
@@ -26,8 +25,8 @@ const Start = () => {
 
     // 로그인 시도 시 실행
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
-    axios
-      .post('http://192.168.137.150:8888/login', {
+    api
+      .post('/login', {
         googleId: res.profileObj.googleId,
         email: res.profileObj.email,
         name: res.profileObj.name,

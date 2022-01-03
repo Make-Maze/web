@@ -7,7 +7,7 @@ import { useResultContext } from './Context/Data'
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: 'http://192.168.137.150:8888',
+  baseURL: 'http://192.168.137.21:8888',
 })
 
 const App = () => {

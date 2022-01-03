@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useResultContext } from '../../Context/Data'
 import * as S from './style'
 import axios from 'axios'
+import { api } from '../../App'
 
 const Share = () => {
   const {
@@ -17,25 +18,33 @@ const Share = () => {
     setLiked,
   } = useResultContext()
 
-  // 구글 아이디가 gooleId 인 사용자의 Map 조회
-  useEffect(() => {
-    axios
-      .get(`http://192.168.137.150:8888/map/${googleId}}`)
-      .then(res => {
-        // setShared(res.data)
-        console.log(res)
-      })
-      .catch(err => console.log(err))
-  }, [setShared, shared])
-
+  // // 구글 아이디가 gooleId 인 사용자의 Map 조회
   // useEffect(() => {
-  //   axios
-  //     .get(`http://192.168.137.163:8888/like/${googleId}}`)
+  //   api
+  //     .get(`/map/${googleId}}`)
   //     .then(res => {
   //       setShared(res.data)
   //     })
   //     .catch(err => console.log(err))
-  // }, [setShared, shared])
+  // }, [shared])
+
+  const [allMap, setAllMap] = useState([])
+  useEffect(() => {
+    api.get('/map').then(res => {
+      setAllMap(res.data)
+    })
+  }, [])
+
+  // // 구글 아이디가 gooleId 인 사용자의 Map 조회
+  // useEffect(() => {
+  //   api
+  //     .get(`/like/${googleId}}`)
+  //     .then(res => {
+  //       setLiked(res.data)
+  //     })
+  //     .catch(err => console.log(err))
+  // }, [liked])
+
   return (
     <>
       <S.MainSection>
@@ -45,10 +54,10 @@ const Share = () => {
         </h1>
         <hr />
         <S.MapSection>
-          {shared.length === 0 ? (
+          {allMap.length === 0 ? (
             <p class="noShare">공유된 미로가 없습니다.</p>
           ) : (
-            shared.map(element => (
+            allMap.map(element => (
               <>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
@@ -59,21 +68,14 @@ const Share = () => {
                     <button
                       onClick={() => {
                         // 구글 아이디가 googleId 인 사용자가 다른 사용자가 만든 맵 아이디가 mapId인 맵 저장
-                        axios
-                          .get(
-                            `http://192.168.137.150:8888/like/${googleId}/${element.mapId}`
-                          )
+                        api
+                          .get(`/like/${googleId}/${element.mapId}`)
                           .then(res => {
-                            console.log(res)
-                            setMapData({
-                              ...mapData,
-                              likeId: res.data.likeId,
-                              mapId: res.data.mapId,
-                            })
+                            console.log(element)
                             console.log(mapData)
                             setLiked(
                               liked.concat({
-                                ...mapData,
+                                ...element,
                                 likeId: res.data.likeId,
                                 mapId: res.data.mapId,
                               })
