@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import * as S from './style'
 import Footer from '../../Assets/FooterImg.png'
-import GoogleLoginImg from '../../Assets/GoogleLogin.png'
-import GuestLogin from '../../Assets/GuestLogin.png'
 import GoogleLogin from 'react-google-login'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 import { api } from '../../App'
 
 const Start = () => {
-  const { isLogin, setIsLogin, setProfile, setId, profile } = useResultContext()
+  const { isLogin, setIsLogin, setId } = useResultContext()
   const clientId =
     '121704372282-rashscl91o6ulu8grsn2ut8kbdsm2to6.apps.googleusercontent.com'
   const navigate = useNavigate()
@@ -43,8 +41,6 @@ const Start = () => {
       })
   }
 
-  const guestLogin = response => {}
-
   useEffect(() => {
     if (sessionStorage.getItem('googleId') === null) {
       // sessionStorage 에 googleId 라는 key 값으로 저장된 값이 없다면
@@ -54,7 +50,6 @@ const Start = () => {
       // 로그인 상태 변경
       setIsLogin(true)
     }
-
     console.log(isLogin)
   }, [isLogin, setIsLogin])
 
@@ -84,7 +79,6 @@ const Start = () => {
                 onSuccess={onSuccess}
                 className="googleLogin"
               ></GoogleLogin>
-              {/* <img src={GoogleLoginImg} alt="" /> */}
             </S.Container>
           </>
         )}

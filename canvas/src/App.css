@@ -25,6 +25,10 @@ a {
   color: black;
 }
 
+a:hover {
+  color: #9ecc93;
+}
+
 body::-webkit-scrollbar {
   width: 16px;
 }
@@ -42,10 +46,27 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 button {
-  /* background-color: #9ecc93; */
-  color: white;
-  border: none;
+  color: #9ecc93;
+  border: 1px solid #9ecc93;
+  background-color: white;
+  border-radius: 5px;
   width: 100px;
   height: 40px;
   font-size: 16px;
+}
+
+button:hover {
+  color: white;
+  background-color: #9ecc93;
+}
+
+.Toastify__close-button--light:hover {
+  background-color: #ffffff;
+  color: #000;
+}
+
+hr {
+  background-color: #9ecc93;
+  border: 0px;
+  height: 1px;
 }

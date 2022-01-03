@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import * as S from './style'
-import axios from 'axios'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 import { api } from '../../App'
 
 const User = () => {
   const { googleId, liked, setLiked } = useResultContext()
-
   const [saved, setSaved] = useState([]) // 저장하기
 
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
@@ -65,13 +63,12 @@ const User = () => {
                         api
                           .delete(`/map/${element.mapId}`)
                           .then(res => {
-                            toast.success('삭제 완료')
                             setSaved(
                               saved.filter(
                                 mapData => mapData.mapId !== element.mapId
                               )
                             )
-                            console.log(res)
+                            toast.success('삭제 완료')
                           })
                           .catch(err => {
                             console.log(err)
@@ -86,7 +83,6 @@ const User = () => {
               </>
             ))
           )}
-
           <h1>
             {sessionStorage.getItem('user_name')} 님이 <S.Green>저장한</S.Green>{' '}
             미로
@@ -105,14 +101,20 @@ const User = () => {
                     <button
                       onClick={() => {
                         // 저장된 맵 아이디가 likeId인 맵 삭제
-                        api.delete(`/like/${element.likeId}`).then(res => {
-                          setLiked(
-                            liked.filter(
-                              mapData => mapData.mapId !== element.mapId
+                        api
+                          .delete(`/like/${element.likeId}`)
+                          .then(res => {
+                            setLiked(
+                              liked.filter(
+                                mapData => mapData.mapId !== element.mapId
+                              )
                             )
-                          )
-                          console.log(res)
-                        })
+                            toast.success('삭제 완료')
+                          })
+                          .catch(err => {
+                            console.log(err)
+                            toast.success('삭제 실패')
+                          })
                       }}
                     >
                       삭제하기

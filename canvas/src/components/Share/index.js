@@ -8,34 +8,16 @@ import { toast } from 'react-toastify'
 const Share = () => {
   const { googleId, liked, setLiked } = useResultContext()
 
-  // // 구글 아이디가 gooleId 인 사용자의 Map 조회
-  // useEffect(() => {
-  //   api
-  //     .get(`/map/${googleId}}`)
-  //     .then(res => {
-  //       setShared(res.data)
-  //     })
-  //     .catch(err => console.log(err))
-  // }, [])
-
   const [shared, setShared] = useState([]) // 공유하기
 
+  // 모든 맵 조회
   useEffect(() => {
     api.get('/map').then(res => {
       setShared(res.data)
     })
   }, [])
 
-  // 구글 아이디가 gooleId 인 사용자의 Map 조회
-  useEffect(() => {
-    api
-      .get(`/like/${googleId}}`)
-      .then(res => {
-        console.log(liked)
-      })
-      .catch(err => console.log(err))
-  }, [])
-
+  // 중복 제거 체크 함수
   function isMyMapp(curId) {
     return liked
       .filter(item => {
@@ -66,15 +48,14 @@ const Share = () => {
                 <S.ItemSection>
                   <img src={element.img} alt="" />
                   <p>{element.userName}님이 제작한</p>
-                  <span className="title">[{element.mapName}]</span>
+                  <span className="title">{element.mapName}</span>
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {
-                        // 구글 아이디가 googleId 인 사용자가 다른 사용자가 만든 맵 아이디가 mapId인 맵 저장
                         if (googleId === element.userGoogleId) {
                           toast.error('자신이 만든 맵은 저장할 수 없습니다.')
                         } else if (isMyMapp(element.mapId) !== liked.length) {
-                          toast.error('이미 저장한 맵입니다.')
+                          toast.error('이미 저장된 맵입니다.')
                         } else {
                           api
                             .get(`/like/${googleId}/${element.mapId}`)
@@ -87,9 +68,11 @@ const Share = () => {
                                   mapId: res.data.mapId,
                                 })
                               )
+                              toast.success('저장 완료')
                             })
                             .catch(err => {
                               console.log(err)
+                              toast.success('저장 실패')
                             })
                         }
                       }}

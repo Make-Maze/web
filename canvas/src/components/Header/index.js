@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import * as S from './style'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
@@ -22,9 +22,24 @@ const Header = () => {
         <img className="logo" src={logo} alt="" />
       </div>
       <div>
-        <Link to="/Draw">만들기</Link>
-        <Link to="/Share">체험하기</Link>
-        <Link to="/User">마이페이지</Link>
+        <NavLink
+          style={({ isActive }) => ({ color: isActive ? '#9ecc93' : 'black' })}
+          to="/Draw"
+        >
+          만들기
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => ({ color: isActive ? '#9ecc93' : 'black' })}
+          to="/Share"
+        >
+          체험하기
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => ({ color: isActive ? '#9ecc93' : 'black' })}
+          to="/User"
+        >
+          마이페이지
+        </NavLink>
         <span onClick={Logout}>로그아웃</span>
       </div>
     </S.Header>

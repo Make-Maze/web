@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import UserBackground from '../../Assets/UserBackground.png'
 
 export const MainSection = styled.div`
-  padding: 20vh 7vw 0vw;
+  padding: 20vh 10vw 0vw;
   * {
     margin: 0;
     overflow-x: hidden;

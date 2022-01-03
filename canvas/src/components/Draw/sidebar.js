@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../css/sidebar.css'
 import potal from '../../Assets/Item/potal.png'
 import guard from '../../Assets/Item/guard.png'
@@ -12,14 +12,13 @@ import invisible from '../../Assets/Item/invisible.png'
 import invisible_block from '../../Assets/Item/invisible_block.png'
 import potion from '../../Assets/Item/potion.png'
 
-
 const SideBar = props => {
   let _content = []
 
-  const[gun,setGun] = useState('up');
+  const [gun, setGun] = useState('up')
 
-  if(!props.item){
-    if(props.draw >= 4){
+  if (!props.item) {
+    if (props.draw >= 4) {
       props.drawMode(0)
     }
     _content.push(
@@ -62,9 +61,9 @@ const SideBar = props => {
         }}
       ></div>
     )
-  }else{
-    if(gun === 'up' || gun === 'upX'){
-      if(gun === 'up'){
+  } else {
+    if (gun === 'up' || gun === 'upX') {
+      if (gun === 'up') {
         props.drawMode(4)
       }
       _content.push(
@@ -76,11 +75,13 @@ const SideBar = props => {
             props.setSelect('item')
           }}
         >
-          <a title='위쪽 대포'><img src={gunUp}></img></a>
+          <a title="위쪽 대포">
+            <img src={gunUp}></img>
+          </a>
         </div>
       )
-    } else if(gun === 'down' || gun === 'downX'){
-      if(gun === 'down'){
+    } else if (gun === 'down' || gun === 'downX') {
+      if (gun === 'down') {
         props.drawMode(5)
       }
       _content.push(
@@ -91,11 +92,13 @@ const SideBar = props => {
             setGun('right')
           }}
         >
-          <a title='아래쪽 대포'><img src={gunDown}></img></a>
+          <a title="아래쪽 대포">
+            <img src={gunDown}></img>
+          </a>
         </div>
       )
-    } else if(gun === 'right' || gun === 'rightX'){
-      if(gun === 'right'){
+    } else if (gun === 'right' || gun === 'rightX') {
+      if (gun === 'right') {
         props.drawMode(6)
       }
       _content.push(
@@ -107,11 +110,13 @@ const SideBar = props => {
             props.setSelect('item')
           }}
         >
-          <a title='오른쪽 대포'><img src={gunRight}></img></a>
+          <a title="오른쪽 대포">
+            <img src={gunRight}></img>
+          </a>
         </div>
       )
-    } else if(gun === 'left' || gun === 'leftX'){
-      if(gun === 'left'){
+    } else if (gun === 'left' || gun === 'leftX') {
+      if (gun === 'left') {
         props.drawMode(7)
       }
       _content.push(
@@ -123,7 +128,9 @@ const SideBar = props => {
             props.setSelect('item')
           }}
         >
-          <a title='왼쪽 대포'><img src={gunLeft}></img></a>
+          <a title="왼쪽 대포">
+            <img src={gunLeft}></img>
+          </a>
         </div>
       )
     }
@@ -134,12 +141,14 @@ const SideBar = props => {
           e.preventDefault()
           props.drawMode(8)
           props.setSelect('item')
-          if(!gun.includes('X')){
+          if (!gun.includes('X')) {
             setGun(gun + 'X')
           }
         }}
       >
-        <a title='포탈'><img src={potal}></img></a>
+        <a title="포탈">
+          <img src={potal}></img>
+        </a>
       </div>
     )
     _content.push(
@@ -149,12 +158,14 @@ const SideBar = props => {
           e.preventDefault()
           props.drawMode(9)
           props.setSelect('item')
-          if(!gun.includes('X')){
+          if (!gun.includes('X')) {
             setGun(gun + 'X')
           }
         }}
       >
-        <a title='방패'><img src={guard}></img></a>
+        <a title="방패">
+          <img src={guard}></img>
+        </a>
       </div>
     )
     _content.push(
@@ -164,12 +175,14 @@ const SideBar = props => {
           e.preventDefault()
           props.drawMode(10)
           props.setSelect('item')
-          if(!gun.includes('X')){
+          if (!gun.includes('X')) {
             setGun(gun + 'X')
           }
         }}
       >
-        <a title='스프링'><img src={spring}></img></a>
+        <a title="스프링">
+          <img src={spring}></img>
+        </a>
       </div>
     )
     _content.push(
@@ -179,12 +192,14 @@ const SideBar = props => {
           e.preventDefault()
           props.drawMode(11)
           props.setSelect('item')
-          if(!gun.includes('X')){
+          if (!gun.includes('X')) {
             setGun(gun + 'X')
           }
         }}
       >
-        <a title='일회용 벽'><img src={invisible}></img></a>
+        <a title="일회용 벽">
+          <img src={invisible}></img>
+        </a>
       </div>
     )
     _content.push(
@@ -194,12 +209,14 @@ const SideBar = props => {
           e.preventDefault()
           props.drawMode(12)
           props.setSelect('item')
-          if(!gun.includes('X')){
+          if (!gun.includes('X')) {
             setGun(gun + 'X')
           }
         }}
       >
-        <a title='속도포션'><img src={potion}></img></a>
+        <a title="속도포션">
+          <img src={potion}></img>
+        </a>
       </div>
     )
     _content.push(
@@ -209,12 +226,14 @@ const SideBar = props => {
           e.preventDefault()
           props.drawMode(13)
           props.setSelect('item')
-          if(!gun.includes('X')){
+          if (!gun.includes('X')) {
             setGun(gun + 'X')
           }
         }}
       >
-        <a title='가시'><img src={gasi}></img></a>
+        <a title="가시">
+          <img src={gasi}></img>
+        </a>
       </div>
     )
     _content.push(
@@ -224,16 +243,17 @@ const SideBar = props => {
           e.preventDefault()
           props.drawMode(14)
           props.setSelect('item')
-          if(!gun.includes('X')){
+          if (!gun.includes('X')) {
             setGun(gun + 'X')
           }
         }}
       >
-        <a title='투병벽'><img src={invisible_block}></img></a>
+        <a title="투병벽">
+          <img src={invisible_block}></img>
+        </a>
       </div>
     )
   }
-
 
   return <div className="sidebar">{_content}</div>
 }

@@ -15,9 +15,6 @@ export const Header = styled.header`
     margin-left: 50px;
   }
 
-  a:hover {
-    color: #9ecc93;
-  }
   .logo {
     height: 55px;
     margin-left: 10vw;

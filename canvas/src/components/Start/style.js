@@ -11,7 +11,7 @@ export const MainSection = styled.div`
     overflow: hidden;
   }
   h1 {
-    padding: 10vh 7vw 10px 7vw;
+    padding: 10vh 10vw 10px 10vw;
     color: black;
     font-size: 80px;
     text-align: center;

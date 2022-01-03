@@ -7,11 +7,6 @@
   display: table;
 }
 
-.sidebar > div:hover {
-  transform: scale(0.9);
-  transition: 0.2s;
-}
-
 .blackCircle {
   background-image: url('../../Assets/Item/block3.png');
 }
