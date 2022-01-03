@@ -2,21 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 import { useResultContext } from '../../Context/Data'
 import * as S from './style'
-import axios from 'axios'
 import { api } from '../../App'
+import { toast } from 'react-toastify'
 
 const Share = () => {
-  const {
-    shared,
-    setShared,
-    googleId,
-    setMapData,
-    mapData,
-    saved,
-    setSaved,
-    liked,
-    setLiked,
-  } = useResultContext()
+  const { googleId, liked, setLiked } = useResultContext()
 
   // // 구글 아이디가 gooleId 인 사용자의 Map 조회
   // useEffect(() => {
@@ -26,24 +16,38 @@ const Share = () => {
   //       setShared(res.data)
   //     })
   //     .catch(err => console.log(err))
-  // }, [shared])
+  // }, [])
 
-  const [allMap, setAllMap] = useState([])
+  const [shared, setShared] = useState([]) // 공유하기
+
   useEffect(() => {
     api.get('/map').then(res => {
-      setAllMap(res.data)
+      setShared(res.data)
     })
   }, [])
 
-  // // 구글 아이디가 gooleId 인 사용자의 Map 조회
-  // useEffect(() => {
-  //   api
-  //     .get(`/like/${googleId}}`)
-  //     .then(res => {
-  //       setLiked(res.data)
-  //     })
-  //     .catch(err => console.log(err))
-  // }, [liked])
+  // 구글 아이디가 gooleId 인 사용자의 Map 조회
+  useEffect(() => {
+    api
+      .get(`/like/${googleId}}`)
+      .then(res => {
+        console.log(liked)
+      })
+      .catch(err => console.log(err))
+  }, [])
+
+  function isMyMapp(curId) {
+    return liked
+      .filter(item => {
+        if (item.mapId === curId) {
+          return false
+        }
+        return true
+      })
+      .map(v => {
+        return v
+      }).length
+  }
 
   return (
     <>
@@ -54,36 +58,40 @@ const Share = () => {
         </h1>
         <hr />
         <S.MapSection>
-          {allMap.length === 0 ? (
+          {shared.length === 0 ? (
             <p class="noShare">공유된 미로가 없습니다.</p>
           ) : (
-            allMap.map(element => (
+            shared.map(element => (
               <>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
-                  <p>
-                    {element.userName}님이 제작한 [{element.mapName}]
-                  </p>
+                  <p>{element.userName}님이 제작한</p>
+                  <span className="title">[{element.mapName}]</span>
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {
                         // 구글 아이디가 googleId 인 사용자가 다른 사용자가 만든 맵 아이디가 mapId인 맵 저장
-                        api
-                          .get(`/like/${googleId}/${element.mapId}`)
-                          .then(res => {
-                            console.log(element)
-                            console.log(mapData)
-                            setLiked(
-                              liked.concat({
-                                ...element,
-                                likeId: res.data.likeId,
-                                mapId: res.data.mapId,
-                              })
-                            )
-                          })
-                          .catch(err => {
-                            console.log(err)
-                          })
+                        if (googleId === element.userGoogleId) {
+                          toast.error('자신이 만든 맵은 저장할 수 없습니다.')
+                        } else if (isMyMapp(element.mapId) !== liked.length) {
+                          toast.error('이미 저장한 맵입니다.')
+                        } else {
+                          api
+                            .get(`/like/${googleId}/${element.mapId}`)
+                            .then(res => {
+                              console.log(element)
+                              setLiked(
+                                liked.concat({
+                                  ...element,
+                                  likeId: res.data.likeId,
+                                  mapId: res.data.mapId,
+                                })
+                              )
+                            })
+                            .catch(err => {
+                              console.log(err)
+                            })
+                        }
                       }}
                     >
                       저장하기

@@ -7,6 +7,11 @@ export const MainSection = styled.div`
     margin: 0;
     overflow-x: hidden;
   }
+  img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  }
 `
 export const Green = styled.span`
   color: #16780d;
@@ -17,11 +22,7 @@ export const UserSection = styled.div`
   display: flex;
   align-items: center;
   padding-bottom: 150px;
-  img {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-  }
+
   p {
     font-size: 24px;
     margin: 0 20px 10px 150px;
@@ -62,14 +63,14 @@ export const ItemSection = styled.div`
     overflow: hidden;
   }
   p {
-    font-size: 20px;
+    font-size: 24px;
     text-align: center;
-    margin-bottom: 20px;
-    height: 100px;
+    margin: 20px;
+    height: 55px;
   }
-  img {
-    width: 100%;
-    height: 500px;
+  .title {
+    color: #16780d;
+    text-align: center;
   }
 `
 

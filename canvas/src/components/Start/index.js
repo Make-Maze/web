@@ -16,14 +16,6 @@ const Start = () => {
   const navigate = useNavigate()
 
   function onSuccess(res) {
-    // const userData = {
-    //   email: res.profileObj.email,
-    //   name: res.profileObj.name,
-    //   imageUrl: res.profileObj.imageUrl,
-    //   googleId: res.profileObj.googleId,
-    // }
-
-    // 로그인 시도 시 실행
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
     api
       .post('/login', {
@@ -40,7 +32,6 @@ const Start = () => {
         sessionStorage.setItem('user_email', res.data.email)
         sessionStorage.setItem('user_name', res.data.name)
         sessionStorage.setItem('user_img', res.data.img)
-
         setId(sessionStorage.getItem('googleId'))
 
         toast.success('로그인 성공')
@@ -97,13 +88,6 @@ const Start = () => {
                   className="googleLogin"
                 ></GoogleLogin>
                 <img src={GoogleLoginImg} alt="" />
-              </S.LoginSection>
-              <S.LoginSection>
-                <S.Text>
-                  <S.Green>기존 미로</S.Green>를 하고 싶으시다면
-                </S.Text>
-                <S.LoginBtn onClick={guestLogin}>Guest 로그인</S.LoginBtn>
-                <img src={GuestLogin} alt="" />
               </S.LoginSection>
             </S.Container>
           </>

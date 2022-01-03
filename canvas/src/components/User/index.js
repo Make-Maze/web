@@ -6,19 +6,10 @@ import { toast } from 'react-toastify'
 import { api } from '../../App'
 
 const User = () => {
-  const {
-    profile,
-    title,
-    saved,
-    setSaved,
-    googleId,
-    mapData,
-    setMapData,
-    liked,
-    setLiked,
-  } = useResultContext()
+  const { googleId, liked, setLiked } = useResultContext()
 
-  const [test, setTest] = useState([])
+  const [saved, setSaved] = useState([]) // 저장하기
+
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
     api
@@ -63,9 +54,8 @@ const User = () => {
               <>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
-                  <p>
-                    {element.userName}님이 제작한 [{element.mapName}]
-                  </p>
+                  <p>{element.userName}님이 제작한</p>
+                  <span className="title">[{element.mapName}]</span>
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {

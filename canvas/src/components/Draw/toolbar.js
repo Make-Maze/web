@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import '../css/toolbar.css'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
-import axios from 'axios'
 import { api } from '../../App'
 
 const Toolbar = props => {
-  const canvas = props.blockRef.current
   const map = props.map
-  const {
-    title,
-    saved,
-    setSaved,
-    shared,
-    setShared,
-    mapData,
-    setMapData,
-    googleId,
-  } = useResultContext()
+  const { title, googleId } = useResultContext()
 
   const make = () => {
     let potal_state = 0
@@ -94,23 +83,12 @@ const Toolbar = props => {
         .post(`/map/${googleId}`, {
           block: mapJSON,
           mapName: title,
+          userGoogleId: googleId,
         })
         .then(res => {
-          console.log(res)
-          setMapData({
-            block: res.data.block,
-            img: sessionStorage.getItem('user_img'),
-            mapId: res.data.mapId,
-            mapCode: res.data.mapCode,
-            mapName: res.data.mapName,
-            userName: sessionStorage.getItem('user_name'),
-          })
-          setSaved(saved.concat(res.data))
-          setShared(shared.concat(res.data))
           props.setBtn('btn_open')
           toast.success('저장 완료 ✌✌')
-          console.log(saved)
-          console.log(mapData)
+          console.log(res)
         })
         .catch(err => {
           console.log(err)
@@ -118,30 +96,6 @@ const Toolbar = props => {
         })
     }
   }
-
-  // const share = () => {
-  //   if (props.btn === 'btn_lock') {
-  //     toast.error(`저장하기를 먼저 해주세요`)
-  //   } else {
-  //     api
-  //       .post(`/map/${googleId}`, {
-  //         block: mapData.block,
-  //         mapName: mapData.mapName,
-  //       })
-  //       .then(function (res) {
-  //         console.log(mapData)
-  //         console.log(res)
-  //         setShared(shared.concat(res.data))
-  //         toast.success('공유 완료 ✌✌')
-  //         props.setBtn('btn_lock')
-  //         console.log(shared)
-  //       })
-  //       .catch(err => {
-  //         console.log(err)
-  //         toast.error('공유 실패 😭😭')
-  //       })
-  //   }
-  // }
 
   return (
     <div className="toolbar">

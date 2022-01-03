@@ -9,6 +9,11 @@ export const MainSection = styled.div`
     font-size: 60px;
     margin-bottom: 10px;
   }
+  img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  }
 `
 export const Green = styled.span`
   color: #16780d;
@@ -46,9 +51,9 @@ export const ItemSection = styled.div`
     margin-bottom: 20px;
     height: 100px;
   }
-  img {
-    width: 100%;
-    height: 500px;
+  .title {
+    color: #16780d;
+    text-align: center;
   }
 `
 
