@@ -4,6 +4,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useResultContext } from './Context/Data'
+import axios from 'axios'
+
+export const api = axios.create({
+  baseURL: 'http://192.168.137.150:8888',
+})
 
 const App = () => {
   const { isLogin } = useResultContext()

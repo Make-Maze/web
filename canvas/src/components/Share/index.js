@@ -5,13 +5,22 @@ import * as S from './style'
 import axios from 'axios'
 
 const Share = () => {
-  const { shared, setShared, googleId, setMapData, mapData, saved, setSaved } =
-    useResultContext()
+  const {
+    shared,
+    setShared,
+    googleId,
+    setMapData,
+    mapData,
+    saved,
+    setSaved,
+    liked,
+    setLiked,
+  } = useResultContext()
 
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
     axios
-      .get(`http://192.168.137.163:8888/map/${googleId}}`)
+      .get(`http://192.168.137.150:8888/map/${googleId}}`)
       .then(res => {
         // setShared(res.data)
         console.log(res)
@@ -42,24 +51,33 @@ const Share = () => {
             shared.map(element => (
               <>
                 <S.ItemSection>
-                  <img src={element.image} alt="" />
+                  <img src={element.img} alt="" />
                   <p>
-                    {element.name}님이 제작한 [{element.mapName}]
+                    {element.userName}님이 제작한 [{element.mapName}]
                   </p>
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {
+                        // 구글 아이디가 googleId 인 사용자가 다른 사용자가 만든 맵 아이디가 mapId인 맵 저장
                         axios
                           .get(
-                            `http://192.168.137.163:8888/like/${googleId}/${element.mapData.mapId}`
+                            `http://192.168.137.150:8888/like/${googleId}/${element.mapId}`
                           )
                           .then(res => {
+                            console.log(res)
                             setMapData({
                               ...mapData,
                               likeId: res.data.likeId,
                               mapId: res.data.mapId,
                             })
-                            setSaved(saved.concat({ ...mapData }))
+                            console.log(mapData)
+                            setLiked(
+                              liked.concat({
+                                ...mapData,
+                                likeId: res.data.likeId,
+                                mapId: res.data.mapId,
+                              })
+                            )
                           })
                           .catch(err => {
                             console.log(err)

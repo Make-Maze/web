@@ -3,6 +3,7 @@ import '../css/toolbar.css'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import api from '../../App'
 
 const Toolbar = props => {
   const canvas = props.blockRef.current
@@ -59,6 +60,7 @@ const Toolbar = props => {
         mode = 1
       }
     }
+
     console.log(jsonArray)
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
@@ -87,16 +89,17 @@ const Toolbar = props => {
     } else if (map_state === 2092) {
       toast.error('맵을 다 그려 주세요')
     } else {
+      // 구글 아이디가 googleId인 사용자의 맵 추가
       axios
-        .post(`http://192.168.137.163:8888/map/${googleId}`, {
-          block: 'ㅁㄴㅇㅁㄴ',
+        .post(`http://192.168.137.150:8888/map/${googleId}`, {
+          block: mapJSON,
           mapName: title,
         })
         .then(res => {
           console.log(res)
           setMapData({
             block: res.data.block,
-            img: sessionStorage.getItem('user_image'),
+            img: sessionStorage.getItem('user_img'),
             mapId: res.data.mapId,
             mapCode: res.data.mapCode,
             mapName: res.data.mapName,
@@ -120,7 +123,7 @@ const Toolbar = props => {
       toast.error(`저장하기를 먼저 해주세요`)
     } else {
       axios
-        .post(`http://192.168.137.163:8888/map/${googleId}`, {
+        .post(`http://192.168.137.150:8888/map/${googleId}`, {
           block: mapData.block,
           mapName: mapData.mapName,
         })

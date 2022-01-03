@@ -18,6 +18,8 @@ export function ResultContextProvider({ children }) {
 
   const [saved, setSaved] = useState([]) // 저장하기
   const [shared, setShared] = useState([]) // 공유하기
+  const [liked, setLiked] = useState([]) // 공유하기
+
   const [googleId, setId] = useState(sessionStorage.getItem('googleId')) // googleId 여부
   const value = {
     profile,
@@ -34,6 +36,8 @@ export function ResultContextProvider({ children }) {
     setMapData,
     googleId,
     setId,
+    liked,
+    setLiked,
   }
 
   return (

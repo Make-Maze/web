@@ -58,10 +58,14 @@ export const ItemSection = styled.div`
   height: 700px;
   width: 300px;
   margin: 70px 200px 0 0;
+  * {
+    overflow: hidden;
+  }
   p {
     font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
+    height: 100px;
   }
   img {
     width: 100%;
@@ -72,5 +76,4 @@ export const ItemSection = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 50px 20px;
 `

@@ -4,10 +4,11 @@ import * as S from './style'
 import Footer from '../../Assets/FooterImg.png'
 import GoogleLoginImg from '../../Assets/GoogleLogin.png'
 import GuestLogin from '../../Assets/GuestLogin.png'
-import axios from 'axios'
 import GoogleLogin from 'react-google-login'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
+import api from '../../App'
+import axios from 'axios'
 
 const Start = () => {
   const { isLogin, setIsLogin, setProfile, setId, profile } = useResultContext()
@@ -24,8 +25,9 @@ const Start = () => {
     // }
 
     // 로그인 시도 시 실행
+    // 로그인 성공 시 로그인 된 유저 정보를 보여줌
     axios
-      .post('http://192.168.137.163:8888/login', {
+      .post('http://192.168.137.150:8888/login', {
         googleId: res.profileObj.googleId,
         email: res.profileObj.email,
         name: res.profileObj.name,
@@ -38,7 +40,7 @@ const Start = () => {
         sessionStorage.setItem('googleId', res.data.googleId)
         sessionStorage.setItem('user_email', res.data.email)
         sessionStorage.setItem('user_name', res.data.name)
-        sessionStorage.setItem('user_image', res.data.img)
+        sessionStorage.setItem('user_img', res.data.img)
 
         setId(sessionStorage.getItem('googleId'))
 
