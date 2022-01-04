@@ -62,8 +62,8 @@ const Canvas = props => {
 
   const drawing = ({ nativeEvent }) => {
     let { offsetX, offsetY } = nativeEvent
-    setX(Math.floor((100 / ((window.innerWidth - 100) * 1.3)) * offsetX))
-    setY(Math.floor((100 / (window.innerHeight - 300)) * 0.46 * offsetY))
+    setX(Math.floor((100 / ((window.innerWidth - 100) * 1.1)) * offsetX))
+    setY(Math.floor((100 / (window.innerHeight - 300)) * 0.47 * offsetY))
     if (ctx) {
       // if(!isDrawing){
       //   ctx.beginPath();
@@ -123,6 +123,7 @@ const Canvas = props => {
         btn={btn}
         setBtn={setBtn}
         setSelect={setSelect}
+        setDraw={setDraw}
         blockRef={blockRef}
         item={item}
         setItem={setItem}

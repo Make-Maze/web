@@ -6,7 +6,7 @@ import { api } from '../../App'
 
 const Toolbar = props => {
   const map = props.map
-  const { title, googleId } = useResultContext()
+  const { title, googleId, setTitle } = useResultContext()
 
   const make = () => {
     let potal_state = 0
@@ -87,12 +87,29 @@ const Toolbar = props => {
         })
         .then(res => {
           props.setBtn('btn_open')
-          toast.success('저장 완료 ✌✌')
-          console.log(res)
+          toast.success('저장 완료')
+          for (let i = 0; i < 30; i++) {
+            props.map[i].fill(0)
+          }
+      
+          props.potalInfo.splice(0, props.potalInfo.length)
+          // 전체 지우고 난 후 자동으로 브러쉬 선택
+          props.setDraw(0)
+          props.setSelect('wall')
+          props.map[0][0] = 91
+          props.map[0][1] = 92
+          props.map[1][0] = 93
+          props.map[1][1] = 94
+          props.map[28][68] = 95
+          props.map[28][69] = 96
+          props.map[29][68] = 97
+          props.map[29][69] = 98
+      
+          setTitle("")
         })
         .catch(err => {
           console.log(err)
-          toast.error('저장 실패 😭😭')
+          toast.error('저장 실패')
         })
     }
   }

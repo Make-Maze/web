@@ -49,6 +49,7 @@ const Share = () => {
                   <img src={element.img} alt="" />
                   <p>{element.userName}님이 제작한</p>
                   <span className="title">{element.mapName}</span>
+                  <p className="mapId">mapId : {element.mapId}</p>
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {

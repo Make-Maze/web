@@ -53,7 +53,10 @@ export const ItemSection = styled.div`
     color: #9ecc93;
     text-align: center;
     font-size: 28px;
-    margin: 5px;
+    margin-top: 5px;
+  }
+  .mapId {
+    margin:0;
   }
 `
 

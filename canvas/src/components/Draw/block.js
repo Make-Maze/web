@@ -33,6 +33,7 @@ const Block = props => {
     if (
       props.isDrawing === true &&
       Math.floor(props.y / 2) !== -1 &&
+      Math.floor(props.y / 2) !==  30&&
       (Math.floor(props.y / 2) !== 0 || props.x !== 0) &&
       (Math.floor(props.y / 2) !== 0 || props.x !== 1) &&
       (Math.floor(props.y / 2) !== 1 || props.x !== 0) &&

@@ -72,11 +72,17 @@ export const ItemSection = styled.div`
     text-align: center;
     margin-top: 20px;
   }
+  .mapId {
+    margin:0;
+  }
   .title {
     color: #9ecc93;
     text-align: center;
     font-size: 28px;
-    margin: 5px;
+    margin-top: 5px;
+  }
+  button {
+    width:200px;
   }
 `
 
