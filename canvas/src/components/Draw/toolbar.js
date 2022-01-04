@@ -50,22 +50,21 @@ const Toolbar = props => {
       }
     }
 
-    console.log(jsonArray)
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
         let testObject = new Object()
         if (map[i][j] !== 0 && map[i][j] !== 9) {
           testObject = {
             kind: map[i][j],
-            x: i,
-            y: j,
+            x: j,
+            y: 39 - i,
           }
           testObject = JSON.stringify(testObject)
           jsonArray.push(JSON.parse(testObject))
         }
       }
     }
-
+    console.log(jsonArray)
     let mapJSON = new Object()
     mapJSON = JSON.stringify(jsonArray)
     console.log(mapJSON)
@@ -91,7 +90,7 @@ const Toolbar = props => {
           for (let i = 0; i < 30; i++) {
             props.map[i].fill(0)
           }
-      
+
           props.potalInfo.splice(0, props.potalInfo.length)
           // 전체 지우고 난 후 자동으로 브러쉬 선택
           props.setDraw(0)
@@ -104,8 +103,8 @@ const Toolbar = props => {
           props.map[28][69] = 96
           props.map[29][68] = 97
           props.map[29][69] = 98
-      
-          setTitle("")
+
+          setTitle('')
         })
         .catch(err => {
           console.log(err)
