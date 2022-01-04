@@ -1,41 +1,36 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useResultContext } from '../../Context/Data'
 import * as S from './style'
-import axios from 'axios'
+import { api } from '../../App'
+import { toast } from 'react-toastify'
 
 const Share = () => {
-  const {
-    shared,
-    setShared,
-    googleId,
-    setMapData,
-    mapData,
-    saved,
-    setSaved,
-    liked,
-    setLiked,
-  } = useResultContext()
+  const { googleId, liked, setLiked } = useResultContext()
 
-  // 구글 아이디가 gooleId 인 사용자의 Map 조회
+  const [shared, setShared] = useState([]) // 공유하기
+
+  // 모든 맵 조회
   useEffect(() => {
-    axios
-      .get(`http://192.168.137.150:8888/map/${googleId}}`)
-      .then(res => {
-        // setShared(res.data)
-        console.log(res)
-      })
-      .catch(err => console.log(err))
-  }, [setShared, shared])
+    api.get('/map').then(res => {
+      setShared(res.data)
+    })
+  }, [])
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://192.168.137.163:8888/like/${googleId}}`)
-  //     .then(res => {
-  //       setShared(res.data)
-  //     })
-  //     .catch(err => console.log(err))
-  // }, [setShared, shared])
+  // 중복 제거 체크 함수
+  function isMyMapp(curId) {
+    return liked
+      .filter(item => {
+        if (item.mapId === curId) {
+          return false
+        }
+        return true
+      })
+      .map(v => {
+        return v
+      }).length
+  }
+
   return (
     <>
       <S.MainSection>
@@ -52,36 +47,34 @@ const Share = () => {
               <>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
-                  <p>
-                    {element.userName}님이 제작한 [{element.mapName}]
-                  </p>
+                  <p>{element.userName}님이 제작한</p>
+                  <span className="title">{element.mapName}</span>
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {
-                        // 구글 아이디가 googleId 인 사용자가 다른 사용자가 만든 맵 아이디가 mapId인 맵 저장
-                        axios
-                          .get(
-                            `http://192.168.137.150:8888/like/${googleId}/${element.mapId}`
-                          )
-                          .then(res => {
-                            console.log(res)
-                            setMapData({
-                              ...mapData,
-                              likeId: res.data.likeId,
-                              mapId: res.data.mapId,
+                        if (googleId === element.userGoogleId) {
+                          toast.error('자신이 만든 맵은 저장할 수 없습니다.')
+                        } else if (isMyMapp(element.mapId) !== liked.length) {
+                          toast.error('이미 저장된 맵입니다.')
+                        } else {
+                          api
+                            .get(`/like/${googleId}/${element.mapId}`)
+                            .then(res => {
+                              console.log(element)
+                              setLiked(
+                                liked.concat({
+                                  ...element,
+                                  likeId: res.data.likeId,
+                                  mapId: res.data.mapId,
+                                })
+                              )
+                              toast.success('저장 완료')
                             })
-                            console.log(mapData)
-                            setLiked(
-                              liked.concat({
-                                ...mapData,
-                                likeId: res.data.likeId,
-                                mapId: res.data.mapId,
-                              })
-                            )
-                          })
-                          .catch(err => {
-                            console.log(err)
-                          })
+                            .catch(err => {
+                              console.log(err)
+                              toast.success('저장 실패')
+                            })
+                        }
                       }}
                     >
                       저장하기

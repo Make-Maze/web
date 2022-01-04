@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 export const MainSection = styled.div`
-  padding: 20vh 7vw 0vw;
+  padding: 20vh 10vw 0vw;
   * {
     margin: 0;
     overflow-x: hidden;
@@ -9,9 +9,14 @@ export const MainSection = styled.div`
     font-size: 60px;
     margin-bottom: 10px;
   }
+  img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  }
 `
 export const Green = styled.span`
-  color: #16780d;
+  color: #9ecc93;
 `
 
 export const MapSection = styled.div`
@@ -25,7 +30,6 @@ export const MapSection = styled.div`
     height: 50vh;
     text-align: center;
     font-family: 'appleM';
-    color: #ff8f8f;
     font-size: 24px;
     margin: 100px;
   }
@@ -43,16 +47,17 @@ export const ItemSection = styled.div`
   p {
     font-size: 20px;
     text-align: center;
-    margin-bottom: 20px;
-    height: 100px;
+    margin-top: 20px;
   }
-  img {
-    width: 100%;
-    height: 500px;
+  .title {
+    color: #9ecc93;
+    text-align: center;
+    font-size: 28px;
+    margin: 5px;
   }
 `
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `

@@ -1,46 +1,39 @@
 import React, { useState, useEffect } from 'react'
 import * as S from './style'
-import axios from 'axios'
 import { useResultContext } from '../../Context/Data'
 import { toast } from 'react-toastify'
+import { api } from '../../App'
 
 const User = () => {
-  const {
-    profile,
-    title,
-    saved,
-    setSaved,
-    googleId,
-    mapData,
-    setMapData,
-    liked,
-    setLiked,
-  } = useResultContext()
+  const { googleId, liked, setLiked } = useResultContext()
+  const [saved, setSaved] = useState([]) // 저장하기
 
-  // 구글 아이디가 googleId 인 사용자가 저장한 맵 조회
+  // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
-    console.log(saved)
-    axios
-      .get(`http://192.168.137.150:8888/like/${googleId}}`)
+    api
+      .get(`/map/${googleId}`)
       .then(res => {
+        setSaved(res.data)
         console.log(res)
       })
       .catch(err => console.log(err))
-  }, [saved])
+  }, [])
 
-  // 모든 맵 조회
+  // 다른 사람 맵 저장한거 조회
   useEffect(() => {
-    axios
-      .get(`http://192.168.137.150:8888/map`)
+    api
+      .get(`/like/${googleId}`)
       .then(res => {
-        console.log(res)
+        setLiked(res.data)
       })
       .catch(err => console.log(err))
-  }, [mapData])
+  }, [])
 
   return (
     <>
       <S.MainSection>
+        <h1 className="profile">내 정보</h1>
+        <hr />
         <S.UserSection>
           <img src={sessionStorage.getItem('user_img')} alt="" />
           <div>
@@ -48,13 +41,12 @@ const User = () => {
             <p>이메일 : {sessionStorage.getItem('user_email')}</p>
           </div>
         </S.UserSection>
-        <hr />
         <S.MapSection>
           <h1>
-            {sessionStorage.getItem('user_name')} 님이 만든{' '}
-            <S.Green>미로</S.Green>
+            {sessionStorage.getItem('user_name')} 님이 <S.Green>만든</S.Green>{' '}
+            미로
           </h1>
-          {/* 저장한 미로가 없을 시 : 저장한 미로가 있으면 화면에 띄우기 */}
+          <hr />
           {saved.length === 0 ? (
             <p class="noSave">만든 미로가 없습니다.</p>
           ) : (
@@ -62,25 +54,21 @@ const User = () => {
               <>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
-                  <p>
-                    {element.userName}님이 제작한 [{element.mapName}]
-                  </p>
+                  <p>{element.userName}님이 제작한</p>
+                  <span className="title">{element.mapName}</span>
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {
                         // 사용자가 직접 만든 미로 지우기
-                        axios
-                          .delete(
-                            `http://192.168.137.150:8888/map/${element.mapId}`
-                          )
+                        api
+                          .delete(`/map/${element.mapId}`)
                           .then(res => {
-                            toast.success('삭제 완료')
                             setSaved(
                               saved.filter(
                                 mapData => mapData.mapId !== element.mapId
                               )
                             )
-                            console.log(res)
+                            toast.success('삭제 완료')
                           })
                           .catch(err => {
                             console.log(err)
@@ -96,9 +84,10 @@ const User = () => {
             ))
           )}
           <h1>
-            {sessionStorage.getItem('user_name')} 님이 저장한{' '}
-            <S.Green>미로</S.Green>
+            {sessionStorage.getItem('user_name')} 님이 <S.Green>저장한</S.Green>{' '}
+            미로
           </h1>
+          <hr />
           {liked.length === 0 ? (
             <p class="noSave">저장한 미로가 없습니다.</p>
           ) : (
@@ -106,24 +95,25 @@ const User = () => {
               <>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
-                  <p>
-                    {element.userName}님이 제작한 [{element.mapName}]
-                  </p>
+                  <p>{element.userName}님이 제작한</p>
+                  <span className="title">{element.mapName}</span>
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {
                         // 저장된 맵 아이디가 likeId인 맵 삭제
-                        axios
-                          .delete(
-                            `http://192.168.137.150:8888/like/${element.likeId}`
-                          )
+                        api
+                          .delete(`/like/${element.likeId}`)
                           .then(res => {
                             setLiked(
                               liked.filter(
                                 mapData => mapData.mapId !== element.mapId
                               )
                             )
-                            console.log(res)
+                            toast.success('삭제 완료')
+                          })
+                          .catch(err => {
+                            console.log(err)
+                            toast.success('삭제 실패')
                           })
                       }}
                     >

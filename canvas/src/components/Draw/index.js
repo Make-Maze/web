@@ -62,7 +62,7 @@ const Canvas = props => {
 
   const drawing = ({ nativeEvent }) => {
     let { offsetX, offsetY } = nativeEvent
-    setX(Math.floor((100 / ((window.innerWidth - 100) * 1.15)) * offsetX))
+    setX(Math.floor((100 / ((window.innerWidth - 100) * 1.3)) * offsetX))
     setY(Math.floor((100 / (window.innerHeight - 300)) * 0.46 * offsetY))
     if (ctx) {
       // if(!isDrawing){
@@ -77,7 +77,7 @@ const Canvas = props => {
   const { setTitle } = useResultContext()
 
   return (
-    <div>
+    <div className="wrapper">
       <div className="inputBox">
         <input
           type="text"
