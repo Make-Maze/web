@@ -13,31 +13,21 @@ const Footer = () => {
         <div className="textSection">
           <div className="container">
             <p>양시준</p>
-            <Link to="https://github.com/YangSiJun528">
-              https://github.com/YangSiJun528
-            </Link>
+            <span>https://github.com/YangSiJun528</span>
             <p>유시온</p>
-            <Link to="https://github.com/yoosion030">
-              https://github.com/yoosion030
-            </Link>
+            <span>https://github.com/yoosion030</span>
           </div>
           <div className="container">
             <p>이은우</p>
-            <Link to="https://github.com/lew0205">
-              https://github.com/YangSiJun528
-            </Link>
+            <span>https://github.com/lew0205</span>
             <p>백승민</p>
-            <Link to="https://github.com/100Seung-Min">
-              https://github.com/100Seung-Min
-            </Link>
+            <span>https://github.com/100Seung-Min</span>
           </div>
         </div>
         <h3 class="teamName">문의</h3>
         <div className="container">
           <p>M&M</p>
-          <Link to="https://github.com/Make-Maze">
-            https://github.com/Make-Maze
-          </Link>
+          <span>https://github.com/Make-Maze</span>
         </div>
       </S.MainSection>
     </div>
