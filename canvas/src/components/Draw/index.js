@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import Block from "./block";
 import SideBar from "./sidebar";
 import Toolbar from "./toolbar";
-import "../css/canvas.css";
+import "../../style/canvas.css";
 import { useRecoilState } from "recoil";
 import { Title } from "../../Atoms/AtomContainer";
 

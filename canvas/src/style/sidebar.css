@@ -8,19 +8,19 @@
 }
 
 .blackCircle {
-  background-image: url('../../Assets/Item/block3.png');
+  background-image: url("../Assets/Item/block3.png");
 }
 
 .redCircle {
-  background-image: url('../../Assets/Item/block2.png');
+  background-image: url("../Assets/Item/block2.png");
 }
 
 .yellowCircle {
-  background-image: url('../../Assets/Item/block.png');
+  background-image: url("../Assets/Item/block.png");
 }
 
 .greenCircle {
-  background-image: url('../../Assets/Item/block4.png');
+  background-image: url("../Assets/Item/block4.png");
 }
 
 a > img {
