@@ -1,17 +1,14 @@
-import React from 'react'
+import React from "react";
+import { Header, Footer, Draw } from "../components";
 
-import { Header, Footer, Draw } from '../components'
 const DrawPage = () => {
   return (
     <>
-      <Header></Header>
-      <Draw
-      // select={select}
-      // onSelectChange={_select => setSelect(_select)}
-      ></Draw>
-      <Footer></Footer>
+      <Header />
+      <Draw />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default DrawPage
+export default DrawPage;

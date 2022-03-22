@@ -1,14 +1,13 @@
-import React from 'react'
-
-import { Header, Footer, User } from '../components'
+import React from "react";
+import { Header, Footer, User } from "../components";
 const UserPage = () => {
   return (
     <>
-      <Header></Header>
-      <User></User>
-      <Footer></Footer>
+      <Header />
+      <User />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default UserPage
+export default UserPage;

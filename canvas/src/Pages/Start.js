@@ -1,11 +1,11 @@
-import React from 'react'
-import { Start } from '../components'
+import React from "react";
+import { Start } from "../components";
 const StartPage = () => {
   return (
     <>
-      <Start></Start>
+      <Start />
     </>
-  )
-}
+  );
+};
 
-export default StartPage
+export default StartPage;

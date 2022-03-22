@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 
-import { Header, Footer, Share } from '../components'
+import { Header, Footer, Share } from "../components";
 const SharePage = () => {
   return (
     <>
-      <Header></Header>
-      <Share></Share>
-      <Footer></Footer>
+      <Header />
+      <Share />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default SharePage
+export default SharePage;
