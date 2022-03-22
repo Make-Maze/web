@@ -3,17 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ResultContextProvider } from "./Context/Data";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RecoilRoot } from "recoil";
+
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ResultContextProvider>
-        <ToastContainer />
-        <App />
-      </ResultContextProvider>
+      <ToastContainer />
+      <App />
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root"),

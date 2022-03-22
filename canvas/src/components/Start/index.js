@@ -1,57 +1,56 @@
-import React, { useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import * as S from './style'
-import Footer from '../../Assets/FooterImg.png'
-import GoogleLogin from 'react-google-login'
-import { useResultContext } from '../../Context/Data'
-import { toast } from 'react-toastify'
-import { api } from '../../App'
+import React, { useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import * as S from "./style";
+import Footer from "../../Assets/FooterImg.png";
+import GoogleLogin from "react-google-login";
+import { toast } from "react-toastify";
+import { api } from "../../App";
+import { useRecoilState } from "recoil";
+import { GoogleId, Login } from "../../Atoms/AtomContainer";
 
 const Start = () => {
-  const { isLogin, setIsLogin, setId } = useResultContext()
   const clientId =
-    '121704372282-rashscl91o6ulu8grsn2ut8kbdsm2to6.apps.googleusercontent.com'
-  const navigate = useNavigate()
-
+    "121704372282-rashscl91o6ulu8grsn2ut8kbdsm2to6.apps.googleusercontent.com";
+  const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useRecoilState(Login);
+  const [googleId, setGoogleId] = useRecoilState(GoogleId);
   function onSuccess(res) {
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
     api
-      .post('/login', {
+      .post("/login", {
         googleId: res.profileObj.googleId,
         email: res.profileObj.email,
         name: res.profileObj.name,
         img: res.profileObj.imageUrl,
       })
       .then(function (res) {
-        setIsLogin(true)
+        setIsLogin(true);
 
-        sessionStorage.setItem('number', res.data.userId)
-        sessionStorage.setItem('googleId', res.data.googleId)
-        sessionStorage.setItem('user_email', res.data.email)
-        sessionStorage.setItem('user_name', res.data.name)
-        sessionStorage.setItem('user_img', res.data.img)
-        setId(sessionStorage.getItem('googleId'))
-
-        toast.success('로그인 성공')
-        navigate('/Draw')
+        sessionStorage.setItem("number", res.data.userId);
+        sessionStorage.setItem("googleId", res.data.googleId);
+        sessionStorage.setItem("user_email", res.data.email);
+        sessionStorage.setItem("user_name", res.data.name);
+        sessionStorage.setItem("user_img", res.data.img);
+        setGoogleId(sessionStorage.getItem("googleId"));
+        toast.success("로그인 성공");
+        navigate("/Draw");
       })
       .catch(function (err) {
-        console.log(err)
-        toast.error('로그인 실패')
-      })
+        console.log(err);
+        toast.error("로그인 실패");
+      });
   }
 
   useEffect(() => {
-    if (sessionStorage.getItem('googleId') === null) {
+    if (sessionStorage.getItem("googleId") === null) {
       // sessionStorage 에 googleId 라는 key 값으로 저장된 값이 없다면
-      setIsLogin(false)
+      setIsLogin(false);
     } else {
       // sessionStorage 에 googleId 라는 key 값으로 저장된 값이 있다면
       // 로그인 상태 변경
-      setIsLogin(true)
+      setIsLogin(true);
     }
-    console.log(isLogin)
-  }, [isLogin, setIsLogin])
+  }, [isLogin, setIsLogin]);
 
   return (
     <div>
@@ -85,7 +84,7 @@ const Start = () => {
         <img src={Footer} className="footerImg" alt="" />
       </S.MainSection>
     </div>
-  )
-}
+  );
+};
 
-export default Start
+export default Start;

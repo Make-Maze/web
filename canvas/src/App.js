@@ -1,15 +1,16 @@
 import "./App.css";
 import * as P from "./Pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useResultContext } from "./Context/Data";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { Login } from "./Atoms/AtomContainer";
 
 export const api = axios.create({
   baseURL: "http://192.168.0.32:8888",
 });
 
 const App = () => {
-  const { isLogin } = useResultContext();
+  const [isLogin, setIsLogin] = useRecoilState(Login);
   return (
     <BrowserRouter>
       <Routes>
