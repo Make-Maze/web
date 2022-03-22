@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { toast } from "react-toastify";
-import { api } from "../../App";
+import { api } from "../../Api";
 import { useRecoilState } from "recoil";
 import { GoogleId, Liked } from "../../Atoms/AtomContainer";
 

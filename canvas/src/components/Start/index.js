@@ -4,7 +4,7 @@ import * as S from "./style";
 import Footer from "../../Assets/FooterImg.png";
 import GoogleLogin from "react-google-login";
 import { toast } from "react-toastify";
-import { api } from "../../App";
+import { api } from "../../Api";
 import { useRecoilState } from "recoil";
 import { GoogleId, Login } from "../../Atoms/AtomContainer";
 
