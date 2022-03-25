@@ -50,10 +50,10 @@ const User = () => {
           </h1>
           <hr />
           {saved.length === 0 ? (
-            <p class="noSave">만든 미로가 없습니다.</p>
+            <p className="noSave">만든 미로가 없습니다.</p>
           ) : (
-            saved.map((element) => (
-              <>
+            saved.map((element, i) => (
+              <div key={i}>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
                   <p>{element.userName}님이 제작한</p>
@@ -83,7 +83,7 @@ const User = () => {
                     </button>
                   </S.ButtonWrapper>
                 </S.ItemSection>
-              </>
+              </div>
             ))
           )}
           <h1>
@@ -92,10 +92,10 @@ const User = () => {
           </h1>
           <hr />
           {liked.length === 0 ? (
-            <p class="noSave">저장한 미로가 없습니다.</p>
+            <p className="noSave">저장한 미로가 없습니다.</p>
           ) : (
-            liked.map((element) => (
-              <>
+            liked.map((element, i) => (
+              <div key={i}>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
                   <p>{element.userName}님이 제작한</p>
@@ -125,7 +125,7 @@ const User = () => {
                     </button>
                   </S.ButtonWrapper>
                 </S.ItemSection>
-              </>
+              </div>
             ))
           )}
         </S.MapSection>
