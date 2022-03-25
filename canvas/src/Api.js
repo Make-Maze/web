@@ -1,5 +1,4 @@
 import axios from "axios";
 
-export const api = axios.create({
-  baseURL: "http://192.168.0.32:8888",
-});
+axios.defaults.baseURL = "";
+axios.defaults.withCredentials = true;

@@ -4,9 +4,9 @@ import * as S from "./style";
 import Footer from "../../Assets/FooterImg.png";
 import GoogleLogin from "react-google-login";
 import { toast } from "react-toastify";
-import { api } from "../../Api";
+import axios from "axios";
 import { useRecoilState } from "recoil";
-import { GoogleId, Login } from "../../Atoms/AtomContainer";
+import { GoogleId, Login, Name, Email, Img, Profile } from "../../Atoms";
 
 const Start = () => {
   const clientId =
@@ -14,43 +14,52 @@ const Start = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(Login);
   const [googleId, setGoogleId] = useRecoilState(GoogleId);
+  const [name, setName] = useRecoilState(Name);
+  const [email, setEmail] = useRecoilState(Email);
+  const [img, setImg] = useRecoilState(Img);
+  const [profile, setProfile] = useRecoilState(Profile);
   function onSuccess(res) {
+    console.log(res);
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
-    api
-      .post("/login", {
-        googleId: res.profileObj.googleId,
-        email: res.profileObj.email,
-        name: res.profileObj.name,
-        img: res.profileObj.imageUrl,
-      })
-      .then(function (res) {
+    const { email, googleId, name, imageUrl } = res.profileObj;
+
+    axios({
+      url: "/auth/login",
+      method: "post",
+      data: {
+        email: email,
+        password: googleId,
+        name: name,
+        img: imageUrl,
+      },
+    })
+      .then((res) => {
+        const { accessToken } = res.data.tokenDto;
+        // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+        // setGoogleId(res.data.password);
+        // setEmail(res.data.email);
+        // setImg(res.data.img);
+        // setName(res.data.name);
         setIsLogin(true);
 
-        sessionStorage.setItem("number", res.data.userId);
-        sessionStorage.setItem("googleId", res.data.googleId);
-        sessionStorage.setItem("user_email", res.data.email);
-        sessionStorage.setItem("user_name", res.data.name);
-        sessionStorage.setItem("user_img", res.data.img);
-        setGoogleId(sessionStorage.getItem("googleId"));
+        setProfile({
+          googleId: res.data.password,
+          name: res.data.name,
+          email: res.data.email,
+          img: res.data.img,
+        });
         toast.success("로그인 성공");
-        navigate("/Draw");
+        navigate("/draw");
       })
-      .catch(function (err) {
+      .catch((err) => {
         console.log(err);
-        toast.error("로그인 실패");
+        setIsLogin(false);
+        toast.error("다시 시도해 주세요");
       });
   }
-
-  useEffect(() => {
-    if (sessionStorage.getItem("googleId") === null) {
-      // sessionStorage 에 googleId 라는 key 값으로 저장된 값이 없다면
-      setIsLogin(false);
-    } else {
-      // sessionStorage 에 googleId 라는 key 값으로 저장된 값이 있다면
-      // 로그인 상태 변경
-      setIsLogin(true);
-    }
-  }, [isLogin, setIsLogin]);
 
   return (
     <div>
