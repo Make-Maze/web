@@ -3,12 +3,11 @@ import "../../style/toolbar.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { GoogleId, Title } from "../../Atoms/";
+import { Title } from "../../Atoms/";
 
 const Toolbar = (props) => {
   const map = props.map;
   const [title, setTitle] = useRecoilState(Title);
-  const [googleId, setGoogleId] = useRecoilState(GoogleId);
   const make = () => {
     let potal_state = 0;
     let map_state = 0;

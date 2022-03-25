@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as S from "./style";
 import Footer from "../../Assets/FooterImg.png";
@@ -13,10 +13,10 @@ const Start = () => {
     "121704372282-rashscl91o6ulu8grsn2ut8kbdsm2to6.apps.googleusercontent.com";
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(Login);
-  const [googleId, setGoogleId] = useRecoilState(GoogleId);
-  const [name, setName] = useRecoilState(Name);
-  const [email, setEmail] = useRecoilState(Email);
-  const [img, setImg] = useRecoilState(Img);
+  // const [googleId, setGoogleId] = useRecoilState(GoogleId);
+  // const [name, setName] = useRecoilState(Name);
+  // const [email, setEmail] = useRecoilState(Email);
+  // const [img, setImg] = useRecoilState(Img);
   const [profile, setProfile] = useRecoilState(Profile);
   function onSuccess(res) {
     console.log(res);
