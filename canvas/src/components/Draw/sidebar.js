@@ -6,7 +6,6 @@ import gunDown from "../../Assets/Item/gun_down.png";
 import gunRight from "../../Assets/Item/gun_right.png";
 import gunLeft from "../../Assets/Item/gun_left.png";
 import gasi from "../../Assets/Item/gasi.png";
-import spring from "../../Assets/Item/spring.png";
 import potion from "../../Assets/Item/potion.png";
 
 const SideBar = (props) => {
@@ -148,25 +147,6 @@ const SideBar = (props) => {
         </a>
       </div>,
     );
-
-    _content.push(
-      <div
-        className="spring"
-        onClick={function (e) {
-          e.preventDefault();
-          props.drawMode(10);
-          props.setSelect("item");
-          if (!gun.includes("X")) {
-            setGun(gun + "X");
-          }
-        }}
-      >
-        <a title="스프링">
-          <img alt="" src={spring}></img>
-        </a>
-      </div>,
-    );
-
     _content.push(
       <div
         className="potion"

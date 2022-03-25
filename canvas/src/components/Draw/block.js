@@ -7,7 +7,6 @@ import gunDown from "../../Assets/Item/gun_down.png";
 import gunRight from "../../Assets/Item/gun_right.png";
 import gunLeft from "../../Assets/Item/gun_left.png";
 import gasi from "../../Assets/Item/gasi.png";
-import spring from "../../Assets/Item/spring.png";
 import invisible from "../../Assets/Item/invisible_lock.png";
 import invisible_block from "../../Assets/Item/invisible_block.png";
 import potion from "../../Assets/Item/potion.png";
@@ -242,18 +241,6 @@ const Block = (props) => {
             }}
           >
             <img alt="" src={guard}></img>
-          </td>,
-        );
-      } else if (props.map[i][j] === 11) {
-        list.push(
-          <td
-            class="map"
-            style={{
-              border: "1px solid gray",
-              padding: "0px",
-            }}
-          >
-            <img alt="" src={spring}></img>
           </td>,
         );
       } else if (props.map[i][j] === 12) {
