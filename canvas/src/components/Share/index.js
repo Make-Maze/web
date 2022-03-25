@@ -39,7 +39,7 @@ const Share = () => {
         <hr />
         <S.MapSection>
           {shared.length === 0 ? (
-            <p class="noShare">공유된 미로가 없습니다.</p>
+            <p className="noShare">공유된 미로가 없습니다.</p>
           ) : (
             shared.map((element) => (
               <>
