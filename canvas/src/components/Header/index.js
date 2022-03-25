@@ -4,7 +4,7 @@ import * as S from "./style";
 import { toast } from "react-toastify";
 import logo from "../../Assets/logo.png";
 import { useRecoilState } from "recoil";
-import { Login } from "../../Atoms/AtomContainer";
+import { Login } from "../../Atoms/";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useRecoilState(Login);

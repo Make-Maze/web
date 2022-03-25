@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Snowfall from "react-snowfall";
 import { useRecoilState } from "recoil";
-import { Login } from "../../Atoms/AtomContainer";
+import { Login } from "../../Atoms/";
 import * as S from "./style";
 
 const NotFound = () => {

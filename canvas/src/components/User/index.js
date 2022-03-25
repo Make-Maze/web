@@ -1,35 +1,41 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { toast } from "react-toastify";
-import { api } from "../../Api";
+import axios from "axios";
 import { useRecoilState } from "recoil";
-import { GoogleId, Liked } from "../../Atoms/AtomContainer";
+import { GoogleId, Liked, Profile } from "../../Atoms/";
 
 const User = () => {
   const [saved, setSaved] = useState([]); // 저장하기
   const [googleId, setGoogleId] = useRecoilState(GoogleId);
   const [liked, setLiked] = useRecoilState(Liked);
+  const [liked, setLiked] = useRecoilState(Liked);
 
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
-    api
-      .get(`/map/${googleId}`)
-      .then((res) => {
+    const getSaved = async () => {
+      try {
+        const res = await axios.get("map/getMaps");
         setSaved(res.data);
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
+      } catch (e) {
+        throw e;
+      }
+    };
+    getSaved();
   }, []);
 
   // 다른 사람 맵 저장한거 조회
   useEffect(() => {
-    api
-      .get(`/like/${googleId}`)
-      .then((res) => {
+    const getLiked = async () => {
+      try {
+        const res = await axios.get("/like/getLikes");
         setLiked(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+      } catch (e) {
+        throw e;
+      }
+    };
+    getLiked();
+  }, [setLiked]);
 
   return (
     <>
@@ -45,7 +51,7 @@ const User = () => {
         </S.UserSection>
         <S.MapSection>
           <h1>
-            {sessionStorage.getItem("user_name")} 님이 <S.Green>만든</S.Green>{" "}
+            {sessionStorage.getItem("user_name")} 님이 <S.Green>만든</S.Green>
             미로
           </h1>
           <hr />
@@ -63,7 +69,7 @@ const User = () => {
                     <button
                       onClick={() => {
                         // 사용자가 직접 만든 미로 지우기
-                        api
+                        axios
                           .delete(`/map/${element.mapId}`)
                           .then((res) => {
                             setSaved(
@@ -87,7 +93,7 @@ const User = () => {
             ))
           )}
           <h1>
-            {sessionStorage.getItem("user_name")} 님이 <S.Green>저장한</S.Green>{" "}
+            {sessionStorage.getItem("user_name")} 님이 <S.Green>저장한</S.Green>
             미로
           </h1>
           <hr />
@@ -105,7 +111,7 @@ const User = () => {
                     <button
                       onClick={() => {
                         // 저장된 맵 아이디가 likeId인 맵 삭제
-                        api
+                        axios
                           .delete(`/like/${element.likeId}`)
                           .then((res) => {
                             setLiked(

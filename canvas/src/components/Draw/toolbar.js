@@ -1,9 +1,9 @@
 import React from "react";
 import "../../style/toolbar.css";
 import { toast } from "react-toastify";
-import { api } from "../../Api";
+import axios from "axios";
 import { useRecoilState } from "recoil";
-import { GoogleId, Title } from "../../Atoms/AtomContainer";
+import { GoogleId, Title } from "../../Atoms/";
 
 const Toolbar = (props) => {
   const map = props.map;
@@ -79,12 +79,15 @@ const Toolbar = (props) => {
       toast.error("맵을 다 그려 주세요");
     } else {
       // 구글 아이디가 googleId인 사용자의 맵 추가
-      api
-        .post(`/map/${googleId}`, {
-          block: mapJSON,
+
+      axios({
+        url: "/map/add",
+        method: "post",
+        data: {
           mapName: title,
-          userGoogleId: googleId,
-        })
+          block: mapJSON,
+        },
+      })
         .then((res) => {
           props.setBtn("btn_open");
           toast.success("저장 완료");
@@ -109,7 +112,7 @@ const Toolbar = (props) => {
         })
         .catch((err) => {
           console.log(err);
-          toast.error("저장 실패");
+          toast.error("미로 생성을 실패하였습니다.");
         });
     }
   };

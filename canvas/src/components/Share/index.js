@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
-import { api } from "../../Api";
+import axios from "axios";
 import { toast } from "react-toastify";
-import { GoogleId, Liked } from "../../Atoms/AtomContainer";
+import { GoogleId, Liked } from "../../Atoms";
 import { useRecoilState } from "recoil";
 const Share = () => {
   const [shared, setShared] = useState([]); // 공유하기
@@ -10,7 +10,7 @@ const Share = () => {
   const [liked, setLiked] = useRecoilState(Liked);
   // 모든 맵 조회
   useEffect(() => {
-    api.get("/map").then((res) => {
+    axios.get("/map").then((res) => {
       setShared(res.data);
     });
   }, []);
@@ -56,7 +56,7 @@ const Share = () => {
                         } else if (isMyMap(element.mapId) !== liked.length) {
                           toast.error("이미 저장된 맵입니다.");
                         } else {
-                          api
+                          axios
                             .get(`/like/${googleID}/${element.mapId}`)
                             .then((res) => {
                               console.log(element);

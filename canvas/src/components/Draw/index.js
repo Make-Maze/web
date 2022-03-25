@@ -4,7 +4,7 @@ import SideBar from "./sidebar";
 import Toolbar from "./toolbar";
 import "../../style/canvas.css";
 import { useRecoilState } from "recoil";
-import { Title } from "../../Atoms/AtomContainer";
+import { Title } from "../../Atoms/";
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);

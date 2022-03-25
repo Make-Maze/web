@@ -2,7 +2,7 @@ import "./App.css";
 import * as P from "./Pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { Login } from "./Atoms/AtomContainer";
+import { Login } from "./Atoms/";
 
 const App = () => {
   const [isLogin, setIsLogin] = useRecoilState(Login);
