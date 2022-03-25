@@ -1,19 +1,21 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import Snowfall from 'react-snowfall'
-import { useResultContext } from '../../Context/Data'
-import * as S from './style'
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import Snowfall from "react-snowfall";
+import { useRecoilState } from "recoil";
+import { Login } from "../../Atoms/AtomContainer";
+import * as S from "./style";
+
 const NotFound = () => {
-  const { isLogin, setIsLogin } = useResultContext()
+  const [isLogin, setIsLogin] = useRecoilState(Login);
 
   useEffect(() => {
-    if (sessionStorage.getItem('googleId') === null) {
-      setIsLogin(false)
+    if (sessionStorage.getItem("googleId") === null) {
+      setIsLogin(false);
     } else {
-      setIsLogin(true)
+      setIsLogin(true);
     }
-    console.log(isLogin)
-  }, [isLogin, setIsLogin])
+    console.log(isLogin);
+  }, [isLogin, setIsLogin]);
 
   return (
     <S.MainSection>
@@ -26,7 +28,7 @@ const NotFound = () => {
         <Link to="/">홈으로 이동</Link>
       )}
     </S.MainSection>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

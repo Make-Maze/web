@@ -1,34 +1,32 @@
-import React, { useEffect, useState } from 'react'
-
-import { useResultContext } from '../../Context/Data'
-import * as S from './style'
-import { api } from '../../App'
-import { toast } from 'react-toastify'
-
+import React, { useEffect, useState } from "react";
+import * as S from "./style";
+import { api } from "../../Api";
+import { toast } from "react-toastify";
+import { GoogleId, Liked } from "../../Atoms/AtomContainer";
+import { useRecoilState } from "recoil";
 const Share = () => {
-  const { googleId, liked, setLiked } = useResultContext()
-
-  const [shared, setShared] = useState([]) // 공유하기
-
+  const [shared, setShared] = useState([]); // 공유하기
+  const [googleID, setGoogleId] = useRecoilState(GoogleId);
+  const [liked, setLiked] = useRecoilState(Liked);
   // 모든 맵 조회
   useEffect(() => {
-    api.get('/map').then(res => {
-      setShared(res.data)
-    })
-  }, [])
+    api.get("/map").then((res) => {
+      setShared(res.data);
+    });
+  }, []);
 
   // 중복 제거 체크 함수
-  function isMyMapp(curId) {
+  function isMyMap(curId) {
     return liked
-      .filter(item => {
+      .filter((item) => {
         if (item.mapId === curId) {
-          return false
+          return false;
         }
-        return true
+        return true;
       })
-      .map(v => {
-        return v
-      }).length
+      .map((v) => {
+        return v;
+      }).length;
   }
 
   return (
@@ -41,9 +39,9 @@ const Share = () => {
         <hr />
         <S.MapSection>
           {shared.length === 0 ? (
-            <p class="noShare">공유된 미로가 없습니다.</p>
+            <p className="noShare">공유된 미로가 없습니다.</p>
           ) : (
-            shared.map(element => (
+            shared.map((element) => (
               <>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
@@ -53,28 +51,28 @@ const Share = () => {
                   <S.ButtonWrapper>
                     <button
                       onClick={() => {
-                        if (googleId === element.userGoogleId) {
-                          toast.error('자신이 만든 맵은 저장할 수 없습니다.')
-                        } else if (isMyMapp(element.mapId) !== liked.length) {
-                          toast.error('이미 저장된 맵입니다.')
+                        if (googleID === element.userGoogleId) {
+                          toast.error("자신이 만든 맵은 저장할 수 없습니다.");
+                        } else if (isMyMap(element.mapId) !== liked.length) {
+                          toast.error("이미 저장된 맵입니다.");
                         } else {
                           api
-                            .get(`/like/${googleId}/${element.mapId}`)
-                            .then(res => {
-                              console.log(element)
+                            .get(`/like/${googleID}/${element.mapId}`)
+                            .then((res) => {
+                              console.log(element);
                               setLiked(
                                 liked.concat({
                                   ...element,
                                   likeId: res.data.likeId,
                                   mapId: res.data.mapId,
-                                })
-                              )
-                              toast.success('저장 완료')
+                                }),
+                              );
+                              toast.success("저장 완료");
                             })
-                            .catch(err => {
-                              console.log(err)
-                              toast.success('저장 실패')
-                            })
+                            .catch((err) => {
+                              console.log(err);
+                              toast.success("저장 실패");
+                            });
                         }
                       }}
                     >
@@ -88,7 +86,7 @@ const Share = () => {
         </S.MapSection>
       </S.MainSection>
     </>
-  )
-}
+  );
+};
 
-export default Share
+export default Share;
