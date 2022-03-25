@@ -9,8 +9,6 @@ import { useRecoilState } from "recoil";
 import { GoogleId, Login, Name, Email, Img, Profile } from "../../Atoms";
 
 const Start = () => {
-  const clientId =
-    "121704372282-rashscl91o6ulu8grsn2ut8kbdsm2to6.apps.googleusercontent.com";
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(Login);
   // const [googleId, setGoogleId] = useRecoilState(GoogleId);
@@ -34,17 +32,18 @@ const Start = () => {
       },
     })
       .then((res) => {
-        const { accessToken } = res.data.tokenDto;
-        // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
+        const { accessToken, refreshToken } = res.data.tokenDto;
         // setGoogleId(res.data.password);
         // setEmail(res.data.email);
         // setImg(res.data.img);
         // setName(res.data.name);
+        // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
         setIsLogin(true);
-
         setProfile({
           googleId: res.data.password,
           name: res.data.name,
@@ -83,7 +82,7 @@ const Start = () => {
                 responseType="permission"
                 approvalPrompt="force"
                 prompt="consent"
-                clientId={clientId}
+                clientId={process.env.REACT_APP_CLIENTID}
                 onSuccess={onSuccess}
                 className="googleLogin"
               ></GoogleLogin>
