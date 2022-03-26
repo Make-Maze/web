@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import * as S from "./style";
 import { toast } from "react-toastify";
-import logo from "../../Assets/logo.png";
 import { useRecoilState } from "recoil";
 import { Login } from "../../Atoms/";
 
