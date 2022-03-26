@@ -23,7 +23,7 @@ const User = () => {
     getSaved();
   }, []);
 
-  // 현재 로그인 된 유저의 Like를 가져옴ㄴ
+  // 현재 로그인 된 유저의 Like를 가져옴
   useEffect(() => {
     const getLiked = async () => {
       try {
@@ -34,13 +34,13 @@ const User = () => {
       }
     };
     getLiked();
-  }, [setLiked]);
+  }, []);
 
   const TryDelete = (element, method) => {
     // 사용자가 직접 만든 미로 지우기
     if (method === "saved") {
       axios
-        .delete(`/map/delete${element.mapId}`)
+        .delete(`/map/delete/${element.mapId}`)
         .then((res) => {
           setSaved(saved.filter((mapData) => mapData.mapId !== element.mapId));
           toast.success("삭제 완료");
@@ -70,7 +70,7 @@ const User = () => {
         <h1 className="profile">내 정보</h1>
         <hr />
         <S.UserSection>
-          <img src={profile.img} alt="" />
+          <img src={profile.imageUrl} alt="" />
           <div>
             <p>이름 : {profile.name}</p>
             <p>이메일 : {profile.email}</p>
@@ -87,19 +87,19 @@ const User = () => {
             <p className="noSave">만든 미로가 없습니다.</p>
           ) : (
             saved.map((element, i) => (
-              <div key={i}>
+              <span key={i}>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
                   <p>{element.userName}님이 제작한</p>
                   <span className="title">{element.mapName}</span>
                   <p className="mapId">mapID : {element.mapId}</p>
                   <S.ButtonWrapper>
-                    <button onClick={TryDelete(element, "saved")}>
+                    <button onClick={() => TryDelete(element, "saved")}>
                       삭제하기
                     </button>
                   </S.ButtonWrapper>
                 </S.ItemSection>
-              </div>
+              </span>
             ))
           )}
 
@@ -113,19 +113,19 @@ const User = () => {
             <p className="noSave">저장한 미로가 없습니다.</p>
           ) : (
             liked.map((element, i) => (
-              <div key={i}>
+              <span key={i}>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
                   <p>{element.userName}님이 제작한</p>
                   <span className="title">{element.mapName}</span>
                   <p className="mapId">mapID : {element.mapId}</p>
                   <S.ButtonWrapper>
-                    <button onClick={TryDelete(element, "liked")}>
+                    <button onClick={() => TryDelete(element, "shared")}>
                       삭제하기
                     </button>
                   </S.ButtonWrapper>
                 </S.ItemSection>
-              </div>
+              </span>
             ))
           )}
         </S.MapSection>

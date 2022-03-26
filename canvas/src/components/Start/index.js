@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as S from "./style";
 import Footer from "../../Assets/FooterImg.png";
@@ -6,24 +6,28 @@ import GoogleLogin from "react-google-login";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { GoogleId, Login, Name, Email, Img, Profile } from "../../Atoms";
+import { Login, Profile } from "../../Atoms";
 
 const Start = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useRecoilState(Login);
-  // const [googleId, setGoogleId] = useRecoilState(GoogleId);
-  // const [name, setName] = useRecoilState(Name);
-  // const [email, setEmail] = useRecoilState(Email);
-  // const [img, setImg] = useRecoilState(Img);
   const [profile, setProfile] = useRecoilState(Profile);
+  const [isLogin, setIsLogin] = useRecoilState(Login);
   function onSuccess(res) {
     console.log(res);
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
     const { email, googleId, name, imageUrl } = res.profileObj;
-
+    // 유저 정보를 요청하는 api 필요 / 새로고침 시 유저정보가 없어지기 때문
+    setProfile({
+      email,
+      googleId,
+      name,
+      imageUrl,
+    });
+    console.log(googleId);
+    console.log(profile.googleId);
     axios({
       url: "/auth/login",
-      method: "post",
+      method: "POST",
       data: {
         email: email,
         password: googleId,
@@ -33,10 +37,7 @@ const Start = () => {
     })
       .then((res) => {
         const { accessToken, refreshToken } = res.data.tokenDto;
-        // setGoogleId(res.data.password);
-        // setEmail(res.data.email);
-        // setImg(res.data.img);
-        // setName(res.data.name);
+        console.log(res);
         // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
         axios.defaults.headers.common[
           "Authorization"
@@ -44,14 +45,9 @@ const Start = () => {
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
         setIsLogin(true);
-        setProfile({
-          googleId: res.data.password,
-          name: res.data.name,
-          email: res.data.email,
-          img: res.data.img,
-        });
         toast.success("로그인 성공");
         navigate("/draw");
+        console.log(profile);
       })
       .catch((err) => {
         console.log(err);
@@ -59,6 +55,11 @@ const Start = () => {
         toast.error("다시 시도해 주세요");
       });
   }
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setIsLogin(true);
+    }
+  }, []);
 
   return (
     <div>

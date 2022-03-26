@@ -9,12 +9,11 @@ const NotFound = () => {
   const [isLogin, setIsLogin] = useRecoilState(Login);
 
   useEffect(() => {
-    if (sessionStorage.getItem("googleId") === null) {
-      setIsLogin(false);
+    if (localStorage.getItem("accessToken")) {
+      setIsLogin(true);
     } else {
       setIsLogin(true);
     }
-    console.log(isLogin);
   }, [isLogin, setIsLogin]);
 
   return (

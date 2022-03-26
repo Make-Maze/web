@@ -11,9 +11,9 @@ const Header = () => {
   const navigate = useNavigate();
   const Logout = () => {
     setIsLogin(false);
-    sessionStorage.clear();
+    localStorage.clear();
+    toast.info("로그아웃 되었습니다.");
     navigate("/");
-    toast.info("로그아웃 하였습니다.");
   };
 
   return (

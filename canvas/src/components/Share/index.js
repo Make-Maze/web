@@ -11,7 +11,7 @@ const Share = () => {
 
   // 모든 맵 조회
   useEffect(() => {
-    axios.get("/map").then((res) => {
+    axios.get("/map/getAllMaps").then((res) => {
       setShared(res.data);
     });
   }, []);
@@ -32,17 +32,21 @@ const Share = () => {
 
   const TrySave = (element) => {
     // 나중에 자신이 만든 맵 예외처리 해야함
+    // 저장하기 기능이 안됨
     if (isMyMap(element.mapId) !== liked.length) {
       toast.error("이미 저장된 맵입니다.");
+    } else if (element.userName === profile.userName) {
+      toast.error("자신이 만든 맵은 저장할 수 없습니다.");
     } else {
+      console.log(profile);
       axios({
-        url: "like/add",
-        method: "post",
+        url: "/like/add",
+        method: "POST",
         data: {
-          googleId: profile.password,
+          password: profile.googleId,
           name: profile.name,
           email: profile.email,
-          img: profile.img,
+          img: profile.imageUrl,
         },
       })
         .then((res) => {
@@ -52,11 +56,12 @@ const Share = () => {
               ...res.data,
             }),
           );
+          console.log(res);
           toast.success("저장 완료");
         })
         .catch((err) => {
           console.log(err);
-          toast.success("저장 실패");
+          toast.error("저장 실패");
         });
     }
   };
@@ -75,17 +80,17 @@ const Share = () => {
             <p className="noShare">공유된 미로가 없습니다.</p>
           ) : (
             shared.map((element, i) => (
-              <div key={i}>
+              <span key={i}>
                 <S.ItemSection>
                   <img src={element.img} alt="" />
                   <p>{element.userName}님이 제작한</p>
                   <span className="title">{element.mapName}</span>
                   <p className="mapId">mapId : {element.mapId}</p>
                   <S.ButtonWrapper>
-                    <button onClick={TrySave(element)}>저장하기</button>
+                    <button onClick={() => TrySave(element)}>저장하기</button>
                   </S.ButtonWrapper>
                 </S.ItemSection>
-              </div>
+              </span>
             ))
           )}
         </S.MapSection>

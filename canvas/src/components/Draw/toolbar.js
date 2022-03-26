@@ -28,7 +28,6 @@ const Toolbar = (props) => {
     let mode = 0;
     for (let i = 0; i < props.potalInfo.length; i += 2) {
       if (mode === 1) {
-        console.log(potalObject1);
         potalObject2 = {
           x2: props.potalInfo[i][0],
           y2: props.potalInfo[i][1],
@@ -64,11 +63,8 @@ const Toolbar = (props) => {
         }
       }
     }
-    console.log(jsonArray);
     let mapJSON = new Object();
     mapJSON = JSON.stringify(jsonArray);
-    console.log(mapJSON);
-    console.log(title);
 
     if (potal_state % 2 !== 0) {
       toast.error("포탈은 짝수개여야 합니다");
@@ -88,6 +84,7 @@ const Toolbar = (props) => {
         },
       })
         .then((res) => {
+          console.log(res);
           props.setBtn("btn_open");
           toast.success("저장 완료");
           for (let i = 0; i < 30; i++) {
