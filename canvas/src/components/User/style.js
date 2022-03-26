@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-import UserBackground from '../../Assets/UserBackground.png'
+import styled from "styled-components";
 
 export const MainSection = styled.div`
   padding: 20vh 10vw 0vw;
@@ -19,10 +18,10 @@ export const MainSection = styled.div`
   hr {
     margin: 5px 0 40px;
   }
-`
+`;
 export const Green = styled.span`
   color: #9ecc93;
-`
+`;
 
 export const UserSection = styled.div`
   position: relative;
@@ -41,7 +40,7 @@ export const UserSection = styled.div`
   hr {
     width: 5px;
   }
-`
+`;
 
 export const MapSection = styled.div`
   overflow: hidden;
@@ -53,11 +52,11 @@ export const MapSection = styled.div`
   .noSave {
     height: 50vh;
     text-align: center;
-    font-family: 'appleM';
+    font-family: "appleM";
     font-size: 24px;
     margin: 100px;
   }
-`
+`;
 
 export const ItemSection = styled.div`
   display: inline-flex;
@@ -73,7 +72,7 @@ export const ItemSection = styled.div`
     margin-top: 20px;
   }
   .mapId {
-    margin:0;
+    margin: 0;
   }
   .title {
     color: #9ecc93;
@@ -82,11 +81,11 @@ export const ItemSection = styled.div`
     margin-top: 5px;
   }
   button {
-    width:200px;
+    width: 200px;
   }
-`
+`;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
