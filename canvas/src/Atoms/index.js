@@ -7,7 +7,7 @@ export const Title = atom({
 
 export const Login = atom({
   key: "Login",
-  default: true,
+  default: false,
 });
 
 export const Liked = atom({
@@ -41,6 +41,6 @@ export const Profile = atom({
     googleId: "",
     name: "",
     email: "",
-    img: "",
+    imageUrl: "",
   },
 });
