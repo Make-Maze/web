@@ -18,30 +18,38 @@ const Header = () => {
 
   return (
     <S.Header>
-      <div>
-        <img className="logo" src={logo} alt="" />
-      </div>
-      <div>
-        <NavLink
-          style={({ isActive }) => ({ color: isActive ? "#9ecc93" : "black" })}
-          to="/Draw"
-        >
-          만들기
-        </NavLink>
-        <NavLink
-          style={({ isActive }) => ({ color: isActive ? "#9ecc93" : "black" })}
-          to="/Share"
-        >
-          체험하기
-        </NavLink>
-        <NavLink
-          style={({ isActive }) => ({ color: isActive ? "#9ecc93" : "black" })}
-          to="/User"
-        >
-          마이페이지
-        </NavLink>
-        <span onClick={Logout}>로그아웃</span>
-      </div>
+      <S.Container>
+        <div>
+          <S.Logo>Make & Maze</S.Logo>
+        </div>
+        <div>
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#1a6dff" : "black",
+            })}
+            to="/Draw"
+          >
+            만들기
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#1a6dff" : "black",
+            })}
+            to="/Share"
+          >
+            체험하기
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#1a6dff" : "black",
+            })}
+            to="/User"
+          >
+            마이페이지
+          </NavLink>
+          <S.LogOutBtn onClick={Logout}>로그아웃</S.LogOutBtn>
+        </div>
+      </S.Container>
     </S.Header>
   );
 };

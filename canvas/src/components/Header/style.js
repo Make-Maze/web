@@ -1,27 +1,44 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Header = styled.header`
   width: 100vw;
   height: 55px;
-  display: flex;
-  align-items: center;
   font-size: 16px;
-  justify-content: space-between;
   background-color: #ffffff;
   z-index: 2;
-  box-shadow: 1px 0 10px rgb(158 204 147/ 50%);
+  box-shadow: 1px 0 10px #1a6dff;
   position: fixed;
+  font-size: 16px;
+  box-sizing: border-box;
   a {
-    margin-left: 50px;
+    margin-right: 50px;
   }
+`;
 
-  .logo {
-    height: 55px;
-    margin-left: 10vw;
-    margin-top: 10px;
-  }
-  span {
-    margin: 0 10vw 0 50px;
-    cursor: pointer;
-  }
-`
+export const Container = styled.div`
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+`;
+export const Logo = styled.h1`
+  font-family: "Pacifico";
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 51px;
+
+  color: #1a6dff;
+`;
+
+export const LogOutBtn = styled.button`
+  width: 80px;
+  height: 40px;
+  border: none;
+  background: #1a6dff;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 24px;
+  color: #ffffff;
+`;
