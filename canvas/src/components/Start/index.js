@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as S from "./style";
-import Footer from "../../Assets/FooterImg.png";
 import GoogleLogin from "react-google-login";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { Login, Profile } from "../../Atoms";
+import maze from "../../Assets/maze.png";
 
 const Start = () => {
   const navigate = useNavigate();
@@ -62,37 +62,34 @@ const Start = () => {
   }, []);
 
   return (
-    <div>
-      <S.MainSection>
-        <h1>
-          나만의 미로를 즐기는 게임 <br />
-          <S.Green>M & M</S.Green>
-        </h1>
-        <hr />
-        {isLogin ? (
-          <S.PlayBtn>
-            <Link to="/Draw">플레이하기</Link>
-          </S.PlayBtn>
-        ) : (
-          <>
-            <S.Container>
-              <S.Text>게임을 플레이 하시고 싶으시다면</S.Text>
-              <GoogleLogin
-                buttonText="구글 로그인"
-                accessType="offline"
-                responseType="permission"
-                approvalPrompt="force"
-                prompt="consent"
-                clientId={process.env.REACT_APP_CLIENTID}
-                onSuccess={onSuccess}
-                className="googleLogin"
-              ></GoogleLogin>
-            </S.Container>
-          </>
-        )}
-        <img src={Footer} className="footerImg" alt="" />
-      </S.MainSection>
-    </div>
+    <S.MainSection>
+      <S.Logo>Make & Maze</S.Logo>
+      <S.Title>
+        나만의 미로 게임 <br />
+      </S.Title>
+      <S.Desc>
+        세상에서 단 하나뿐인 나만의 미로를 만들고 직접 플레이 해보세요. <br />
+        공유도 할 수 있고 다른 사람의 미로도 플레이 할 수 있어요!
+      </S.Desc>
+      {isLogin ? (
+        <Link to="/Draw">플레이하기</Link>
+      ) : (
+        <GoogleLogin
+          buttonText="로그인 하기"
+          accessType="offline"
+          responseType="permission"
+          approvalPrompt="force"
+          prompt="consent"
+          clientId={process.env.REACT_APP_CLIENTID}
+          onSuccess={onSuccess}
+          render={(renderProps) => (
+            <S.Container onClick={renderProps.onClick}>로그인 하기</S.Container>
+          )}
+        />
+      )}
+      <img src={maze} alt="" />
+      <S.Team>Team BigPicture</S.Team>
+    </S.MainSection>
   );
 };
 

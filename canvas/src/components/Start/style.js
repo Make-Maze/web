@@ -1,51 +1,77 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const MainSection = styled.div`
+  padding: 70px 0 90px;
+  box-sizing: border-box;
   margin: 0;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  background-color: #1a6dff;
+  color: #ffffff;
+  .logo {
+    width: 239px;
+    height: 67px;
+  }
   * {
     overflow: hidden;
   }
-  h1 {
-    padding: 10vh 10vw 10px 10vw;
-    color: black;
-    font-size: 80px;
-    text-align: center;
-  }
+
   hr {
     width: 45%;
     margin: 10px auto;
   }
-  .footerImg {
-    width: 100%;
+  p {
+    font-family: "Pacifico";
   }
-`
-export const Green = styled.span`
-  color: #9ecc93;
-`
+`;
+
+export const Logo = styled.h1`
+  font-family: "Pacifico";
+  font-size: 40px;
+  line-height: 67px;
+`;
+
+export const Title = styled.h1`
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 120px;
+`;
+
+export const Desc = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  line-height: 25px;
+  margin-bottom: 30px;
+`;
+
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  .googleLogin {
-    width: 200px;
-    height: 40px;
-    margin-bottom: 20px;
-  }
-`
-export const Text = styled.div`
+  justify-content: center;
+  width: 170px;
+  height: 50px;
+  border: 1px solid #ffffff;
+  border-radius: 30px;
+  margin-bottom: 30px;
+  background: #1a6dff;
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 500;
   font-size: 20px;
-  margin-bottom: 20px;
-`
-export const PlayBtn = styled.div`
-  text-align: center;
-  padding-bottom: 100px;
-  font-size: 20px;
-  & :hover {
-    color: #9ecc93;
+  line-height: 48px;
+
+  cursor: pointer;
+
+  &:hover {
+    background: #ffffff;
+    color: #1a6dff;
   }
-`
+`;
+
+export const Team = styled.div`
+  font-family: "Pacifico";
+  margin-top: 150px;
+`;

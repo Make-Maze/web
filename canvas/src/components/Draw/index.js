@@ -4,7 +4,8 @@ import SideBar from "./sidebar";
 import Toolbar from "./toolbar";
 import "../../style/canvas.css";
 import { useRecoilState } from "recoil";
-import { Title } from "../../Atoms/";
+import { Title, Profile } from "../../Atoms";
+import axios from "axios";
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
@@ -76,6 +77,24 @@ const Canvas = (props) => {
     }
   };
   const [title, setTitle] = useRecoilState(Title);
+  const [profile, setProfile] = useRecoilState(Profile);
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await axios.get("/member/me");
+        console.log(res);
+        setProfile({
+          googleId: res.data.password,
+          name: res.data.name,
+          email: res.data.email,
+          imageUrl: res.data.img,
+        });
+      } catch (e) {
+        throw e;
+      }
+    };
+    getUser();
+  }, []);
 
   return (
     <div className="wrapper">
