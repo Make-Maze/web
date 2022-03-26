@@ -27,7 +27,6 @@ export const Logo = styled.h1`
   font-weight: 400;
   font-size: 30px;
   line-height: 51px;
-
   color: #1a6dff;
 `;
 

@@ -1,27 +1,43 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export const MainSection = styled.div`
-  height: 40vh;
+export const Footer = styled.div`
+  width: 100vw;
+  height: 300px;
   overflow: hidden;
-  padding: 150px 10vw 0;
+  box-sizing: border-box;
   hr {
-    margin-bottom: 5px;
-  }
-  .logo {
-    height: 55px;
-  }
-  .teamName {
-    margin-top: 20px;
+    background: #c4c4c4;
+    margin-bottom: 50px;
   }
 
-  .container {
-    margin-right: 50px;
+  img {
+    width: 40px;
+    height: 40px;
   }
-  p {
-    font-size: 12px;
-    margin-top: 15px;
+`;
+
+export const Container = styled.div`
+  width: 80vw;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+`;
+
+export const TeamName = styled.div`
+  span {
+    font-family: "Pacifico";
+    color: #1a6dff;
   }
-  .textSection {
-    display: flex;
+  font-size: 20px;
+  margin-bottom: 20px;
+`;
+
+export const TextSection = styled.div``;
+
+export const Text = styled.div`
+  .subject {
+    margin-right: 20px;
   }
-`
+  font-size: 16px;
+  margin-bottom: 20px;
+`;
