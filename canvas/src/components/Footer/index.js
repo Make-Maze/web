@@ -13,13 +13,14 @@ const Footer = () => {
           </S.TeamName>
           <S.TextSection>
             <S.Text>
-              <span class="subject">BackEnd</span> 양시준
+              <div>BackEnd</div>
+              <div>FrontEnd</div>
+              <div>Game</div>
             </S.Text>
             <S.Text>
-              <span class="subject">FrontEnd</span> 백승민, 유시온
-            </S.Text>
-            <S.Text>
-              <span class="subject">Game</span> 이은우
+              <div>양시준</div>
+              <div>백승민, 유시온</div>
+              <div>이은우</div>
             </S.Text>
           </S.TextSection>
         </div>

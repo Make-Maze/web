@@ -32,12 +32,14 @@ export const TeamName = styled.div`
   margin-bottom: 20px;
 `;
 
-export const TextSection = styled.div``;
+export const TextSection = styled.div`
+  display: flex;
+`;
 
 export const Text = styled.div`
-  .subject {
-    margin-right: 20px;
-  }
+  margin-right: 50px;
   font-size: 16px;
-  margin-bottom: 20px;
+  div {
+    margin-bottom: 20px;
+  }
 `;
