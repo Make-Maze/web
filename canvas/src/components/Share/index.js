@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Liked, Profile } from "../../Atoms";
 import { useRecoilState } from "recoil";
+import Button from "../Button";
 const Share = () => {
   const [shared, setShared] = useState([]); // 공유하기
   const [liked, setLiked] = useRecoilState(Liked);
@@ -67,35 +68,28 @@ const Share = () => {
   };
 
   return (
-    <>
-      <S.MainSection>
-        <h1>
-          다른 사람들의 <br />
-          <S.Green> 미로</S.Green>를 체험해봐요.
-        </h1>
-        <hr />
+    <S.MainSection>
+      <h1>다른 사람의 미로</h1>
 
-        <S.MapSection>
-          {shared.length === 0 ? (
-            <p className="noShare">공유된 미로가 없습니다.</p>
-          ) : (
-            shared.map((element, i) => (
-              <span key={i}>
-                <S.ItemSection>
-                  <img src={element.img} alt="" />
-                  <p>{element.userName}님이 제작한</p>
-                  <span className="title">{element.mapName}</span>
-                  <p className="mapId">mapId : {element.mapId}</p>
-                  <S.ButtonWrapper>
-                    <button onClick={() => TrySave(element)}>저장하기</button>
-                  </S.ButtonWrapper>
-                </S.ItemSection>
-              </span>
-            ))
-          )}
-        </S.MapSection>
-      </S.MainSection>
-    </>
+      <S.MapSection>
+        {shared.length === 0 ? (
+          <p className="noShare">공유된 미로가 없습니다.</p>
+        ) : (
+          shared.map((element, i) => (
+            <span key={i}>
+              <S.ItemSection>
+                <img src={element.img} alt="" />
+                <S.Desc>
+                  {element.userName}님이 제작한 <br />
+                  <span>{element.mapName}</span>
+                </S.Desc>
+                <Button content="저장하기" onClick={() => TrySave(element)} />
+              </S.ItemSection>
+            </span>
+          ))
+        )}
+      </S.MapSection>
+    </S.MainSection>
   );
 };
 
