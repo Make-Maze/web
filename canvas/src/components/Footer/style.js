@@ -3,23 +3,19 @@ import styled from "styled-components";
 export const Footer = styled.div`
   width: 100vw;
   height: 300px;
-  overflow: hidden;
   box-sizing: border-box;
-  hr {
-    background: #c4c4c4;
-    margin-bottom: 50px;
-  }
-
+  margin-top: 50px;
   img {
     width: 40px;
     height: 40px;
   }
+  border-top: 1px solid #f1f1f1;
 `;
 
 export const Container = styled.div`
   width: 80vw;
   display: flex;
-  margin: 0 auto;
+  margin: 50px auto 0;
   justify-content: space-between;
 `;
 

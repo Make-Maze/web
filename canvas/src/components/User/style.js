@@ -22,14 +22,13 @@ export const UserSection = styled.div`
     line-height: 24px;
   }
 
-  border-bottom: 1px solid #c4c4c4;
-
   img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-bottom: 35px;
   }
+  border-bottom: 1px solid #f1f1f1;
 `;
 
 export const ChoiceSection = styled.div`

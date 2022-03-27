@@ -1,11 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import * as S from "./style";
 import github from "../../Assets/github.png";
 const Footer = () => {
   return (
     <S.Footer>
-      <hr />
       <S.Container>
         <div>
           <S.TeamName>

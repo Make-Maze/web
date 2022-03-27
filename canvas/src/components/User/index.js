@@ -71,9 +71,8 @@ const User = () => {
     <S.MainSection>
       <S.UserSection>
         <img src={profile.imageUrl} alt="" />
-        <p>유시온{profile.name}</p>
+        <p>{profile.name}</p>
       </S.UserSection>
-      <hr />
       <S.Container>
         <S.ChoiceSection>
           <S.Choice

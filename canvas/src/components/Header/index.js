@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import * as S from "./style";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
@@ -19,15 +19,15 @@ const Header = () => {
   return (
     <S.Header>
       <S.Container>
-        <div>
+        <Link to="/draw">
           <S.Logo>Make & Maze</S.Logo>
-        </div>
+        </Link>
         <S.Wrapper>
           <NavLink
             style={({ isActive }) => ({
               color: isActive ? "#1a6dff" : "black",
             })}
-            to="/Draw"
+            to="/draw"
           >
             만들기
           </NavLink>
@@ -35,7 +35,7 @@ const Header = () => {
             style={({ isActive }) => ({
               color: isActive ? "#1a6dff" : "black",
             })}
-            to="/Share"
+            to="/share"
           >
             체험하기
           </NavLink>
@@ -43,7 +43,7 @@ const Header = () => {
             style={({ isActive }) => ({
               color: isActive ? "#1a6dff" : "black",
             })}
-            to="/User"
+            to="/user"
           >
             마이페이지
           </NavLink>

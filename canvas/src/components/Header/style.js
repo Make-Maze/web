@@ -6,7 +6,7 @@ export const Header = styled.header`
   font-size: 16px;
   background-color: #ffffff;
   z-index: 2;
-  box-shadow: 1px 0 10px #1a6dff;
+  border-bottom: 1px solid #f1f1f1;
   position: fixed;
   font-size: 16px;
   box-sizing: border-box;
