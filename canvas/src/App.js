@@ -11,8 +11,6 @@ const App = () => {
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       setIsLogin(true);
-    } else {
-      setIsLogin(true);
     }
   }, [isLogin, setIsLogin]);
 

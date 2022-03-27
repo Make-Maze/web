@@ -9,18 +9,13 @@ export const MainSection = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #1a6dff;
-  color: #ffffff;
   .logo {
     width: 239px;
     height: 67px;
   }
   * {
     overflow: hidden;
-  }
-
-  hr {
-    width: 45%;
-    margin: 10px auto;
+    color: #ffffff;
   }
   p {
     font-family: "Pacifico";
@@ -37,6 +32,7 @@ export const Title = styled.h1`
   font-weight: 700;
   font-size: 100px;
   line-height: 120px;
+  margin-bottom: 20px;
 `;
 
 export const Desc = styled.div`
