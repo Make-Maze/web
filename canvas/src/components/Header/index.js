@@ -4,6 +4,7 @@ import * as S from "./style";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Login } from "../../Atoms/";
+import Button from "../Button";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useRecoilState(Login);
@@ -21,7 +22,7 @@ const Header = () => {
         <div>
           <S.Logo>Make & Maze</S.Logo>
         </div>
-        <div>
+        <S.Wrapper>
           <NavLink
             style={({ isActive }) => ({
               color: isActive ? "#1a6dff" : "black",
@@ -46,8 +47,8 @@ const Header = () => {
           >
             마이페이지
           </NavLink>
-          <S.LogOutBtn onClick={Logout}>로그아웃</S.LogOutBtn>
-        </div>
+          <Button content="로그아웃" onClick={Logout} />
+        </S.Wrapper>
       </S.Container>
     </S.Header>
   );

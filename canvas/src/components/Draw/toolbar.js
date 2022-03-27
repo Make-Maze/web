@@ -3,7 +3,8 @@ import "../../style/toolbar.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { Title } from "../../Atoms/";
+import { Title } from "../../Atoms";
+import Button from "../Button";
 
 const Toolbar = (props) => {
   const map = props.map;
@@ -115,41 +116,37 @@ const Toolbar = (props) => {
 
   return (
     <div className="toolbar">
-      <button
+      <Button
+        content="지우기"
         onClick={function (e) {
           e.preventDefault();
           props.setSelect("del");
         }}
-      >
-        지우기
-      </button>
-      <button
+      />
+      <Button
+        content="전체 지우기"
         onClick={function (e) {
           e.preventDefault();
           props.setSelect("Alldel");
         }}
-      >
-        전체 지우기
-      </button>
-      <button
+      />
+      <Button
+        content="벽"
         onClick={function (e) {
           e.preventDefault();
           props.setSelect("wall");
           props.setItem(false);
         }}
-      >
-        벽
-      </button>
-      <button
+      />
+      <Button
+        content="아이템"
         onClick={function (e) {
           e.preventDefault();
           props.setSelect("item");
           props.setItem(true);
         }}
-      >
-        아이템
-      </button>
-      <button onClick={make}>만들기</button>
+      />
+      <Button content="만들기" onClick={make} />
     </div>
   );
 };

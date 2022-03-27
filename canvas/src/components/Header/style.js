@@ -18,10 +18,17 @@ export const Header = styled.header`
 export const Container = styled.div`
   width: 80vw;
   display: flex;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const Logo = styled.h1`
   font-family: "Pacifico";
   font-weight: 400;
