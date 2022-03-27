@@ -3,9 +3,19 @@ import * as P from "./Pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Login } from "./Atoms/";
+import { useEffect } from "react";
 
 const App = () => {
   const [isLogin, setIsLogin] = useRecoilState(Login);
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(true);
+    }
+  }, [isLogin, setIsLogin]);
+
   return (
     <BrowserRouter>
       <Routes>
