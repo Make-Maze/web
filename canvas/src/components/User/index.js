@@ -4,12 +4,15 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { Liked, Profile } from "../../Atoms/";
+import Button from "../Button";
 
 const User = () => {
   const [saved, setSaved] = useState([]); // 저장하기
   const [liked, setLiked] = useRecoilState(Liked);
   const [profile, setProfile] = useRecoilState(Profile);
-
+  const [choice, setChoice] = useState("made");
+  const [saveColor, setSaveColor] = useState(true);
+  const [likeColor, setLikeColor] = useState(false);
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
     const getSaved = async () => {
@@ -65,72 +68,83 @@ const User = () => {
   };
 
   return (
-    <>
-      <S.MainSection>
-        <h1 className="profile">내 정보</h1>
-        <hr />
-        <S.UserSection>
-          <img src={profile.imageUrl} alt="" />
-          <div>
-            <p>이름 : {profile.name}</p>
-            <p>이메일 : {profile.email}</p>
-          </div>
-        </S.UserSection>
-        <S.MapSection>
-          <h1>
-            {profile.name} 님이 <S.Green>만든</S.Green>
-            미로
-          </h1>
-          <hr />
+    <S.MainSection>
+      <S.UserSection>
+        <img src={profile.imageUrl} alt="" />
+        <p>유시온{profile.name}</p>
+      </S.UserSection>
+      <hr />
+      <S.Container>
+        <S.ChoiceSection>
+          <S.Choice
+            color={saveColor}
+            onClick={() => {
+              setChoice("made");
+              setSaveColor(true);
+              setLikeColor(false);
+            }}
+          >
+            제작한 미로
+          </S.Choice>
+          <S.Choice
+            color={likeColor}
+            onClick={() => {
+              setChoice("saved");
+              setSaveColor(false);
+              setLikeColor(true);
+            }}
+          >
+            저장한 미로
+          </S.Choice>
+        </S.ChoiceSection>
 
-          {saved.length === 0 ? (
-            <p className="noSave">만든 미로가 없습니다.</p>
-          ) : (
-            saved.map((element, i) => (
-              <span key={i}>
-                <S.ItemSection>
-                  <img src={element.img} alt="" />
-                  <p>{element.userName}님이 제작한</p>
-                  <span className="title">{element.mapName}</span>
-                  <p className="mapId">mapID : {element.mapId}</p>
-                  <S.ButtonWrapper>
-                    <button onClick={() => TryDelete(element, "saved")}>
-                      삭제하기
-                    </button>
-                  </S.ButtonWrapper>
-                </S.ItemSection>
-              </span>
-            ))
-          )}
-
-          <h1>
-            {profile.name} 님이 <S.Green>저장한</S.Green>
-            미로
-          </h1>
-          <hr />
-
-          {liked.length === 0 ? (
-            <p className="noSave">저장한 미로가 없습니다.</p>
-          ) : (
-            liked.map((element, i) => (
-              <span key={i}>
-                <S.ItemSection>
-                  <img src={element.img} alt="" />
-                  <p>{element.userName}님이 제작한</p>
-                  <span className="title">{element.mapName}</span>
-                  <p className="mapId">mapID : {element.mapId}</p>
-                  <S.ButtonWrapper>
-                    <button onClick={() => TryDelete(element, "shared")}>
-                      삭제하기
-                    </button>
-                  </S.ButtonWrapper>
-                </S.ItemSection>
-              </span>
-            ))
-          )}
-        </S.MapSection>
-      </S.MainSection>
-    </>
+        {choice === "made" ? (
+          <S.MainSection>
+            {saved.length === 0 ? (
+              <p className="noSave">제작한 미로가 없습니다.</p>
+            ) : (
+              liked.map((element, i) => (
+                <span key={i}>
+                  <S.ItemSection>
+                    <img src={element.img} alt="" />
+                    <S.Desc>
+                      {element.userName}님이 제작한 <br />
+                      <span>{element.mapName}</span>
+                    </S.Desc>
+                    <Button
+                      content="삭제하기"
+                      onClick={() => TryDelete(element, "saved")}
+                    />
+                  </S.ItemSection>
+                </span>
+              ))
+            )}
+          </S.MainSection>
+        ) : (
+          <S.MainSection>
+            {liked.length === 0 ? (
+              <p className="noSave">저장한 미로가 없습니다.</p>
+            ) : (
+              liked.map((element, i) => (
+                <span key={i}>
+                  <S.ItemSection>
+                    <img src={element.img} alt="" />
+                    <S.Desc>
+                      {element.userName}님이 제작한 <br />
+                      <span>{element.mapName}</span>
+                    </S.Desc>
+                    <Button
+                      content="삭제하기"
+                      onClick={() => TryDelete(element, "liked")}
+                    />
+                  </S.ItemSection>
+                </span>
+              ))
+            )}
+          </S.MainSection>
+        )}
+      </S.Container>
+    </S.MainSection>
   );
 };
 

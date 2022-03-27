@@ -1,48 +1,55 @@
 import styled from "styled-components";
 
 export const MainSection = styled.div`
-  padding: 20vh 10vw 0vw;
+  background-color: #fbfbfb;
   * {
     margin: 0;
-    overflow-x: hidden;
   }
-  img {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-  }
-  .profile {
-    font-size: 60px;
-  }
-
-  hr {
-    margin: 5px 0 40px;
-  }
-`;
-export const Green = styled.span`
-  color: #9ecc93;
 `;
 
 export const UserSection = styled.div`
-  position: relative;
+  padding-top: 150px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding-bottom: 150px;
 
   p {
     font-size: 24px;
-    margin: 0 20px 10px 150px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
   }
-  .mainImg {
-    width: 600px;
-    height: 528px;
-  }
-  hr {
-    width: 5px;
+
+  border-bottom: 1px solid #c4c4c4;
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 35px;
   }
 `;
 
-export const MapSection = styled.div`
+export const ChoiceSection = styled.div`
+  display: flex;
+  width: 70vw;
+  justify-content: space-around;
+  margin: 0 auto;
+  margin-bottom: 100px;
+`;
+
+export const Choice = styled.span`
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 48px;
+  color: ${(props) => (props.color ? "#1a6dff" : "black")};
+  cursor: pointer;
+`;
+
+export const Container = styled.div`
+  padding: 80px 10vw;
   overflow: hidden;
   h1 {
     margin-top: 100px;
@@ -58,34 +65,38 @@ export const MapSection = styled.div`
   }
 `;
 
+export const MapSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const ItemSection = styled.div`
   display: inline-flex;
   flex-direction: column;
+  align-items: center;
+  height: 700px;
   width: 300px;
-  margin: 70px 200px 0 0;
   * {
     overflow: hidden;
   }
-  p {
-    font-size: 20px;
-    text-align: center;
-    margin-top: 20px;
-  }
-  .mapId {
-    margin: 0;
-  }
-  .title {
-    color: #9ecc93;
-    text-align: center;
-    font-size: 28px;
-    margin-top: 5px;
-  }
-  button {
-    width: 200px;
+
+  img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-bottom: 50px;
   }
 `;
 
-export const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+export const Desc = styled.div`
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  height: 100px;
+  line-height: 28px;
+  p {
+    font-size: 20px;
+    text-align: center;
+  }
 `;
