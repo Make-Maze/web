@@ -7,24 +7,26 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import { Login, Profile } from "../../Atoms";
 import maze from "../../Assets/maze.png";
+import { useCookies } from "react-cookie";
 
 const Start = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useRecoilState(Profile);
   const [isLogin, setIsLogin] = useRecoilState(Login);
+  const [cookie, setCookie] = useCookies();
   function onSuccess(res) {
     console.log(res);
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
     const { email, googleId, name, imageUrl } = res.profileObj;
     // 유저 정보를 요청하는 api 필요 / 새로고침 시 유저정보가 없어지기 때문
-    setProfile({
-      email,
-      googleId,
-      name,
-      imageUrl,
-    });
     console.log(googleId);
     console.log(profile.googleId);
+    setProfile({
+      googleId,
+      name,
+      email,
+      imageUrl,
+    });
     axios({
       url: "/auth/login",
       method: "POST",
@@ -42,8 +44,8 @@ const Start = () => {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${accessToken}`;
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+        setCookie("accessToken", accessToken);
+        setCookie("refreshToken", refreshToken);
         setIsLogin(true);
         toast.success("로그인 성공");
         navigate("/draw");

@@ -78,23 +78,7 @@ const Canvas = (props) => {
   };
   const [title, setTitle] = useRecoilState(Title);
   const [profile, setProfile] = useRecoilState(Profile);
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const res = await axios.get("/member/me");
-        console.log(res);
-        setProfile({
-          googleId: res.data.password,
-          name: res.data.name,
-          email: res.data.email,
-          imageUrl: res.data.img,
-        });
-      } catch (e) {
-        throw e;
-      }
-    };
-    getUser();
-  }, []);
+
 
   return (
     <div className="wrapper">

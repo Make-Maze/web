@@ -6,13 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RecoilRoot } from "recoil";
+import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <ToastContainer />
-      <App />
-    </RecoilRoot>
+    <CookiesProvider>
+      <RecoilRoot>
+        <ToastContainer />
+        <App />
+      </RecoilRoot>
+    </CookiesProvider>
   </React.StrictMode>,
   document.getElementById("root"),
 );

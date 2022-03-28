@@ -1,7 +1,8 @@
 import React from "react";
 import * as S from "./style";
 import notFound from "../../Assets/notFound.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 const NotFound = () => {
   const navigate = useNavigate();
   return (
@@ -12,7 +13,8 @@ const NotFound = () => {
           요청하신 페이지를 찾을 수 없습니다. <br /> 주소가 정확한지
           확인해주세요.
         </p>
-        <div className="goBack"
+        <div
+          className="goBack"
           onClick={() => {
             navigate(-1);
           }}

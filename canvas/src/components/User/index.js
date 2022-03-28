@@ -39,6 +39,27 @@ const User = () => {
     getLiked();
   }, []);
 
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        console.log("hui");
+        const res = await axios.get("/member/me");
+        console.log(res);
+        setProfile({
+          googleId: res.data.password,
+          name: res.data.name,
+          email: res.data.email,
+          imageUrl: res.data.img,
+        });
+      } catch (e) {
+        throw e;
+      }
+    };
+    getUser();
+  }, []);
+
+  console.log(profile);
+
   const TryDelete = (element, method) => {
     // 사용자가 직접 만든 미로 지우기
     if (method === "saved") {
