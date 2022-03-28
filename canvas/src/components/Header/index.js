@@ -5,13 +5,16 @@ import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Login } from "../../Atoms/";
 import Button from "../Button";
+import { useCookies } from "react-cookie";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useRecoilState(Login);
   const navigate = useNavigate();
+  const [cookie, setCookie, removeCookie] = useCookies();
   const Logout = () => {
     setIsLogin(false);
-    localStorage.clear();
+    removeCookie("accessToken");
+    removeCookie("refreshToken");
     toast.info("로그아웃 되었습니다.");
     navigate("/");
   };

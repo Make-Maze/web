@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import { Liked, Profile } from "../../Atoms/";
 import Button from "../Button";
+import { useCookies } from "react-cookie";
 
 const User = () => {
   const [saved, setSaved] = useState([]); // 저장하기
@@ -42,7 +43,6 @@ const User = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        console.log("hui");
         const res = await axios.get("/member/me");
         console.log(res);
         setProfile({

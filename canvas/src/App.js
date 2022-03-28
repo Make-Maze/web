@@ -4,13 +4,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Login } from "./Atoms/";
 import { useEffect } from "react";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
 const App = () => {
   const [isLogin, setIsLogin] = useRecoilState(Login);
-
+  const [cookie, ,] = useCookies();
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
+    if (cookie.accessToken) {
       setIsLogin(true);
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${cookie.accessToken}`;
     }
   }, [isLogin, setIsLogin]);
 
