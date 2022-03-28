@@ -5,7 +5,6 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import { Liked, Profile } from "../../Atoms/";
 import Button from "../Button";
-import { useCookies } from "react-cookie";
 
 const User = () => {
   const [saved, setSaved] = useState([]); // 저장하기
@@ -18,7 +17,7 @@ const User = () => {
   useEffect(() => {
     const getSaved = async () => {
       try {
-        const res = await axios.get("map/getMaps");
+        const res = await axios.get("/map/getMaps");
         setSaved(res.data);
       } catch (e) {
         throw e;
@@ -39,26 +38,6 @@ const User = () => {
     };
     getLiked();
   }, []);
-
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const res = await axios.get("/member/me");
-        console.log(res);
-        setProfile({
-          googleId: res.data.password,
-          name: res.data.name,
-          email: res.data.email,
-          imageUrl: res.data.img,
-        });
-      } catch (e) {
-        throw e;
-      }
-    };
-    getUser();
-  }, []);
-
-  console.log(profile);
 
   const TryDelete = (element, method) => {
     // 사용자가 직접 만든 미로 지우기
@@ -83,7 +62,7 @@ const User = () => {
         })
         .catch((err) => {
           console.log(err);
-          toast.success("삭제 실패");
+          toast.error("삭제 실패");
         });
     }
   };
@@ -123,7 +102,7 @@ const User = () => {
             {saved.length === 0 ? (
               <p className="noSave">제작한 미로가 없습니다.</p>
             ) : (
-              liked.map((element, i) => (
+              saved.map((element, i) => (
                 <span key={i}>
                   <S.ItemSection>
                     <img src={element.img} alt="" />

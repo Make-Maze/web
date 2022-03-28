@@ -18,7 +18,7 @@ const Share = () => {
   }, []);
 
   // 중복 제거 체크 함수
-  function isMyMap(curId) {
+  const isMyMap = (curId) => {
     return liked
       .filter((item) => {
         if (item.mapId === curId) {
@@ -29,7 +29,7 @@ const Share = () => {
       .map((v) => {
         return v;
       }).length;
-  }
+  };
 
   const TrySave = (element) => {
     // 나중에 자신이 만든 맵 예외처리 해야함
@@ -44,10 +44,7 @@ const Share = () => {
         url: "/like/add",
         method: "POST",
         data: {
-          password: profile.googleId,
-          name: profile.name,
-          email: profile.email,
-          img: profile.imageUrl,
+          mapId: element.mapId,
         },
       })
         .then((res) => {

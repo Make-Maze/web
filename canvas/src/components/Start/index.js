@@ -14,19 +14,10 @@ const Start = () => {
   const [profile, setProfile] = useRecoilState(Profile);
   const [isLogin, setIsLogin] = useRecoilState(Login);
   const [cookie, setCookie] = useCookies();
-  function onSuccess(res) {
-    console.log(res);
+
+  const onSuccess = (res) => {
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
     const { email, googleId, name, imageUrl } = res.profileObj;
-    // 유저 정보를 요청하는 api 필요 / 새로고침 시 유저정보가 없어지기 때문
-    console.log(googleId);
-    console.log(profile.googleId);
-    setProfile({
-      googleId,
-      name,
-      email,
-      imageUrl,
-    });
     axios({
       url: "/auth/login",
       method: "POST",
@@ -39,7 +30,7 @@ const Start = () => {
     })
       .then((res) => {
         const { accessToken, refreshToken } = res.data.tokenDto;
-        // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+
         setCookie("accessToken", accessToken, { path: "/" });
         setCookie("refreshToken", refreshToken, { path: "/" });
         setIsLogin(true);
@@ -51,7 +42,7 @@ const Start = () => {
         setIsLogin(false);
         toast.error("다시 시도해 주세요");
       });
-  }
+  };
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       setIsLogin(true);
