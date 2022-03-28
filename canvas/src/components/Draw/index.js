@@ -2,10 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import Block from "./block";
 import SideBar from "./sidebar";
 import Toolbar from "./toolbar";
-import "../../style/canvas.css";
+import "../../Style/canvas.css";
 import { useRecoilState } from "recoil";
-import { Title, Profile } from "../../Atoms";
-import axios from "axios";
+import { Title } from "../../Atoms";
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
@@ -76,9 +75,7 @@ const Canvas = (props) => {
       // }
     }
   };
-  const [title, setTitle] = useRecoilState(Title);
-  const [profile, setProfile] = useRecoilState(Profile);
-
+  const [, setTitle] = useRecoilState(Title);
 
   return (
     <div className="wrapper">

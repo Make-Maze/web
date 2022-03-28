@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Footer, Draw } from "../components";
+import { Header, Footer, Draw } from "../Components";
 
 const DrawPage = () => {
   return (

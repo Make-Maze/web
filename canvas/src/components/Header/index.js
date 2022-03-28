@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import * as S from "./style";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
-import { Login } from "../../Atoms/";
+import { Login } from "../../Atoms";
 import Button from "../Button";
 import { useCookies } from "react-cookie";
 

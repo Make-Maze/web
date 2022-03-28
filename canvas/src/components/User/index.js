@@ -3,7 +3,7 @@ import * as S from "./style";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { Liked, Profile } from "../../Atoms/";
+import { Liked, Profile } from "../../Atoms";
 import Button from "../Button";
 
 const User = () => {
