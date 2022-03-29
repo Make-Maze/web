@@ -2,6 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 class Map {
+  // 맵 제작
   add(title, mapJSON) {
     try {
       const data = {
@@ -19,6 +20,7 @@ class Map {
     }
   }
 
+  // 모든 맵 불러오기
   AllMaps() {
     try {
       return axios({
@@ -30,6 +32,7 @@ class Map {
     }
   }
 
+  // 로그인된 유저의 맵을 가져옴
   getMaps() {
     try {
       return axios({
@@ -41,6 +44,7 @@ class Map {
     }
   }
 
+  // 맵 삭제
   delete(mapId) {
     try {
       return axios({

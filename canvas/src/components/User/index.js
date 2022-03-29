@@ -17,10 +17,9 @@ const User = () => {
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
     map.getMaps().then((res) => setSaved(res.data));
+    // 현재 로그인 된 유저의 Like를 가져옴
     like.getLikes().then((res) => setLiked(res.data));
   }, []);
-
-  // 현재 로그인 된 유저의 Like를 가져옴
 
   const TryDelete = (element, method) => {
     // 사용자가 직접 만든 미로 지우기
@@ -71,7 +70,7 @@ const User = () => {
         {choice === "made" ? (
           <S.MapSection>
             {saved.length === 0 ? (
-              <p className="noSave">제작한 미로가 없습니다.</p>
+              <p className="noMap">제작한 미로가 없습니다.</p>
             ) : (
               saved.map((element, i) => (
                 <span key={i}>
@@ -93,7 +92,7 @@ const User = () => {
         ) : (
           <S.MapSection>
             {liked.length === 0 ? (
-              <p className="noSave">저장한 미로가 없습니다.</p>
+              <p className="noMap">저장한 미로가 없습니다.</p>
             ) : (
               liked.map((element, i) => (
                 <span key={i}>

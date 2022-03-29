@@ -1,6 +1,7 @@
 import axios from "axios";
 
 class Auth {
+  // 로그인
   login(email, password, name, img) {
     try {
       const data = {

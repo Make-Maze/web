@@ -18,16 +18,18 @@ export const MainSection = styled.div`
 export const MapSection = styled.div`
   overflow: hidden;
   margin-top: 100px;
-  .noShare {
+  .noMap {
+    margin-top: 100px;
     height: 50vh;
     text-align: center;
     font-family: "appleM";
     font-size: 24px;
-    margin: 100px;
+    width: 80vw;
+    color: #1a6dff;
   }
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 80vw;
 `;
 
 export const ItemSection = styled.div`

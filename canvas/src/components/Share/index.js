@@ -9,12 +9,12 @@ import map from "../../Api/map";
 
 const Share = () => {
   const [shared, setShared] = useState([]); // 공유하기
-  const [liked] = useRecoilState(Liked);
+  const [liked, setLiked] = useRecoilState(Liked);
   const [profile] = useRecoilState(Profile);
-
   // 모든 맵 조회
   useEffect(() => {
     map.AllMaps().then((res) => setShared(res.data));
+    like.getLikes().then((res) => setLiked(res.data));
   }, []);
 
   // 중복 제거 체크 함수
@@ -35,13 +35,10 @@ const Share = () => {
     // 나중에 자신이 만든 맵 예외처리 해야함
     if (isMyMap(element.mapId) !== liked.length) {
       toast.error("이미 저장된 맵입니다.");
-    } else if (element.userName === profile.userName) {
+    } else if (element.userName === profile.name) {
       toast.error("자신이 만든 맵은 저장할 수 없습니다.");
     } else {
-      await like.add(element.mapId).then((res) => {
-        // setLiked(liked.concat({ ...element, ...res.data }));
-        toast.success("저장 완료");
-      });
+      await like.add(element.mapId).then(() => toast.success("저장 완료"));
     }
   };
 
@@ -50,7 +47,7 @@ const Share = () => {
       <h1>다른 사람의 미로</h1>
       <S.MapSection>
         {shared.length === 0 ? (
-          <p className="noShare">공유된 미로가 없습니다.</p>
+          <p className="noMap">공유된 미로가 없습니다.</p>
         ) : (
           shared.map((element, i) => (
             <span key={i}>
