@@ -1,22 +1,22 @@
 import React from "react";
-import "../../style/toolbar.css";
+import "../../Style/toolbar.css";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { useRecoilState } from "recoil";
 import { Title } from "../../Atoms";
 import Button from "../Button";
+import map from "../../Api/map";
 
 const Toolbar = (props) => {
-  const map = props.map;
+  const mapArray = props.map;
   const [title, setTitle] = useRecoilState(Title);
-  const make = () => {
+  const make = async () => {
     let potal_state = 0;
     let map_state = 0;
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
-        if (map[i][j] === 9) {
+        if (mapArray[i][j] === 9) {
           potal_state++;
-        } else if (map[i][j] === 0) {
+        } else if (mapArray[i][j] === 0) {
           map_state++;
         }
       }
@@ -53,9 +53,9 @@ const Toolbar = (props) => {
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
         let testObject = new Object();
-        if (map[i][j] !== 0 && map[i][j] !== 9) {
+        if (mapArray[i][j] !== 0 && mapArray[i][j] !== 9) {
           testObject = {
-            kind: map[i][j],
+            kind: mapArray[i][j],
             x: j,
             y: 39 - i,
           };
@@ -75,42 +75,28 @@ const Toolbar = (props) => {
       toast.error("맵을 다 그려 주세요");
     } else {
       // 구글 아이디가 googleId인 사용자의 맵 추가
+      await map.add(title, mapJSON).then((res) => {
+        props.setBtn("btn_open");
+        toast.success("저장 완료");
+        for (let i = 0; i < 30; i++) {
+          props.map[i].fill(0);
+        }
 
-      axios({
-        url: "/map/add",
-        method: "post",
-        data: {
-          mapName: title,
-          block: mapJSON,
-        },
-      })
-        .then((res) => {
-          console.log(res);
-          props.setBtn("btn_open");
-          toast.success("저장 완료");
-          for (let i = 0; i < 30; i++) {
-            props.map[i].fill(0);
-          }
+        props.potalInfo.splice(0, props.potalInfo.length);
+        // 전체 지우고 난 후 자동으로 브러쉬 선택
+        props.setDraw(0);
+        props.setSelect("wall");
+        props.map[0][0] = 91;
+        props.map[0][1] = 92;
+        props.map[1][0] = 93;
+        props.map[1][1] = 94;
+        props.map[28][68] = 95;
+        props.map[28][69] = 96;
+        props.map[29][68] = 97;
+        props.map[29][69] = 98;
 
-          props.potalInfo.splice(0, props.potalInfo.length);
-          // 전체 지우고 난 후 자동으로 브러쉬 선택
-          props.setDraw(0);
-          props.setSelect("wall");
-          props.map[0][0] = 91;
-          props.map[0][1] = 92;
-          props.map[1][0] = 93;
-          props.map[1][1] = 94;
-          props.map[28][68] = 95;
-          props.map[28][69] = 96;
-          props.map[29][68] = 97;
-          props.map[29][69] = 98;
-
-          setTitle("");
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error("미로 생성을 실패하였습니다.");
-        });
+        setTitle(" ");
+      });
     }
   };
 
