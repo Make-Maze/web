@@ -2,10 +2,36 @@ import "./App.css";
 import * as P from "./Pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { Login } from "./Atoms/AtomContainer";
+import { Login, Profile } from "./Atoms/";
+import { useEffect } from "react";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import member from "./Api/member";
 
 const App = () => {
   const [isLogin, setIsLogin] = useRecoilState(Login);
+  const [cookie, ,] = useCookies();
+  const [, setProfile] = useRecoilState(Profile);
+  useEffect(() => {
+    if (cookie.accessToken) {
+      setIsLogin(true);
+
+      // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${cookie.accessToken}`;
+
+      member.me().then((res) => {
+        setProfile({
+          googleId: res.data.password,
+          name: res.data.name,
+          email: res.data.email,
+          imageUrl: res.data.img,
+        });
+      });
+    }
+  }, [isLogin, setIsLogin]);
+
   return (
     <BrowserRouter>
       <Routes>

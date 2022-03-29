@@ -1,32 +1,27 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Snowfall from "react-snowfall";
-import { useRecoilState } from "recoil";
-import { Login } from "../../Atoms/AtomContainer";
+import React from "react";
 import * as S from "./style";
+import notFound from "../../Assets/notFound.png";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
-  const [isLogin, setIsLogin] = useRecoilState(Login);
-
-  useEffect(() => {
-    if (sessionStorage.getItem("googleId") === null) {
-      setIsLogin(false);
-    } else {
-      setIsLogin(true);
-    }
-    console.log(isLogin);
-  }, [isLogin, setIsLogin]);
-
+  const navigate = useNavigate();
   return (
     <S.MainSection>
-      <Snowfall />
-      <h1>Not Found</h1>
-      찾을 수 없는 페이지 입니다.
-      {isLogin ? (
-        <Link to="/Draw">홈으로 이동</Link>
-      ) : (
-        <Link to="/">홈으로 이동</Link>
-      )}
+      <div>
+        <img src={notFound} alt="" />
+        <p>
+          요청하신 페이지를 찾을 수 없습니다. <br /> 주소가 정확한지
+          확인해주세요.
+        </p>
+        <div
+          className="goBack"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          이전 페이지로 돌아가기
+        </div>
+      </div>
     </S.MainSection>
   );
 };

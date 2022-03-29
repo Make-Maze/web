@@ -1,20 +1,22 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const MainSection = styled.div`
   color: #1b2735;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #fbfbfb;
 
-  h1 {
-    font-size: 150px;
+  p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
   }
-  a {
-    line-height: 60px;
+
+  .goBack {
+    line-height: 40px;
+    color: #1a6dff;
+    cursor: pointer;
   }
-  a:hover {
-    color: #1b2735;
-  }
-`
+`;

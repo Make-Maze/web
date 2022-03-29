@@ -1,5 +1,6 @@
 .wrapper {
   padding: 50px 10vw;
+  background-color: #fbfbfb;
 }
 .canvas_wrap {
   position: relative;
@@ -20,6 +21,7 @@ canvas {
   font-size: 20px;
   padding-left: 10px;
   margin-top: 50px;
+  font-size: 16px;
 }
 
 /* 위대포 */

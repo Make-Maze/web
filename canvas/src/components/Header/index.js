@@ -1,47 +1,58 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import * as S from "./style";
 import { toast } from "react-toastify";
-import logo from "../../Assets/logo.png";
 import { useRecoilState } from "recoil";
-import { Login } from "../../Atoms/AtomContainer";
+import { Login } from "../../Atoms";
+import Button from "../Button";
+import { useCookies } from "react-cookie";
 
 const Header = () => {
   const [isLogin, setIsLogin] = useRecoilState(Login);
   const navigate = useNavigate();
+  const [cookie, setCookie, removeCookie] = useCookies();
   const Logout = () => {
     setIsLogin(false);
-    sessionStorage.clear();
+    removeCookie("accessToken");
+    removeCookie("refreshToken");
+    toast.info("로그아웃 되었습니다.");
     navigate("/");
-    toast.info("로그아웃 하였습니다.");
   };
 
   return (
     <S.Header>
-      <div>
-        <img className="logo" src={logo} alt="" />
-      </div>
-      <div>
-        <NavLink
-          style={({ isActive }) => ({ color: isActive ? "#9ecc93" : "black" })}
-          to="/Draw"
-        >
-          만들기
-        </NavLink>
-        <NavLink
-          style={({ isActive }) => ({ color: isActive ? "#9ecc93" : "black" })}
-          to="/Share"
-        >
-          체험하기
-        </NavLink>
-        <NavLink
-          style={({ isActive }) => ({ color: isActive ? "#9ecc93" : "black" })}
-          to="/User"
-        >
-          마이페이지
-        </NavLink>
-        <span onClick={Logout}>로그아웃</span>
-      </div>
+      <S.Container>
+        <Link to="/draw">
+          <S.Logo>Make & Maze</S.Logo>
+        </Link>
+        <S.Wrapper>
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#1a6dff" : "black",
+            })}
+            to="/draw"
+          >
+            만들기
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#1a6dff" : "black",
+            })}
+            to="/share"
+          >
+            체험하기
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => ({
+              color: isActive ? "#1a6dff" : "black",
+            })}
+            to="/user"
+          >
+            마이페이지
+          </NavLink>
+          <Button content="로그아웃" onClick={Logout} />
+        </S.Wrapper>
+      </S.Container>
     </S.Header>
   );
 };

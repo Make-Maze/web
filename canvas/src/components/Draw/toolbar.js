@@ -1,22 +1,22 @@
 import React from "react";
-import "../../style/toolbar.css";
+import "../../Style/toolbar.css";
 import { toast } from "react-toastify";
-import { api } from "../../Api";
 import { useRecoilState } from "recoil";
-import { GoogleId, Title } from "../../Atoms/AtomContainer";
+import { Title } from "../../Atoms";
+import Button from "../Button";
+import map from "../../Api/map";
 
 const Toolbar = (props) => {
-  const map = props.map;
+  const mapArray = props.map;
   const [title, setTitle] = useRecoilState(Title);
-  const [googleId, setGoogleId] = useRecoilState(GoogleId);
-  const make = () => {
+  const make = async () => {
     let potal_state = 0;
     let map_state = 0;
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
-        if (map[i][j] === 9) {
+        if (mapArray[i][j] === 9) {
           potal_state++;
-        } else if (map[i][j] === 0) {
+        } else if (mapArray[i][j] === 0) {
           map_state++;
         }
       }
@@ -29,7 +29,6 @@ const Toolbar = (props) => {
     let mode = 0;
     for (let i = 0; i < props.potalInfo.length; i += 2) {
       if (mode === 1) {
-        console.log(potalObject1);
         potalObject2 = {
           x2: props.potalInfo[i][0],
           y2: props.potalInfo[i][1],
@@ -54,9 +53,9 @@ const Toolbar = (props) => {
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
         let testObject = new Object();
-        if (map[i][j] !== 0 && map[i][j] !== 9) {
+        if (mapArray[i][j] !== 0 && mapArray[i][j] !== 9) {
           testObject = {
-            kind: map[i][j],
+            kind: mapArray[i][j],
             x: j,
             y: 39 - i,
           };
@@ -65,11 +64,8 @@ const Toolbar = (props) => {
         }
       }
     }
-    console.log(jsonArray);
     let mapJSON = new Object();
     mapJSON = JSON.stringify(jsonArray);
-    console.log(mapJSON);
-    console.log(title);
 
     if (potal_state % 2 !== 0) {
       toast.error("포탈은 짝수개여야 합니다");
@@ -79,78 +75,64 @@ const Toolbar = (props) => {
       toast.error("맵을 다 그려 주세요");
     } else {
       // 구글 아이디가 googleId인 사용자의 맵 추가
-      api
-        .post(`/map/${googleId}`, {
-          block: mapJSON,
-          mapName: title,
-          userGoogleId: googleId,
-        })
-        .then((res) => {
-          props.setBtn("btn_open");
-          toast.success("저장 완료");
-          for (let i = 0; i < 30; i++) {
-            props.map[i].fill(0);
-          }
+      await map.add(title, mapJSON).then((res) => {
+        props.setBtn("btn_open");
+        toast.success("저장 완료");
+        for (let i = 0; i < 30; i++) {
+          props.map[i].fill(0);
+        }
 
-          props.potalInfo.splice(0, props.potalInfo.length);
-          // 전체 지우고 난 후 자동으로 브러쉬 선택
-          props.setDraw(0);
-          props.setSelect("wall");
-          props.map[0][0] = 91;
-          props.map[0][1] = 92;
-          props.map[1][0] = 93;
-          props.map[1][1] = 94;
-          props.map[28][68] = 95;
-          props.map[28][69] = 96;
-          props.map[29][68] = 97;
-          props.map[29][69] = 98;
+        props.potalInfo.splice(0, props.potalInfo.length);
+        // 전체 지우고 난 후 자동으로 브러쉬 선택
+        props.setDraw(0);
+        props.setSelect("wall");
+        props.map[0][0] = 91;
+        props.map[0][1] = 92;
+        props.map[1][0] = 93;
+        props.map[1][1] = 94;
+        props.map[28][68] = 95;
+        props.map[28][69] = 96;
+        props.map[29][68] = 97;
+        props.map[29][69] = 98;
 
-          setTitle("");
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error("저장 실패");
-        });
+        setTitle(" ");
+      });
     }
   };
 
   return (
     <div className="toolbar">
-      <button
+      <Button
+        content="지우기"
         onClick={function (e) {
           e.preventDefault();
           props.setSelect("del");
         }}
-      >
-        지우기
-      </button>
-      <button
+      />
+      <Button
+        content="전체 지우기"
         onClick={function (e) {
           e.preventDefault();
           props.setSelect("Alldel");
         }}
-      >
-        전체 지우기
-      </button>
-      <button
+      />
+      <Button
+        content="벽"
         onClick={function (e) {
           e.preventDefault();
           props.setSelect("wall");
           props.setItem(false);
         }}
-      >
-        벽
-      </button>
-      <button
+      />
+      <Button
+        content="아이템"
         onClick={function (e) {
           e.preventDefault();
           props.setSelect("item");
           props.setItem(true);
         }}
-      >
-        아이템
-      </button>
-      <button onClick={make}>만들기</button>
+      />
+      <Button content="만들기" onClick={make} />
     </div>
   );
 };

@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import Block from "./block";
 import SideBar from "./sidebar";
 import Toolbar from "./toolbar";
-import "../../style/canvas.css";
+import "../../Style/canvas.css";
 import { useRecoilState } from "recoil";
-import { Title } from "../../Atoms/AtomContainer";
+import { Title } from "../../Atoms";
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
@@ -75,18 +75,16 @@ const Canvas = (props) => {
       // }
     }
   };
-  const [title, setTitle] = useRecoilState(Title);
+  const [, setTitle] = useRecoilState(Title);
 
   return (
     <div className="wrapper">
       <div className="inputBox">
         <input
           type="text"
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
+          onChange={(e) => setTitle(e.target.value)}
           className="titleBox"
-          placeholder="미로 제목을 입력해 주세요"
+          placeholder="미로 제목을 입력해 주세요."
         />
       </div>
       <div className="canvas_wrap">
