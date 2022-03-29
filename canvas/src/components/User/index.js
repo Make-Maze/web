@@ -69,7 +69,7 @@ const User = () => {
         </S.ChoiceSection>
 
         {choice === "made" ? (
-          <S.MainSection>
+          <S.MapSection>
             {saved.length === 0 ? (
               <p className="noSave">제작한 미로가 없습니다.</p>
             ) : (
@@ -89,9 +89,9 @@ const User = () => {
                 </span>
               ))
             )}
-          </S.MainSection>
+          </S.MapSection>
         ) : (
-          <S.MainSection>
+          <S.MapSection>
             {liked.length === 0 ? (
               <p className="noSave">저장한 미로가 없습니다.</p>
             ) : (
@@ -111,7 +111,7 @@ const User = () => {
                 </span>
               ))
             )}
-          </S.MainSection>
+          </S.MapSection>
         )}
       </S.Container>
     </S.MainSection>

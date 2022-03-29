@@ -82,11 +82,9 @@ const Canvas = (props) => {
       <div className="inputBox">
         <input
           type="text"
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
+          onChange={(e) => setTitle(e.target.value)}
           className="titleBox"
-          placeholder="미로 제목을 입력해 주세요"
+          placeholder="미로 제목을 입력해 주세요."
         />
       </div>
       <div className="canvas_wrap">

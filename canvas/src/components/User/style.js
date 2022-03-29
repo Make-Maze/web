@@ -13,7 +13,6 @@ export const UserSection = styled.div`
   flex-direction: column;
   align-items: center;
   padding-bottom: 150px;
-
   p {
     font-size: 24px;
     font-style: normal;
@@ -49,7 +48,6 @@ export const Choice = styled.span`
 
 export const Container = styled.div`
   padding: 80px 10vw;
-  overflow: hidden;
   h1 {
     margin-top: 100px;
     font-size: 60px;
@@ -66,7 +64,9 @@ export const Container = styled.div`
 
 export const MapSection = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
 `;
 
 export const ItemSection = styled.div`
@@ -74,7 +74,7 @@ export const ItemSection = styled.div`
   flex-direction: column;
   align-items: center;
   height: 700px;
-  width: 300px;
+  width: 25vw;
   * {
     overflow: hidden;
   }
