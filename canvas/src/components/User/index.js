@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { useRecoilState } from "recoil";
 import { Liked, Profile } from "../../Atoms";
 import Button from "../Button";
+import map from "../../Api/map";
+import like from "../../Api/like";
 
 const User = () => {
   const [saved, setSaved] = useState([]); // 저장하기
@@ -15,55 +16,25 @@ const User = () => {
   const [likeColor, setLikeColor] = useState(false);
   // 구글 아이디가 gooleId 인 사용자의 Map 조회
   useEffect(() => {
-    const getSaved = async () => {
-      try {
-        const res = await axios.get("/map/getMaps");
-        setSaved(res.data);
-      } catch (e) {
-        throw e;
-      }
-    };
-    getSaved();
+    map.getMaps().then((res) => setSaved(res.data));
+    like.getLikes().then((res) => setLiked(res.data));
   }, []);
 
   // 현재 로그인 된 유저의 Like를 가져옴
-  useEffect(() => {
-    const getLiked = async () => {
-      try {
-        const res = await axios.get("/like/getLikes");
-        setLiked(res.data);
-      } catch (e) {
-        throw e;
-      }
-    };
-    getLiked();
-  }, []);
 
   const TryDelete = (element, method) => {
     // 사용자가 직접 만든 미로 지우기
     if (method === "saved") {
-      axios
-        .delete(`/map/delete/${element.mapId}`)
-        .then((res) => {
-          setSaved(saved.filter((mapData) => mapData.mapId !== element.mapId));
-          toast.success("삭제 완료");
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error("삭제 실패");
-        });
+      map.delete(element.mapId).then((res) => {
+        setSaved(saved.filter((mapData) => mapData.mapId !== element.mapId));
+        toast.success("삭제 완료");
+      });
     } else {
       // 저장된 맵 아이디가 likeId인 맵 삭제
-      axios
-        .delete(`/like/${element.LikeId}`)
-        .then((res) => {
-          setLiked(liked.filter((mapData) => mapData.mapId !== element.mapId));
-          toast.success("삭제 완료");
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error("삭제 실패");
-        });
+      like.delete(element.likeId).then(() => {
+        setLiked(liked.filter((mapData) => mapData.mapId !== element.mapId));
+        toast.success("삭제 완료");
+      });
     }
   };
 
