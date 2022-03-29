@@ -3,11 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import * as S from "./style";
 import GoogleLogin from "react-google-login";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { useRecoilState } from "recoil";
 import { Login, Profile } from "../../Atoms";
 import maze from "../../Assets/maze.png";
 import { useCookies } from "react-cookie";
+import auth from "../../Api/auth";
 
 const Start = () => {
   const navigate = useNavigate();
@@ -18,36 +18,21 @@ const Start = () => {
   const onSuccess = (res) => {
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
     const { email, googleId, name, imageUrl } = res.profileObj;
-    axios({
-      url: "/auth/login",
-      method: "POST",
-      data: {
-        email: email,
-        password: googleId,
-        name: name,
-        img: imageUrl,
-      },
-    })
-      .then((res) => {
+    try {
+      auth.login(email, googleId, name, imageUrl).then((res) => {
         const { accessToken, refreshToken } = res.data.tokenDto;
-
         setCookie("accessToken", accessToken, { path: "/" });
         setCookie("refreshToken", refreshToken, { path: "/" });
         setIsLogin(true);
         toast.success("로그인 성공");
         navigate("/draw");
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLogin(false);
-        toast.error("다시 시도해 주세요");
       });
-  };
-  useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setIsLogin(true);
+    } catch (e) {
+      setIsLogin(false);
+      toast.error("다시 시도해 주세요");
+      throw e;
     }
-  }, []);
+  };
 
   return (
     <S.MainSection>
