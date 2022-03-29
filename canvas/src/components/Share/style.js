@@ -27,6 +27,7 @@ export const MapSection = styled.div`
   }
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 export const ItemSection = styled.div`
@@ -34,7 +35,7 @@ export const ItemSection = styled.div`
   flex-direction: column;
   align-items: center;
   height: 700px;
-  width: 300px;
+  width: 20vw;
   * {
     overflow: hidden;
   }
