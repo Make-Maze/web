@@ -65,6 +65,10 @@ export const Container = styled.div`
     background: #ffffff;
     color: #1a6dff;
   }
+
+  a:hover {
+    color: #1a6dff;
+  }
 `;
 
 export const Team = styled.div`

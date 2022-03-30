@@ -33,8 +33,8 @@ const Canvas = (props) => {
   const [y, setY] = useState(0);
   const [map] = useState(list);
   const [potalInfo] = useState(list2);
-  const [height, setHeight] = useState();
-  const [width, setWidth] = useState();
+  const [, setHeight] = useState();
+  const [, setWidth] = useState();
   const [item, setItem] = useState(false);
   const [drawMode, setDraw] = useState(0);
   const [select, setSelect] = useState("wall");

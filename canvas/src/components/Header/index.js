@@ -8,9 +8,9 @@ import Button from "../Button";
 import { useCookies } from "react-cookie";
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useRecoilState(Login);
+  const [, setIsLogin] = useRecoilState(Login);
   const navigate = useNavigate();
-  const [cookie, setCookie, removeCookie] = useCookies();
+  const [, , removeCookie] = useCookies();
   const Logout = () => {
     setIsLogin(false);
     removeCookie("accessToken");
