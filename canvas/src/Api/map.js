@@ -12,7 +12,7 @@ class Map {
       return axios({
         method: "POST",
         url: "/map/add",
-        data: data,
+        data,
       });
     } catch (e) {
       toast.error("생성 실패");

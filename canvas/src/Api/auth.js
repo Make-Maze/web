@@ -13,7 +13,23 @@ class Auth {
       return axios({
         method: "POST",
         url: "/auth/login",
-        data: data,
+        data,
+      });
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  reissue(accessToken, refreshToken) {
+    try {
+      const data = {
+        accessToken,
+        refreshToken,
+      };
+      return axios({
+        method: "POST",
+        url: "/auth/reissue",
+        data,
       });
     } catch (e) {
       throw e;

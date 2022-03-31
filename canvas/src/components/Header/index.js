@@ -6,11 +6,12 @@ import { useRecoilState } from "recoil";
 import { Login } from "../../Atoms";
 import Button from "../Button";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 
 const Header = () => {
   const [, setIsLogin] = useRecoilState(Login);
   const navigate = useNavigate();
-  const [, , removeCookie] = useCookies();
+  const [cookie, , removeCookie] = useCookies();
   const Logout = () => {
     setIsLogin(false);
     removeCookie("accessToken");
@@ -51,6 +52,20 @@ const Header = () => {
             마이페이지
           </NavLink>
           <Button content="로그아웃" onClick={Logout} />
+          <button
+            onClick={() => {
+              axios
+                .post("/auth/reissue", {
+                  accessToken: cookie.accessToken,
+                  refreshToken: cookie.refreshToken,
+                })
+                .then((res) => {
+                  console.log(res);
+                });
+            }}
+          >
+            test
+          </button>
         </S.Wrapper>
       </S.Container>
     </S.Header>

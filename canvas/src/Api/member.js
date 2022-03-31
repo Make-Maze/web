@@ -12,6 +12,7 @@ class Member {
       throw e;
     }
   }
+  
 }
 
 export default new Member();
