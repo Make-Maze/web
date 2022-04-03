@@ -27,6 +27,7 @@ const Block = (props) => {
   let i;
   let j;
   let list = [];
+  window.localStorage.setItem("map", JSON.stringify(props.map))
 
   function isStartEnd() {
     if (

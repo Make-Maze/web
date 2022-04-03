@@ -12,18 +12,21 @@ const Canvas = (props) => {
   const blockRef = useRef(null);
 
   //전체 맵
-  let list = new Array(30);
-  for (let i = 0; i < 30; i++) {
-    list[i] = new Array(70).fill(0);
+  let list = JSON.parse(window.localStorage.getItem("map"))
+  if (list == null) {
+    list = new Array(30);
+    for (let i = 0; i < 30; i++) {
+      list[i] = new Array(70).fill(0);
+    }
+    list[0][0] = 91;
+    list[0][1] = 92;
+    list[1][0] = 93;
+    list[1][1] = 94;
+    list[28][68] = 95;
+    list[28][69] = 96;
+    list[29][68] = 97;
+    list[29][69] = 98;
   }
-  list[0][0] = 91;
-  list[0][1] = 92;
-  list[1][0] = 93;
-  list[1][1] = 94;
-  list[28][68] = 95;
-  list[28][69] = 96;
-  list[29][68] = 97;
-  list[29][69] = 98;
 
   //포탈 좌표
   let list2 = new Array();
