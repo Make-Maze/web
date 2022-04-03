@@ -13,7 +13,7 @@ const App = () => {
   const [cookie, ,] = useCookies();
   const [, setProfile] = useRecoilState(Profile);
   useEffect(() => {
-    if (cookie.accessToken) {
+    if (cookie.accessToken && cookie.refreshToken) {
       setIsLogin(true);
 
       // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
