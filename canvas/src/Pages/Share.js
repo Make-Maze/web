@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Header, Footer, Share } from "../Components";
+import { Header, Footer, Share } from "../components";
 const SharePage = () => {
   return (
     <>

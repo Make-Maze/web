@@ -1,5 +1,5 @@
 import React from "react";
-import "../../Style/block.css";
+import "../../style/block.css";
 import potal from "../../Assets/Item/potal.png";
 import guard from "../../Assets/Item/guard.png";
 import gunUp from "../../Assets/Item/gun_up.png";

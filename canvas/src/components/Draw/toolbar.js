@@ -1,5 +1,5 @@
 import React from "react";
-import "../../Style/toolbar.css";
+import "../../style/toolbar.css";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 import { Title } from "../../Atoms";
