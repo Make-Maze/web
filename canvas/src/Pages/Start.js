@@ -1,5 +1,5 @@
 import React from "react";
-import { Start } from "../Components";
+import { Start } from "../components";
 const StartPage = () => {
   return <Start />;
 };

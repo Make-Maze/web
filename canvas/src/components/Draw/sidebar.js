@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../Style/sidebar.css";
+import "../../style/sidebar.css";
 import potal from "../../Assets/Item/potal.png";
 import gunUp from "../../Assets/Item/gun_up.png";
 import gunDown from "../../Assets/Item/gun_down.png";

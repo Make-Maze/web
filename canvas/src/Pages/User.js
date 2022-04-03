@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Footer, User } from "../Components";
+import { Header, Footer, User } from "../components";
 const UserPage = () => {
   return (
     <>
