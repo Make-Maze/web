@@ -68,15 +68,6 @@ const Canvas = (props) => {
     let { offsetX, offsetY } = nativeEvent;
     setX(Math.floor((100 / ((window.innerWidth - 100) * 1.1)) * offsetX));
     setY(Math.floor((100 / (window.innerHeight - 300)) * 0.47 * offsetY));
-    if (ctx) {
-      // if(!isDrawing){
-      //   ctx.beginPath();
-      //   ctx.moveTo(offsetX, offsetY);
-      // } else{
-      //   ctx.lineTo(offsetX, offsetY);
-      //   ctx.stroke();
-      // }
-    }
   };
   const [, setTitle] = useRecoilState(Title);
 
