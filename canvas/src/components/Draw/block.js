@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../style/block.css";
 import potal from "../../Assets/Item/potal.png";
 import gunUp from "../../Assets/Item/gun_up.png";
@@ -26,19 +26,31 @@ const Block = (props) => {
   let list = [];
   window.localStorage.setItem("map", JSON.stringify(props.map))
 
+  const [x, setX] = useState(props.x)
+  const [y, setY] = useState(Math.floor(props.y / 2))
+  // const [state, setState] = useState()
+
+  if ((x != props.x || y != Math.floor(props.y / 2)) && isStartEnd() && props.isDrawing == false) {
+    // for (i = 0; i < props.map.length; i++) {
+    //   for (j = 0; j < props.map[i].length; j++) {
+    //     if (i == y && j == x) {
+    //       console.log(state)
+    //       props.map[i][j] = state
+    //     }
+    //   }
+    // }
+    setX(props.x)
+    setY(Math.floor(props.y / 2))
+    // setState(props.map[Math.floor(props.y / 2)][props.x])
+    // props.map[Math.floor(props.y / 2)][props.x] = 50
+  }
+
   function isStartEnd() {
     if (
-      props.isDrawing === true &&
-      Math.floor(props.y / 2) !== -1 &&
-      Math.floor(props.y / 2) !== 30 &&
-      (Math.floor(props.y / 2) !== 0 || props.x !== 0) &&
-      (Math.floor(props.y / 2) !== 0 || props.x !== 1) &&
-      (Math.floor(props.y / 2) !== 1 || props.x !== 0) &&
-      (Math.floor(props.y / 2) !== 1 || props.x !== 1) &&
-      (Math.floor(props.y / 2) !== 29 || props.x !== 69) &&
-      (Math.floor(props.y / 2) !== 28 || props.x !== 69) &&
-      (Math.floor(props.y / 2) !== 29 || props.x !== 68) &&
-      (Math.floor(props.y / 2) !== 28 || props.x !== 68)
+      Math.floor(props.y / 2) > -1 &&
+      Math.floor(props.y / 2) < 30 &&
+      props.x >= 0 &&
+      props.x <= 69
     ) {
       return true;
     }
@@ -86,30 +98,19 @@ const Block = (props) => {
         blockCase = end3; break
       case 98:
         blockCase = end4; break
+      case 50:
+        blockCase = block1; break
     }
     if (blockCase != null) {
       list.push(
-        <td
-          class="map"
-          style={{
-            border: "1px solid gray ",
-            padding: "0px",
-          }}
-        >
+        <td class="map">
           <img alt="" src={blockCase}></img>
-        </td>,
+        </td>
       );
-    }
-    else {
+    } else {
       list.push(
-        <td
-          class="map"
-          style={{
-            border: "1px solid gray ",
-            padding: "0px",
-          }}
-        >
-        </td>,
+        <td class="map">
+        </td>
       );
     }
   }
@@ -121,18 +122,34 @@ const Block = (props) => {
     props.map[Math.floor(props.y / 2)][props.x] = drawNumber;
   }
 
+  function isExit(x, y) {
+    if (
+      (i != 0 || j != 0) &&
+      (i != 0 || j != 1) &&
+      (i != 1 || j != 0) &&
+      (i != 1 || j != 1) &&
+      (i != 28 || j != 68) &&
+      (i != 28 || j != 69) &&
+      (i != 29 || j != 68) &&
+      (i != 29 || j != 69) &&
+      props.isDrawing == false) {
+      return true
+    }
+    return false
+  }
+
   // 벽인지 확인
-  if (isStartEnd() && props.select === "wall") {
+  if (isStartEnd() && props.select === "wall" && props.isDrawing === true) {
     drawBlock(props.drawMode + 1)
   }
 
   // item인지 확인
-  if (isStartEnd() && props.select === "item") {
+  if (isStartEnd() && props.select === "item" && props.isDrawing === true) {
     drawBlock(props.drawMode + 1)
   }
 
   //del인지 확인
-  if (isStartEnd() && props.select === "del") {
+  if (isStartEnd() && props.select === "del" && props.isDrawing === true) {
     for (let i = 0; i < props.potalInfo.length; i++) {
       if (
         props.potalInfo[i][0] === Math.floor(props.y / 2) &&
@@ -166,20 +183,17 @@ const Block = (props) => {
       list.push(<tr></tr>);
     }
     for (j = 0; j < 70; j++) {
+      if (j == x && y == i && isExit()) {
+        pushList(50)
+        continue
+      }
       pushList(props.map[i][j]);
     }
   }
 
   return (
     <div>
-      <table
-        style={{
-          borderCollapse: "collapse",
-          borderStyle: "none",
-          padding: "0px",
-          border: "3px solid black",
-        }}
-      >
+      <table>
         {list}
       </table>
     </div>
