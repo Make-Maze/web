@@ -5,7 +5,6 @@ export const MainSection = styled.div`
   background-color: #fbfbfb;
   * {
     margin: 0;
-    overflow-x: hidden;
   }
   h1 {
     font-weight: 800;
@@ -16,7 +15,6 @@ export const MainSection = styled.div`
 `;
 
 export const MapSection = styled.div`
-  overflow: hidden;
   margin-top: 100px;
   .noMap {
     margin-top: 100px;
@@ -38,9 +36,6 @@ export const ItemSection = styled.div`
   align-items: center;
   height: 700px;
   width: 20vw;
-  * {
-    overflow: hidden;
-  }
 
   img {
     width: 300px;

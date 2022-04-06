@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MainSection = styled.div`
-  padding: 70px 0 90px;
+  padding: 6vh 0 8vh;
   box-sizing: border-box;
   margin: 0;
   height: 100vh;
@@ -9,46 +9,45 @@ export const MainSection = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #1a6dff;
-  .logo {
-    width: 239px;
-    height: 67px;
-  }
+
   * {
-    overflow: hidden;
     color: #ffffff;
   }
+
   p {
     font-family: "Pacifico";
+  }
+
+  img {
+    height: 50%;
+    width: 55%;
   }
 `;
 
 export const Logo = styled.h1`
   font-family: "Pacifico";
-  font-size: 40px;
-  line-height: 67px;
+  font-size: 3.5vh;
 `;
 
 export const Title = styled.h1`
   font-weight: 700;
-  font-size: 100px;
-  line-height: 120px;
-  margin-bottom: 20px;
+  font-size: 8.5vh;
+  margin-bottom: 1.5vh;
 `;
 
 export const Desc = styled.div`
   font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 1.4vh;
+  line-height: 2vh;
   text-align: center;
-  line-height: 25px;
-  margin-bottom: 30px;
+  margin-bottom: 2.5vh;
 `;
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  width: 170px;
-  height: 50px;
+  width: 16.5vw;
+  height: 4.4vh;
   border: 1px solid #ffffff;
   border-radius: 30px;
   margin-bottom: 30px;
@@ -56,9 +55,8 @@ export const Container = styled.div`
   color: #ffffff;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 48px;
-
+  font-size: 1.7vh;
+  line-height: 4.4vh;
   cursor: pointer;
 
   &:hover {
@@ -69,5 +67,5 @@ export const Container = styled.div`
 
 export const Team = styled.div`
   font-family: "Pacifico";
-  margin-top: 150px;
+  margin-top: 13vh;
 `;

@@ -76,9 +76,6 @@ export const ItemSection = styled.div`
   align-items: center;
   height: 700px;
   width: 25vw;
-  * {
-    overflow: hidden;
-  }
 
   img {
     width: 300px;
