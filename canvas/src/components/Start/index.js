@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as S from "./style";
 import GoogleLogin from "react-google-login";

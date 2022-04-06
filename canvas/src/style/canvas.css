@@ -6,7 +6,6 @@
   position: relative;
   display: flex;
   padding-top: 20px;
-  overflow: hidden;
 }
 
 canvas {
