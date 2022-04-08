@@ -52,20 +52,6 @@ const Header = () => {
             마이페이지
           </NavLink>
           <Button content="로그아웃" onClick={Logout} />
-          <button
-            onClick={() => {
-              axios
-                .post("/auth/reissue", {
-                  accessToken: cookie.accessToken,
-                  refreshToken: cookie.refreshToken,
-                })
-                .then((res) => {
-                  console.log(res);
-                });
-            }}
-          >
-            test
-          </button>
         </S.Wrapper>
       </S.Container>
     </S.Header>
