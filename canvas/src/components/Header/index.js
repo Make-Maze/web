@@ -6,11 +6,12 @@ import { useRecoilState } from "recoil";
 import { Login } from "../../Atoms";
 import Button from "../Button";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useRecoilState(Login);
+  const [, setIsLogin] = useRecoilState(Login);
   const navigate = useNavigate();
-  const [cookie, setCookie, removeCookie] = useCookies();
+  const [cookie, , removeCookie] = useCookies();
   const Logout = () => {
     setIsLogin(false);
     removeCookie("accessToken");

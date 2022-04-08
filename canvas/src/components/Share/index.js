@@ -15,7 +15,7 @@ const Share = () => {
   useEffect(() => {
     map.AllMaps().then((res) => setShared(res.data));
     like.getLikes().then((res) => setLiked(res.data));
-  }, []);
+  }, [liked, setLiked]);
 
   // 중복 제거 체크 함수
   const isMyMap = (curId) => {
@@ -31,7 +31,7 @@ const Share = () => {
       }).length;
   };
 
-  const TrySave = async (element) => {
+  const TryLiked = async (element) => {
     // 나중에 자신이 만든 맵 예외처리 해야함
     if (isMyMap(element.mapId) !== liked.length) {
       toast.error("이미 저장된 맵입니다.");
@@ -57,7 +57,7 @@ const Share = () => {
                   {element.userName}님이 제작한 <br />
                   <span>{element.mapName}</span>
                 </S.Desc>
-                <Button content="저장하기" onClick={() => TrySave(element)} />
+                <Button content="저장하기" onClick={() => TryLiked(element)} />
               </S.ItemSection>
             </span>
           ))

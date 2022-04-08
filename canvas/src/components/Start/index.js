@@ -4,16 +4,15 @@ import * as S from "./style";
 import GoogleLogin from "react-google-login";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
-import { Login, Profile } from "../../Atoms";
+import { Login } from "../../Atoms";
 import maze from "../../Assets/maze.png";
 import { useCookies } from "react-cookie";
 import auth from "../../Api/auth";
 
 const Start = () => {
   const navigate = useNavigate();
-  const [profile, setProfile] = useRecoilState(Profile);
   const [isLogin, setIsLogin] = useRecoilState(Login);
-  const [cookie, setCookie] = useCookies();
+  const [, setCookie] = useCookies();
 
   const onSuccess = (res) => {
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
@@ -45,7 +44,9 @@ const Start = () => {
         공유도 할 수 있고 다른 사람의 미로도 플레이 할 수 있어요!
       </S.Desc>
       {isLogin ? (
-        <Link to="/Draw">플레이하기</Link>
+        <S.Container>
+          <Link to="/Draw">플레이하기</Link>
+        </S.Container>
       ) : (
         <GoogleLogin
           buttonText="로그인 하기"

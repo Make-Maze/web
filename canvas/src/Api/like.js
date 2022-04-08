@@ -5,10 +5,13 @@ class Like {
   // 다른 사람의 미로를 저장
   add(mapId) {
     try {
+      const data = {
+        mapId,
+      };
       return axios({
         method: "POST",
         url: "/like/add",
-        data: { mapId },
+        data,
       });
     } catch (e) {
       toast.error("저장 실패");

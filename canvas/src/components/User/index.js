@@ -10,7 +10,7 @@ import like from "../../Api/like";
 const User = () => {
   const [saved, setSaved] = useState([]); // 저장하기
   const [liked, setLiked] = useRecoilState(Liked);
-  const [profile, setProfile] = useRecoilState(Profile);
+  const [profile] = useRecoilState(Profile);
   const [choice, setChoice] = useState("made");
   const [saveColor, setSaveColor] = useState(true);
   const [likeColor, setLikeColor] = useState(false);
@@ -19,7 +19,7 @@ const User = () => {
     map.getMaps().then((res) => setSaved(res.data));
     // 현재 로그인 된 유저의 Like를 가져옴
     like.getLikes().then((res) => setLiked(res.data));
-  }, []);
+  }, [setLiked]);
 
   const TryDelete = (element, method) => {
     // 사용자가 직접 만든 미로 지우기
