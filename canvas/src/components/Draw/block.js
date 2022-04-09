@@ -28,29 +28,24 @@ const Block = (props) => {
 
   const [x, setX] = useState(props.x)
   const [y, setY] = useState(Math.floor(props.y / 2))
-  // const [state, setState] = useState()
 
   if ((x != props.x || y != Math.floor(props.y / 2)) && isStartEnd() && props.isDrawing == false) {
-    // for (i = 0; i < props.map.length; i++) {
-    //   for (j = 0; j < props.map[i].length; j++) {
-    //     if (i == y && j == x) {
-    //       console.log(state)
-    //       props.map[i][j] = state
-    //     }
-    //   }
-    // }
     setX(props.x)
     setY(Math.floor(props.y / 2))
-    // setState(props.map[Math.floor(props.y / 2)][props.x])
-    // props.map[Math.floor(props.y / 2)][props.x] = 50
   }
 
   function isStartEnd() {
     if (
-      Math.floor(props.y / 2) > -1 &&
-      Math.floor(props.y / 2) < 30 &&
-      props.x >= 0 &&
-      props.x <= 69
+      Math.floor(props.y / 2) !== -1 &&
+      Math.floor(props.y / 2) !== 30 &&
+      (Math.floor(props.y / 2) !== 0 || props.x !== 0) &&
+      (Math.floor(props.y / 2) !== 0 || props.x !== 1) &&
+      (Math.floor(props.y / 2) !== 1 || props.x !== 0) &&
+      (Math.floor(props.y / 2) !== 1 || props.x !== 1) &&
+      (Math.floor(props.y / 2) !== 29 || props.x !== 69) &&
+      (Math.floor(props.y / 2) !== 28 || props.x !== 69) &&
+      (Math.floor(props.y / 2) !== 29 || props.x !== 68) &&
+      (Math.floor(props.y / 2) !== 28 || props.x !== 68)
     ) {
       return true;
     }
@@ -98,8 +93,6 @@ const Block = (props) => {
         blockCase = end3; break
       case 98:
         blockCase = end4; break
-      case 50:
-        blockCase = block1; break
     }
     if (blockCase != null) {
       list.push(
@@ -122,17 +115,16 @@ const Block = (props) => {
     props.map[Math.floor(props.y / 2)][props.x] = drawNumber;
   }
 
-  function isExit(x, y) {
+  function isExit(a, b) {
     if (
-      (i != 0 || j != 0) &&
-      (i != 0 || j != 1) &&
-      (i != 1 || j != 0) &&
-      (i != 1 || j != 1) &&
-      (i != 28 || j != 68) &&
-      (i != 28 || j != 69) &&
-      (i != 29 || j != 68) &&
-      (i != 29 || j != 69) &&
-      props.isDrawing == false) {
+      (a != 0 || b != 0) &&
+      (a != 0 || b != 1) &&
+      (a != 1 || b != 0) &&
+      (a != 1 || b != 1) &&
+      (a != 28 || b != 68) &&
+      (a != 28 || b != 69) &&
+      (a != 29 || b != 68) &&
+      (a != 29 || b != 69)) {
       return true
     }
     return false
@@ -183,8 +175,8 @@ const Block = (props) => {
       list.push(<tr></tr>);
     }
     for (j = 0; j < 70; j++) {
-      if (j == x && y == i && isExit()) {
-        pushList(50)
+      if (j == x && y == i && isStartEnd() && props.isDrawing == false && props.select != "del") {
+        pushList(props.drawMode + 1)
         continue
       }
       pushList(props.map[i][j]);
