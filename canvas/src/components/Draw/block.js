@@ -24,14 +24,18 @@ const Block = (props) => {
   let i;
   let j;
   let list = [];
-  window.localStorage.setItem("map", JSON.stringify(props.map))
+  window.localStorage.setItem("map", JSON.stringify(props.map));
 
-  const [x, setX] = useState(props.x)
-  const [y, setY] = useState(Math.floor(props.y / 2))
+  const [x, setX] = useState(props.x);
+  const [y, setY] = useState(Math.floor(props.y / 2));
 
-  if ((x != props.x || y != Math.floor(props.y / 2)) && isStartEnd() && props.isDrawing == false) {
-    setX(props.x)
-    setY(Math.floor(props.y / 2))
+  if (
+    (x !== props.x || y !== Math.floor(props.y / 2)) &&
+    isStartEnd() &&
+    props.isDrawing === false
+  ) {
+    setX(props.x);
+    setY(Math.floor(props.y / 2));
   }
 
   function isStartEnd() {
@@ -56,88 +60,109 @@ const Block = (props) => {
     let blockCase = null;
     switch (index) {
       case 1:
-        blockCase = block1; break
+        blockCase = block1;
+        break;
       case 2:
-        blockCase = block2; break
+        blockCase = block2;
+        break;
       case 3:
-        blockCase = block3; break
+        blockCase = block3;
+        break;
       case 4:
-        blockCase = block4; break
+        blockCase = block4;
+        break;
       case 5:
-        blockCase = gunUp; break
+        blockCase = gunUp;
+        break;
       case 6:
-        blockCase = gunDown; break
+        blockCase = gunDown;
+        break;
       case 7:
-        blockCase = gunRight; break
+        blockCase = gunRight;
+        break;
       case 8:
-        blockCase = gunLeft; break
+        blockCase = gunLeft;
+        break;
       case 9:
-        blockCase = potal; break
+        blockCase = potal;
+        break;
       case 13:
-        blockCase = potion; break
+        blockCase = potion;
+        break;
       case 14:
-        blockCase = gasi; break
+        blockCase = gasi;
+        break;
       case 91:
-        blockCase = start1; break
+        blockCase = start1;
+        break;
       case 92:
-        blockCase = start2; break
+        blockCase = start2;
+        break;
       case 93:
-        blockCase = start3; break
+        blockCase = start3;
+        break;
       case 94:
-        blockCase = start4; break
+        blockCase = start4;
+        break;
       case 95:
-        blockCase = end1; break
+        blockCase = end1;
+        break;
       case 96:
-        blockCase = end2; break
+        blockCase = end2;
+        break;
       case 97:
-        blockCase = end3; break
+        blockCase = end3;
+        break;
       case 98:
-        blockCase = end4; break
+        blockCase = end4;
+        break;
+      default:
     }
     if (blockCase != null) {
       list.push(
         <td class="map">
           <img alt="" src={blockCase}></img>
-        </td>
+        </td>,
       );
     } else {
-      list.push(
-        <td class="map">
-        </td>
-      );
+      list.push(<td class="map"></td>);
     }
   }
 
   function drawBlock(drawNumber) {
-    if (drawNumber == 9) {
-      props.potalInfo[props.potalInfo.length] = [Math.floor(props.y / 2), props.x];
+    if (drawNumber === 9) {
+      props.potalInfo[props.potalInfo.length] = [
+        Math.floor(props.y / 2),
+        props.x,
+      ];
     }
     props.map[Math.floor(props.y / 2)][props.x] = drawNumber;
   }
 
   function isExit(a, b) {
     if (
-      (a != 0 || b != 0) &&
-      (a != 0 || b != 1) &&
-      (a != 1 || b != 0) &&
-      (a != 1 || b != 1) &&
-      (a != 28 || b != 68) &&
-      (a != 28 || b != 69) &&
-      (a != 29 || b != 68) &&
-      (a != 29 || b != 69)) {
-      return true
+      (a !== 0 || b !== 0) &&
+      (a !== 0 || b !== 1) &&
+      (a !== 1 || b !== 0) &&
+      (a !== 1 || b !== 1) &&
+      (a !== 28 || b !== 68) &&
+      (a !== 28 || b !== 69) &&
+      (a !== 29 || b !== 68) &&
+      (a !== 29 || b !== 69)
+    ) {
+      return true;
     }
-    return false
+    return false;
   }
 
   // 벽인지 확인
   if (isStartEnd() && props.select === "wall" && props.isDrawing === true) {
-    drawBlock(props.drawMode + 1)
+    drawBlock(props.drawMode + 1);
   }
 
   // item인지 확인
   if (isStartEnd() && props.select === "item" && props.isDrawing === true) {
-    drawBlock(props.drawMode + 1)
+    drawBlock(props.drawMode + 1);
   }
 
   //del인지 확인
@@ -175,9 +200,15 @@ const Block = (props) => {
       list.push(<tr></tr>);
     }
     for (j = 0; j < 70; j++) {
-      if (j == x && y == i && isStartEnd() && props.isDrawing == false && props.select != "del") {
-        pushList(props.drawMode + 1)
-        continue
+      if (
+        j === x &&
+        y === i &&
+        isStartEnd() &&
+        props.isDrawing === false &&
+        props.select !== "del"
+      ) {
+        pushList(props.drawMode + 1);
+        continue;
       }
       pushList(props.map[i][j]);
     }
@@ -185,9 +216,7 @@ const Block = (props) => {
 
   return (
     <div>
-      <table>
-        {list}
-      </table>
+      <table>{list}</table>
     </div>
   );
 };

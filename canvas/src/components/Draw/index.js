@@ -12,7 +12,7 @@ const Canvas = (props) => {
   const blockRef = useRef(null);
 
   //전체 맵
-  let list = JSON.parse(window.localStorage.getItem("map"))
+  let list = JSON.parse(window.localStorage.getItem("map"));
   if (list == null) {
     list = new Array(30);
     for (let i = 0; i < 30; i++) {
