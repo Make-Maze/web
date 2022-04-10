@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import Button from "../Button";
 import like from "../../Api/like";
 import map from "../../Api/map";
+import PageList from "../PageList";
 
 const Share = () => {
   const [shared, setShared] = useState([]); // 공유하기
@@ -63,6 +64,7 @@ const Share = () => {
           ))
         )}
       </S.MapSection>
+      <PageList />
     </S.MainSection>
   );
 };
