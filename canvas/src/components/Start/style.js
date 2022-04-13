@@ -17,10 +17,9 @@ export const MainSection = styled.div`
   p {
     font-family: "Pacifico";
   }
-
   img {
-    height: 50%;
-    width: 55%;
+    width: 30vw;
+    height: 40vh;
   }
 `;
 
@@ -46,7 +45,7 @@ export const Desc = styled.div`
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  width: 16.5vw;
+  width: 8.5vw;
   height: 4.4vh;
   border: 1px solid #ffffff;
   border-radius: 30px;
@@ -72,4 +71,5 @@ export const Container = styled.div`
 export const Team = styled.div`
   font-family: "Pacifico";
   margin-top: 13vh;
+  font-size: 1.4vh;
 `;
