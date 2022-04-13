@@ -68,7 +68,7 @@ const Canvas = (props) => {
     let { offsetX, offsetY } = nativeEvent;
     setX(Math.floor(offsetX / (width / 70)));
     setY(Math.floor(offsetY / (height / 30)));
-    console.log(offsetX, width)
+    console.log(offsetX, width);
   };
   const [, setTitle] = useRecoilState(Title);
 
@@ -83,7 +83,7 @@ const Canvas = (props) => {
         />
       </div>
       <div className="canvas_wrap">
-        <div ref={blockRef}>
+        <div ref={blockRef} className="container">
           <canvas
             id="map"
             className={select + drawMode}
