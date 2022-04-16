@@ -36,8 +36,8 @@ const Canvas = (props) => {
   const [y, setY] = useState(0);
   const [map] = useState(list);
   const [potalInfo] = useState(list2);
-  const [, setHeight] = useState();
-  const [, setWidth] = useState();
+  const [height, setHeight] = useState();
+  const [width, setWidth] = useState();
   const [item, setItem] = useState(false);
   const [drawMode, setDraw] = useState(0);
   const [select, setSelect] = useState("wall");
@@ -46,8 +46,8 @@ const Canvas = (props) => {
   useEffect(() => {
     const canvas = canvasRef.current;
 
-    setHeight(canvas.height);
-    setWidth(canvas.width);
+    setHeight(document.getElementById("map").offsetHeight);
+    setWidth(document.getElementById("map").offsetWidth);
 
     const context = canvas.getContext("2d");
     contextRef.current = context;
@@ -66,8 +66,9 @@ const Canvas = (props) => {
 
   const drawing = ({ nativeEvent }) => {
     let { offsetX, offsetY } = nativeEvent;
-    setX(Math.floor((100 / ((window.innerWidth - 100) * 1.1)) * offsetX));
-    setY(Math.floor((100 / (window.innerHeight - 300)) * 0.47 * offsetY));
+    setX(Math.floor(offsetX / (width / 70)));
+    setY(Math.floor(offsetY / (height / 30)));
+    console.log(offsetX, width);
   };
   const [, setTitle] = useRecoilState(Title);
 
@@ -82,8 +83,9 @@ const Canvas = (props) => {
         />
       </div>
       <div className="canvas_wrap">
-        <div ref={blockRef}>
+        <div ref={blockRef} className="container">
           <canvas
+            id="map"
             className={select + drawMode}
             ref={canvasRef}
             onMouseDown={startDrawing}

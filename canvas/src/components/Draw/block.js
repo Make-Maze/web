@@ -27,29 +27,29 @@ const Block = (props) => {
   window.localStorage.setItem("map", JSON.stringify(props.map));
 
   const [x, setX] = useState(props.x);
-  const [y, setY] = useState(Math.floor(props.y / 2));
+  const [y, setY] = useState(Math.floor(props.y));
 
   if (
-    (x !== props.x || y !== Math.floor(props.y / 2)) &&
+    (x !== props.x || y !== Math.floor(props.y)) &&
     isStartEnd() &&
     props.isDrawing === false
   ) {
     setX(props.x);
-    setY(Math.floor(props.y / 2));
+    setY(Math.floor(props.y));
   }
 
   function isStartEnd() {
     if (
-      Math.floor(props.y / 2) !== -1 &&
-      Math.floor(props.y / 2) !== 30 &&
-      (Math.floor(props.y / 2) !== 0 || props.x !== 0) &&
-      (Math.floor(props.y / 2) !== 0 || props.x !== 1) &&
-      (Math.floor(props.y / 2) !== 1 || props.x !== 0) &&
-      (Math.floor(props.y / 2) !== 1 || props.x !== 1) &&
-      (Math.floor(props.y / 2) !== 29 || props.x !== 69) &&
-      (Math.floor(props.y / 2) !== 28 || props.x !== 69) &&
-      (Math.floor(props.y / 2) !== 29 || props.x !== 68) &&
-      (Math.floor(props.y / 2) !== 28 || props.x !== 68)
+      Math.floor(props.y) !== -1 &&
+      Math.floor(props.y) !== 30 &&
+      (Math.floor(props.y) !== 0 || props.x !== 0) &&
+      (Math.floor(props.y) !== 0 || props.x !== 1) &&
+      (Math.floor(props.y) !== 1 || props.x !== 0) &&
+      (Math.floor(props.y) !== 1 || props.x !== 1) &&
+      (Math.floor(props.y) !== 29 || props.x !== 69) &&
+      (Math.floor(props.y) !== 28 || props.x !== 69) &&
+      (Math.floor(props.y) !== 29 || props.x !== 68) &&
+      (Math.floor(props.y) !== 28 || props.x !== 68)
     ) {
       return true;
     }
@@ -132,27 +132,11 @@ const Block = (props) => {
   function drawBlock(drawNumber) {
     if (drawNumber === 9) {
       props.potalInfo[props.potalInfo.length] = [
-        Math.floor(props.y / 2),
+        Math.floor(props.y),
         props.x,
       ];
     }
-    props.map[Math.floor(props.y / 2)][props.x] = drawNumber;
-  }
-
-  function isExit(a, b) {
-    if (
-      (a !== 0 || b !== 0) &&
-      (a !== 0 || b !== 1) &&
-      (a !== 1 || b !== 0) &&
-      (a !== 1 || b !== 1) &&
-      (a !== 28 || b !== 68) &&
-      (a !== 28 || b !== 69) &&
-      (a !== 29 || b !== 68) &&
-      (a !== 29 || b !== 69)
-    ) {
-      return true;
-    }
-    return false;
+    props.map[Math.floor(props.y)][props.x] = drawNumber;
   }
 
   // 벽인지 확인
@@ -169,14 +153,14 @@ const Block = (props) => {
   if (isStartEnd() && props.select === "del" && props.isDrawing === true) {
     for (let i = 0; i < props.potalInfo.length; i++) {
       if (
-        props.potalInfo[i][0] === Math.floor(props.y / 2) &&
+        props.potalInfo[i][0] === Math.floor(props.y) &&
         props.potalInfo[i][1] === props.x
       ) {
         props.potalInfo.splice(i, 2);
         break;
       }
     }
-    props.map[Math.floor(props.y / 2)][props.x] = 0;
+    props.map[Math.floor(props.y)][props.x] = 0;
   } else if (props.select === "Alldel") {
     for (let i = 0; i < 30; i++) {
       props.map[i].fill(0);
