@@ -25,6 +25,7 @@ const Block = (props) => {
   let j;
   let list = [];
   window.localStorage.setItem("map", JSON.stringify(props.map));
+  window.localStorage.setItem("potal", JSON.stringify(props.potalInfo));
 
   const [x, setX] = useState(props.x);
   const [y, setY] = useState(Math.floor(props.y));
@@ -130,11 +131,18 @@ const Block = (props) => {
   }
 
   function drawBlock(drawNumber) {
-    if (drawNumber === 9) {
-      props.potalInfo[props.potalInfo.length] = [
-        Math.floor(props.y),
-        props.x,
-      ];
+    if (drawNumber == 9) {
+      let i = 0
+      for(i = 0; i < props.potalInfo.length; i++){
+        console.log(props.potalInfo[i], [ Math.floor(props.y), props.x ])
+        if(props.potalInfo[i][0] == Math.floor(props.y) && props.potalInfo[i][1] == props.x){
+          break;
+        }
+      }
+      console.log(i)
+      if(i == props.potalInfo.length) {
+        props.potalInfo[props.potalInfo.length] = [ Math.floor(props.y), props.x ];
+      }
     }
     props.map[Math.floor(props.y)][props.x] = drawNumber;
   }
