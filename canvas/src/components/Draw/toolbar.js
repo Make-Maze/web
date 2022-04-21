@@ -114,6 +114,7 @@ const Toolbar = (props) => {
         onClick={function (e) {
           e.preventDefault();
           props.setSelect("Alldel");
+          props.setItem(false);
         }}
       />
       <Button
