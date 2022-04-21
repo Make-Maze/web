@@ -28,8 +28,11 @@ const Canvas = (props) => {
     list[29][69] = 98;
   }
 
-  //포탈 좌표
-  let list2 = new Array();
+  let list2 = JSON.parse(window.localStorage.getItem("potal"));
+  if(list2 == null) {
+    list2 = new Array();
+  }
+
   const [ctx, setCtx] = useState();
   const [isDrawing, setIsDrawing] = useState(false);
   const [x, setX] = useState(0);
@@ -68,7 +71,6 @@ const Canvas = (props) => {
     let { offsetX, offsetY } = nativeEvent;
     setX(Math.floor(offsetX / (width / 70)));
     setY(Math.floor(offsetY / (height / 30)));
-    console.log(offsetX, width);
   };
   const [, setTitle] = useRecoilState(Title);
 
