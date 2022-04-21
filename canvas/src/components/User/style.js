@@ -22,8 +22,8 @@ export const UserSection = styled.div`
   }
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     margin-bottom: 35px;
   }
