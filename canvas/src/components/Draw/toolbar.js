@@ -133,7 +133,9 @@ const Toolbar = (props) => {
           props.setItem(true);
         }}
       />
-      <Button content="만들기" onClick={make} />
+      <button className="makeBtn" onClick={make}>
+        만들기
+      </button>
     </div>
   );
 };
