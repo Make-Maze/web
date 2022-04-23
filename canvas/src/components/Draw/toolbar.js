@@ -53,7 +53,7 @@ const Toolbar = (props) => {
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
         let testObject = new Object();
-        if (mapArray[i][j] !== 0 && mapArray[i][j] !== 9) {
+        if (mapArray[i][j] !== 0) {
           testObject = {
             kind: mapArray[i][j],
             x: j,
