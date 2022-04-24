@@ -16,6 +16,8 @@ const Header = () => {
     setIsLogin(false);
     removeCookie("accessToken");
     removeCookie("refreshToken");
+    window.localStorage.setItem("map", null);
+    window.localStorage.setItem("potal", null);
     toast.info("로그아웃 되었습니다.");
     navigate("/");
   };

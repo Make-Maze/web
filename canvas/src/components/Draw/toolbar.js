@@ -27,7 +27,7 @@ const Toolbar = (props) => {
     let potalObject1 = {};
     let potalObject2 = {};
     let mode = 0;
-    for (let i = 0; i < props.potalInfo.length; i += 2) {
+    for (let i = 0; i < props.potalInfo.length; i++) {
       if (mode === 1) {
         potalObject2 = {
           x2: props.potalInfo[i][0],
@@ -58,6 +58,8 @@ const Toolbar = (props) => {
             kind: mapArray[i][j],
             x: j,
             y: 39 - i,
+            x2: 0,
+            y2: 0,
           };
           testObject = JSON.stringify(testObject);
           jsonArray.push(JSON.parse(testObject));
@@ -66,6 +68,7 @@ const Toolbar = (props) => {
     }
     let mapJSON = new Object();
     mapJSON = JSON.stringify(jsonArray);
+    console.log(mapJSON);
 
     if (potal_state % 2 !== 0) {
       toast.error("포탈은 짝수개여야 합니다");
@@ -74,6 +77,7 @@ const Toolbar = (props) => {
     } else if (map_state === 2092) {
       toast.error("맵을 다 그려 주세요");
     } else {
+      setTitle(" ");
       // 구글 아이디가 googleId인 사용자의 맵 추가
       await map.add(title, mapJSON).then((res) => {
         props.setBtn("btn_open");
@@ -86,6 +90,7 @@ const Toolbar = (props) => {
         // 전체 지우고 난 후 자동으로 브러쉬 선택
         props.setDraw(0);
         props.setSelect("wall");
+        props.setItem(false);
         props.map[0][0] = 91;
         props.map[0][1] = 92;
         props.map[1][0] = 93;
@@ -94,8 +99,6 @@ const Toolbar = (props) => {
         props.map[28][69] = 96;
         props.map[29][68] = 97;
         props.map[29][69] = 98;
-
-        setTitle(" ");
       });
     }
   };

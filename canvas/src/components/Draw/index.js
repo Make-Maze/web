@@ -29,7 +29,7 @@ const Canvas = (props) => {
   }
 
   let list2 = JSON.parse(window.localStorage.getItem("potal"));
-  if(list2 == null) {
+  if (list2 == null) {
     list2 = new Array();
   }
 
@@ -72,7 +72,7 @@ const Canvas = (props) => {
     setX(Math.floor(offsetX / (width / 70)));
     setY(Math.floor(offsetY / (height / 30)));
   };
-  const [, setTitle] = useRecoilState(Title);
+  const [title, setTitle] = useRecoilState(Title);
 
   return (
     <div className="wrapper">
@@ -82,6 +82,7 @@ const Canvas = (props) => {
           onChange={(e) => setTitle(e.target.value)}
           className="titleBox"
           placeholder="미로 제목을 입력해 주세요."
+          value={title}
         />
       </div>
       <div className="canvas_wrap">

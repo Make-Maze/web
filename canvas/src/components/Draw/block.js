@@ -134,12 +134,10 @@ const Block = (props) => {
     if (drawNumber == 9) {
       let i = 0
       for(i = 0; i < props.potalInfo.length; i++){
-        console.log(props.potalInfo[i], [ Math.floor(props.y), props.x ])
         if(props.potalInfo[i][0] == Math.floor(props.y) && props.potalInfo[i][1] == props.x){
           break;
         }
       }
-      console.log(i)
       if(i == props.potalInfo.length) {
         props.potalInfo[props.potalInfo.length] = [ Math.floor(props.y), props.x ];
       }
