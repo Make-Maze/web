@@ -58,6 +58,8 @@ const Toolbar = (props) => {
             kind: mapArray[i][j],
             x: j,
             y: 39 - i,
+            x2: 0,
+            y2: 0
           };
           testObject = JSON.stringify(testObject);
           jsonArray.push(JSON.parse(testObject));
@@ -66,6 +68,7 @@ const Toolbar = (props) => {
     }
     let mapJSON = new Object();
     mapJSON = JSON.stringify(jsonArray);
+    console.log(mapJSON)
 
     if (potal_state % 2 !== 0) {
       toast.error("포탈은 짝수개여야 합니다");
