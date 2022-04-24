@@ -27,7 +27,7 @@ const Toolbar = (props) => {
     let potalObject1 = {};
     let potalObject2 = {};
     let mode = 0;
-    for (let i = 0; i < props.potalInfo.length; i += 2) {
+    for (let i = 0; i < props.potalInfo.length; i++) {
       if (mode === 1) {
         potalObject2 = {
           x2: props.potalInfo[i][0],
@@ -53,7 +53,7 @@ const Toolbar = (props) => {
     for (let i = 0; i < 30; i++) {
       for (let j = 0; j < 70; j++) {
         let testObject = new Object();
-        if (mapArray[i][j] !== 0) {
+        if (mapArray[i][j] !== 0 && mapArray[i][j] !== 9) {
           testObject = {
             kind: mapArray[i][j],
             x: j,
@@ -86,6 +86,7 @@ const Toolbar = (props) => {
         // 전체 지우고 난 후 자동으로 브러쉬 선택
         props.setDraw(0);
         props.setSelect("wall");
+        props.setItem(false)
         props.map[0][0] = 91;
         props.map[0][1] = 92;
         props.map[1][0] = 93;
@@ -94,7 +95,6 @@ const Toolbar = (props) => {
         props.map[28][69] = 96;
         props.map[29][68] = 97;
         props.map[29][69] = 98;
-
         setTitle(" ");
       });
     }
