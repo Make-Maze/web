@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../style/toolbar.css";
 import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
@@ -102,6 +102,9 @@ const Toolbar = (props) => {
       });
     }
   };
+  useEffect(() => {
+    setTitle("");
+  }, [setTitle]);
 
   return (
     <div className="toolbar">
