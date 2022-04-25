@@ -30,7 +30,13 @@ const App = () => {
         });
       });
     }
-  }, [cookie.accessToken, isLogin, setIsLogin, setProfile]);
+  }, [
+    cookie.accessToken,
+    cookie.refreshToken,
+    isLogin,
+    setIsLogin,
+    setProfile,
+  ]);
 
   return (
     <BrowserRouter>

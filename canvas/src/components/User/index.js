@@ -19,7 +19,7 @@ const User = () => {
     map.getMaps().then((res) => setSaved(res.data));
     // 현재 로그인 된 유저의 Like를 가져옴
     like.getLikes().then((res) => setLiked(res.data));
-  }, [setLiked]);
+  }, []);
 
   const TryDelete = (element, method) => {
     // 사용자가 직접 만든 미로 지우기
