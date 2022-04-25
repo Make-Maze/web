@@ -15,7 +15,7 @@ const Share = () => {
   useEffect(() => {
     map.AllMaps().then((res) => setShared(res.data));
     like.getLikes().then((res) => setLiked(res.data));
-  }, [liked, setLiked]);
+  }, []);
 
   // 중복 제거 체크 함수
   const isMyMap = (curId) => {
