@@ -99,7 +99,7 @@ const Toolbar = (props) => {
         props.map[28][69] = 96;
         props.map[29][68] = 97;
         props.map[29][69] = 98;
-      })  
+      });
     }
   };
   useEffect(() => {
@@ -139,7 +139,7 @@ const Toolbar = (props) => {
           props.setItem(true);
         }}
       />
-      <button className="makeBtn" onClick={()=>make()}>
+      <button className="makeBtn" onClick={() => make}>
         만들기
       </button>
     </div>

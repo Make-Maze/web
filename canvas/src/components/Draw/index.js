@@ -108,26 +108,30 @@ const Canvas = (props) => {
             drawMode={drawMode}
           ></Block>
         </div>
-        <SideBar
-          draw={drawMode}
-          setSelect={setSelect}
-          drawMode={function (_draw) {
-            setDraw(_draw);
-          }}
-          item={item}
-        ></SideBar>
+        <div class="sidebar_wrap">
+          <SideBar
+            draw={drawMode}
+            setSelect={setSelect}
+            drawMode={function (_draw) {
+              setDraw(_draw);
+            }}
+            item={item}
+          />
+        </div>
       </div>
-      <Toolbar
-        btn={btn}
-        setBtn={setBtn}
-        setSelect={setSelect}
-        setDraw={setDraw}
-        blockRef={blockRef}
-        item={item}
-        setItem={setItem}
-        map={map}
-        potalInfo={potalInfo}
-      ></Toolbar>
+      <div class="toolbar_wrap">
+        <Toolbar
+          btn={btn}
+          setBtn={setBtn}
+          setSelect={setSelect}
+          setDraw={setDraw}
+          blockRef={blockRef}
+          item={item}
+          setItem={setItem}
+          map={map}
+          potalInfo={potalInfo}
+        />
+      </div>
     </div>
   );
 };
