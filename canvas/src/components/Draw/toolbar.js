@@ -77,7 +77,7 @@ const Toolbar = (props) => {
     } else if (map_state === 2092) {
       toast.error("맵을 다 그려 주세요");
     } else {
-      setTitle(" ");
+      setTitle("");
       // 구글 아이디가 googleId인 사용자의 맵 추가
       await map.add(title, mapJSON).then((res) => {
         props.setBtn("btn_open");
@@ -99,7 +99,7 @@ const Toolbar = (props) => {
         props.map[28][69] = 96;
         props.map[29][68] = 97;
         props.map[29][69] = 98;
-      });
+      })  
     }
   };
   useEffect(() => {
@@ -139,7 +139,7 @@ const Toolbar = (props) => {
           props.setItem(true);
         }}
       />
-      <button className="makeBtn" onClick={make}>
+      <button className="makeBtn" onClick={()=>make()}>
         만들기
       </button>
     </div>
