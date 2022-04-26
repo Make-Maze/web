@@ -9,6 +9,7 @@ import map from "../../Api/map";
 const Toolbar = (props) => {
   const mapArray = props.map;
   const [title, setTitle] = useRecoilState(Title);
+  console.log(props.potalInfo)
   const make = async () => {
     let potal_state = 0;
     let map_state = 0;
@@ -30,8 +31,8 @@ const Toolbar = (props) => {
     for (let i = 0; i < props.potalInfo.length; i++) {
       if (mode === 1) {
         potalObject2 = {
-          x2: props.potalInfo[i][0],
-          y2: props.potalInfo[i][1],
+          x2: props.potalInfo[i][1],
+          y2: 39 - props.potalInfo[i][0],
         };
         potalObject = {
           ...potalObject1,
@@ -43,8 +44,8 @@ const Toolbar = (props) => {
       } else {
         potalObject1 = {
           kind: 9,
-          x: props.potalInfo[i][0],
-          y: props.potalInfo[i][1],
+          x: props.potalInfo[i][1],
+          y: 39 - props.potalInfo[i][0],
         };
         mode = 1;
       }
@@ -99,6 +100,7 @@ const Toolbar = (props) => {
         props.map[28][69] = 96;
         props.map[29][68] = 97;
         props.map[29][69] = 98;
+        console.log(mapJSON);
       });
     }
   };
