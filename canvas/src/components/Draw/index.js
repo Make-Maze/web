@@ -5,11 +5,18 @@ import Toolbar from "./toolbar";
 import "../../style/canvas.css";
 import { useRecoilState } from "recoil";
 import { Title } from "../../Atoms";
+import Modal from "react-modal/lib/components/Modal";
+import Button from "../Button";
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const blockRef = useRef(null);
+
+  function AllDel(){
+    setModal(false)
+    setAllDel(true)
+  }
 
   //전체 맵
   let list = JSON.parse(window.localStorage.getItem("map"));
@@ -45,6 +52,8 @@ const Canvas = (props) => {
   const [drawMode, setDraw] = useState(0);
   const [select, setSelect] = useState("wall");
   const [btn, setBtn] = useState("btn_lock");
+  const [modal, setModal] = useState(false);
+  const [isAllDel, setAllDel] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -73,7 +82,17 @@ const Canvas = (props) => {
     setY(Math.floor(offsetY / (height / 30)));
   };
   const [title, setTitle] = useRecoilState(Title);
-
+  const customStyles={
+    content:{
+      width:"400px", 
+      height:"400px", 
+      position:"absolute", 
+      display:"flex", 
+      flexDirection:"column", 
+      justifyContent:"center", 
+      alignItems:"center", 
+      margin:"100px auto"}
+    }
   return (
     <div className="wrapper">
       <div className="inputBox">
@@ -87,6 +106,18 @@ const Canvas = (props) => {
       </div>
       <div className="canvas_wrap">
         <div ref={blockRef} className="container">
+          <Modal
+            style={customStyles}
+            isOpen={modal}
+            onRequestClose={()=>setModal(false)}
+          >
+            <h2>전체 지우기</h2>
+            <p>정말로 전부 지우시겠습니까?</p>
+            <div className="button_wrap">
+              <Button onClick={AllDel} content={"네"}/>
+              <Button onClick={()=>setModal(false)} content={"아니요"}/>
+            </div>
+          </Modal>
           <canvas
             id="map"
             className={select + drawMode}
@@ -105,7 +136,10 @@ const Canvas = (props) => {
             select={select}
             setSelect={setSelect}
             setDraw={setDraw}
+            setModal={setModal}
             drawMode={drawMode}
+            setAllDel={setAllDel}
+            isAllDel={isAllDel}
           ></Block>
         </div>
         <div class="sidebar_wrap">

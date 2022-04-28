@@ -168,13 +168,18 @@ const Block = (props) => {
     }
     props.map[Math.floor(props.y)][props.x] = 0;
   } else if (props.select === "Alldel") {
+    props.setModal(true)
+    // 전체 지우고 난 후 자동으로 브러쉬 선택
+    props.setDraw(0);
+    props.setSelect("wall");
+    
+  }
+
+  if (props.isAllDel == true){
     for (let i = 0; i < 30; i++) {
       props.map[i].fill(0);
     }
     props.potalInfo.splice(0, props.potalInfo.length);
-    // 전체 지우고 난 후 자동으로 브러쉬 선택
-    props.setDraw(0);
-    props.setSelect("wall");
     props.map[0][0] = 91;
     props.map[0][1] = 92;
     props.map[1][0] = 93;
@@ -183,6 +188,7 @@ const Block = (props) => {
     props.map[28][69] = 96;
     props.map[29][68] = 97;
     props.map[29][69] = 98;
+    props.setAllDel(false)
   }
 
   for (i = 0; i < 30; i++) {

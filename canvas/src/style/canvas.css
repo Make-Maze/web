@@ -44,6 +44,13 @@ canvas {
   width: 1230px;
 }
 
+.button_wrap {
+  margin-top: 20px;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .item4,
 .item5,
 .item6,
