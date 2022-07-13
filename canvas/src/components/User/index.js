@@ -6,8 +6,11 @@ import { Liked, Profile } from "../../Atoms";
 import Button from "../Button";
 import map from "../../Api/map";
 import like from "../../Api/like";
+import auth from "../../Api/auth";
+import { useCookies } from "react-cookie";
 
 const User = () => {
+  const [cookie, setCookie] = useCookies();
   const [saved, setSaved] = useState([]); // 저장하기
   const [liked, setLiked] = useRecoilState(Liked);
   const [profile] = useRecoilState(Profile);
@@ -21,19 +24,25 @@ const User = () => {
     like.getLikes().then((res) => setLiked(res.data));
   }, []);
 
-  const TryDelete = (element, method) => {
+  const TryDelete = async (element, method) => {
     // 사용자가 직접 만든 미로 지우기
     if (method === "saved") {
-      map.delete(element.mapId).then((res) => {
+      try {
+        await map.delete(element.mapId);
         setSaved(saved.filter((mapData) => mapData.mapId !== element.mapId));
         toast.success("삭제 완료");
-      });
+      } catch (e) {
+        await auth.reissue(cookie.accessToken, cookie.refreshToken);
+      }
     } else {
-      // 저장된 맵 아이디가 likeId인 맵 삭제
-      like.delete(element.likeId).then(() => {
+      try {
+        // 저장된 맵 아이디가 likeId인 맵 삭제
+        await like.delete(element.likeId);
         setLiked(liked.filter((mapData) => mapData.mapId !== element.mapId));
         toast.success("삭제 완료");
-      });
+      } catch (e) {
+        await auth.reissue(cookie.accessToken, cookie.refreshToken);
+      }
     }
   };
 

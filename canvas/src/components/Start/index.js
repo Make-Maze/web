@@ -12,24 +12,27 @@ import auth from "../../Api/auth";
 const Start = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(Login);
-  const [, setCookie] = useCookies();
+  const [cookie, setCookie] = useCookies();
 
-  const onSuccess = (res) => {
+  const onSuccess = async (res) => {
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
     const { email, googleId, name, imageUrl } = res.profileObj;
     try {
-      auth.login(email, googleId, name, imageUrl).then((res) => {
-        const { accessToken, refreshToken } = res.data.tokenDto;
-        setCookie("accessToken", accessToken, { path: "/" });
-        setCookie("refreshToken", refreshToken, { path: "/" });
-        setIsLogin(true);
-        toast.success("로그인 성공");
-        navigate("/draw");
-      });
+      const res = await auth.login(email, googleId, name, imageUrl);
+      const { accessToken, refreshToken } = res.data.tokenDto;
+      setCookie("accessToken", accessToken, { path: "/" });
+      setCookie("refreshToken", refreshToken, { path: "/" });
+      setIsLogin(true);
+      toast.success("로그인 성공");
+      navigate("/draw");
     } catch (e) {
-      setIsLogin(false);
-      toast.error("다시 시도해 주세요");
-      throw e;
+      try {
+        await auth.reissue(cookie.accessToken, cookie.refreshToken);
+      } catch (e) {
+        toast.error("다시 시도해 주세요");
+        setIsLogin(false);
+        throw e;
+      }
     }
   };
 

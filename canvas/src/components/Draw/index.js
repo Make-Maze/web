@@ -13,9 +13,9 @@ const Canvas = (props) => {
   const contextRef = useRef(null);
   const blockRef = useRef(null);
 
-  function AllDel(){
-    setModal(false)
-    setAllDel(true)
+  function AllDel() {
+    setModal(false);
+    setAllDel(true);
   }
 
   //전체 맵
@@ -82,17 +82,18 @@ const Canvas = (props) => {
     setY(Math.floor(offsetY / (height / 30)));
   };
   const [title, setTitle] = useRecoilState(Title);
-  const customStyles={
-    content:{
-      width:"400px", 
-      height:"400px", 
-      position:"absolute", 
-      display:"flex", 
-      flexDirection:"column", 
-      justifyContent:"center", 
-      alignItems:"center", 
-      margin:"100px auto"}
-    }
+  const customStyles = {
+    content: {
+      width: "400px",
+      height: "400px",
+      position: "absolute",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "100px auto",
+    },
+  };
   return (
     <div className="wrapper">
       <div className="inputBox">
@@ -109,13 +110,13 @@ const Canvas = (props) => {
           <Modal
             style={customStyles}
             isOpen={modal}
-            onRequestClose={()=>setModal(false)}
+            onRequestClose={() => setModal(false)}
           >
             <h2>전체 지우기</h2>
             <p>정말로 전부 지우시겠습니까?</p>
             <div className="button_wrap">
-              <Button onClick={AllDel} content={"네"}/>
-              <Button onClick={()=>setModal(false)} content={"아니요"}/>
+              <Button onClick={AllDel} content={"네"} />
+              <Button onClick={() => setModal(false)} content={"아니요"} />
             </div>
           </Modal>
           <canvas

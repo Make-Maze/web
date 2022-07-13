@@ -5,11 +5,13 @@ import { useRecoilState } from "recoil";
 import { Title } from "../../Atoms";
 import Button from "../Button";
 import map from "../../Api/map";
+import auth from "../../Api/auth";
+import { useCookies } from "react-cookie";
 
 const Toolbar = (props) => {
+  const [cookie, setCookie] = useCookies();
   const mapArray = props.map;
   const [title, setTitle] = useRecoilState(Title);
-  console.log(props.potalInfo)
   const make = async () => {
     let potal_state = 0;
     let map_state = 0;
@@ -69,7 +71,6 @@ const Toolbar = (props) => {
     }
     let mapJSON = new Object();
     mapJSON = JSON.stringify(jsonArray);
-    console.log(mapJSON);
 
     if (potal_state % 2 !== 0) {
       toast.error("포탈은 짝수개여야 합니다");
@@ -78,30 +79,33 @@ const Toolbar = (props) => {
     } else if (map_state === 2092) {
       toast.error("맵을 다 그려 주세요");
     } else {
-      setTitle("");
-      // 구글 아이디가 googleId인 사용자의 맵 추가
-      await map.add(title, mapJSON).then((res) => {
-        props.setBtn("btn_open");
-        toast.success("저장 완료");
-        for (let i = 0; i < 30; i++) {
-          props.map[i].fill(0);
-        }
+      try {
+        setTitle("");
+        // 구글 아이디가 googleId인 사용자의 맵 추가
+        await map.add(title, mapJSON).then((res) => {
+          props.setBtn("btn_open");
+          toast.success("저장 완료");
+          for (let i = 0; i < 30; i++) {
+            props.map[i].fill(0);
+          }
 
-        props.potalInfo.splice(0, props.potalInfo.length);
-        // 전체 지우고 난 후 자동으로 브러쉬 선택
-        props.setDraw(0);
-        props.setSelect("wall");
-        props.setItem(false);
-        props.map[0][0] = 91;
-        props.map[0][1] = 92;
-        props.map[1][0] = 93;
-        props.map[1][1] = 94;
-        props.map[28][68] = 95;
-        props.map[28][69] = 96;
-        props.map[29][68] = 97;
-        props.map[29][69] = 98;
-        console.log(mapJSON);
-      });
+          props.potalInfo.splice(0, props.potalInfo.length);
+          // 전체 지우고 난 후 자동으로 브러쉬 선택
+          props.setDraw(0);
+          props.setSelect("wall");
+          props.setItem(false);
+          props.map[0][0] = 91;
+          props.map[0][1] = 92;
+          props.map[1][0] = 93;
+          props.map[1][1] = 94;
+          props.map[28][68] = 95;
+          props.map[28][69] = 96;
+          props.map[29][68] = 97;
+          props.map[29][69] = 98;
+        });
+      } catch (e) {
+        auth.reissue(cookie.accessToken, cookie.refreshToken);
+      }
     }
   };
   useEffect(() => {

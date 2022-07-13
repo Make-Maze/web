@@ -6,8 +6,11 @@ import { useRecoilState } from "recoil";
 import Button from "../Button";
 import like from "../../Api/like";
 import map from "../../Api/map";
+import auth from "../../Api/auth";
+import { useCookies } from "react-cookie";
 
 const Share = () => {
+  const [cookie, setCookie] = useCookies();
   const [shared, setShared] = useState([]); // 공유하기
   const [liked, setLiked] = useRecoilState(Liked);
   const [profile] = useRecoilState(Profile);
@@ -38,7 +41,12 @@ const Share = () => {
     } else if (element.userName === profile.name) {
       toast.error("자신이 만든 맵은 저장할 수 없습니다.");
     } else {
-      await like.add(element.mapId).then(() => toast.success("저장 완료"));
+      try {
+        await like.add(element.mapId);
+        toast.success("저장 완료");
+      } catch (e) {
+        await auth.reissue(cookie.accessToken, cookie.refreshToken);
+      }
     }
   };
 
