@@ -5,11 +5,9 @@ import { useRecoilState } from "recoil";
 import { Title } from "../../Atoms";
 import Button from "../Button";
 import map from "../../Api/map";
-import auth from "../../Api/auth";
-import { useCookies } from "react-cookie";
+import Refresh from "../../Api/refresh";
 
 const Toolbar = (props) => {
-  const [cookie, setCookie] = useCookies();
   const mapArray = props.map;
   const [title, setTitle] = useRecoilState(Title);
   const make = async () => {
@@ -104,7 +102,7 @@ const Toolbar = (props) => {
           props.map[29][69] = 98;
         });
       } catch (e) {
-        auth.reissue(cookie.accessToken, cookie.refreshToken);
+        Refresh();
       }
     }
   };

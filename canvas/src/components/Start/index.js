@@ -8,11 +8,12 @@ import { Login } from "../../Atoms";
 import maze from "../../Assets/maze.png";
 import { useCookies } from "react-cookie";
 import auth from "../../Api/auth";
+import Refresh from "../../Api/refresh";
 
 const Start = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(Login);
-  const [cookie, setCookie] = useCookies();
+  const [, setCookie] = useCookies();
 
   const onSuccess = async (res) => {
     // 로그인 성공 시 로그인 된 유저 정보를 보여줌
@@ -27,7 +28,7 @@ const Start = () => {
       navigate("/draw");
     } catch (e) {
       try {
-        await auth.reissue(cookie.accessToken, cookie.refreshToken);
+        Refresh();
       } catch (e) {
         toast.error("다시 시도해 주세요");
         setIsLogin(false);

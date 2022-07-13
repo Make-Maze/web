@@ -4,6 +4,7 @@ import auth from "./auth";
 
 const Refresh = () => {
   const [cookie, setCookie] = useCookies();
+  console.log("hi");
   try {
     const res = auth.reissue(cookie.accessToken, cookie.refreshToken);
     setCookie("accessToken", res.accessToken, { path: "/" });

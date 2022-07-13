@@ -6,11 +6,9 @@ import { Liked, Profile } from "../../Atoms";
 import Button from "../Button";
 import map from "../../Api/map";
 import like from "../../Api/like";
-import auth from "../../Api/auth";
-import { useCookies } from "react-cookie";
+import Refresh from "../../Api/refresh";
 
 const User = () => {
-  const [cookie, setCookie] = useCookies();
   const [saved, setSaved] = useState([]); // 저장하기
   const [liked, setLiked] = useRecoilState(Liked);
   const [profile] = useRecoilState(Profile);
@@ -32,7 +30,7 @@ const User = () => {
         setSaved(saved.filter((mapData) => mapData.mapId !== element.mapId));
         toast.success("삭제 완료");
       } catch (e) {
-        await auth.reissue(cookie.accessToken, cookie.refreshToken);
+        Refresh();
       }
     } else {
       try {
@@ -41,7 +39,7 @@ const User = () => {
         setLiked(liked.filter((mapData) => mapData.mapId !== element.mapId));
         toast.success("삭제 완료");
       } catch (e) {
-        await auth.reissue(cookie.accessToken, cookie.refreshToken);
+        Refresh();
       }
     }
   };

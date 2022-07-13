@@ -6,11 +6,9 @@ import { useRecoilState } from "recoil";
 import Button from "../Button";
 import like from "../../Api/like";
 import map from "../../Api/map";
-import auth from "../../Api/auth";
-import { useCookies } from "react-cookie";
+import Refresh from "../../Api/refresh";
 
 const Share = () => {
-  const [cookie, setCookie] = useCookies();
   const [shared, setShared] = useState([]); // 공유하기
   const [liked, setLiked] = useRecoilState(Liked);
   const [profile] = useRecoilState(Profile);
@@ -45,7 +43,7 @@ const Share = () => {
         await like.add(element.mapId);
         toast.success("저장 완료");
       } catch (e) {
-        await auth.reissue(cookie.accessToken, cookie.refreshToken);
+        Refresh();
       }
     }
   };
