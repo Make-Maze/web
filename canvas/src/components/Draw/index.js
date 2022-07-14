@@ -63,7 +63,6 @@ const Canvas = (props) => {
 
     const context = canvas.getContext("2d");
     contextRef.current = context;
-
     setCtx(contextRef.current);
   }, []);
 
@@ -115,7 +114,7 @@ const Canvas = (props) => {
             <h2>전체 지우기</h2>
             <p>정말로 전부 지우시겠습니까?</p>
             <div className="button_wrap">
-              <Button onClick={AllDel} content={"네"} />
+              <Button onClick={() => AllDel()} content={"네"} />
               <Button onClick={() => setModal(false)} content={"아니요"} />
             </div>
           </Modal>
