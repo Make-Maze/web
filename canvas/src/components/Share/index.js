@@ -43,7 +43,7 @@ const Share = () => {
         await like.add(element.mapId);
         toast.success("저장 완료");
       } catch (e) {
-        Refresh();
+        console.log(e);
       }
     }
   };

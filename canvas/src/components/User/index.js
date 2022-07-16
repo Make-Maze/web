@@ -30,7 +30,7 @@ const User = () => {
         setSaved(saved.filter((mapData) => mapData.mapId !== element.mapId));
         toast.success("삭제 완료");
       } catch (e) {
-        Refresh();
+        console.log(e);
       }
     } else {
       try {
@@ -39,7 +39,7 @@ const User = () => {
         setLiked(liked.filter((mapData) => mapData.mapId !== element.mapId));
         toast.success("삭제 완료");
       } catch (e) {
-        Refresh();
+        console.log(e);
       }
     }
   };

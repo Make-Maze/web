@@ -102,7 +102,7 @@ const Toolbar = (props) => {
           props.map[29][69] = 98;
         });
       } catch (e) {
-        Refresh();
+        console.log(e);
       }
     }
   };

@@ -28,7 +28,7 @@ const Start = () => {
       navigate("/draw");
     } catch (e) {
       try {
-        Refresh();
+        console.log(e);
       } catch (e) {
         toast.error("다시 시도해 주세요");
         setIsLogin(false);
